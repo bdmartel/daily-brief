@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Daily Brief - March 19, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0d0d;
+    --surface: #161616;
+    --surface-hover: #1c1c1c;
+    --border: #2a2a2a;
+    --text: #e0e0e0;
+    --text-muted: #888;
+    --accent: #4a9eff;
+    --accent-dim: rgba(74, 158, 255, 0.12);
+    --green: #3ddc84;
+    --green-dim: rgba(61, 220, 132, 0.12);
+    --amber: #ffb74d;
+    --amber-dim: rgba(255, 183, 77, 0.12);
+    --purple: #bb86fc;
+    --purple-dim: rgba(187, 134, 252, 0.12);
+  }
+
+  html { font-size: 16px; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 6rem;
+  }
+
+  /* Header */
+  .header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .header .date-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.25rem;
+  }
+  .header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  .header .summary-line {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+  }
+
+  /* Listen bar */
+  .listen-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .listen-bar .progress-fill {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    background: var(--accent-dim);
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 12px;
+  }
+  .listen-bar > * { position: relative; z-index: 1; }
+  .listen-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: var(--accent);
+    color: #000;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: transform 0.15s, opacity 0.15s;
+  }
+  .listen-btn:active { transform: scale(0.92); }
+  .listen-btn svg { width: 18px; height: 18px; }
+  .listen-label {
+    flex: 1;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .listen-label small {
+    display: block;
+    font-weight: 400;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+  }
+  .speed-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: var(--accent-dim);
+    color: var(--accent);
+    border: none;
+    border-radius: 6px;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .speed-btn:hover { background: rgba(74, 158, 255, 0.2); }
+
+  /* Session cards */
+  .session {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.2s;
+  }
+  .session.speaking { border-color: var(--accent); }
+  .session-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .session-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.1rem;
+  }
+  .session-icon.genealogy { background: var(--purple-dim); }
+  .session-icon.farming { background: var(--green-dim); }
+  .session-icon.client { background: var(--amber-dim); }
+  .session-meta { flex: 1; min-width: 0; }
+  .session-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.3;
+  }
+  .session-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+  }
+  .session-body { font-size: 0.875rem; color: var(--text); }
+  .session-body p { margin-bottom: 0.5rem; }
+  .session-body p:last-child { margin-bottom: 0; }
+
+  .detail-list {
+    list-style: none;
+    margin: 0.5rem 0 0;
+    padding: 0;
+  }
+  .detail-list li {
+    position: relative;
+    padding-left: 1rem;
+    margin-bottom: 0.35rem;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .detail-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.675rem;
+    font-weight: 500;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    margin-right: 0.25rem;
+  }
+  .tag.purple { background: var(--purple-dim); color: var(--purple); }
+  .tag.green { background: var(--green-dim); color: var(--green); }
+  .tag.amber { background: var(--amber-dim); color: var(--amber); }
+
+  /* Floating listen button (mobile) */
+  .fab {
+    display: none;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(74, 158, 255, 0.3);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s;
+  }
+  .fab:active { transform: scale(0.9); }
+  .fab svg { width: 22px; height: 22px; }
+
+  @media (max-width: 480px) {
+    .container { padding: 1rem 0.75rem 7rem; }
+    .header h1 { font-size: 1.5rem; }
+    .listen-bar { border-radius: 10px; padding: 0.625rem 0.875rem; }
+    .session { border-radius: 10px; padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header class="header">
+    <div class="date-label">Wednesday, March 19, 2026</div>
+    <h1>Daily Brief</h1>
+    <div class="summary-line">4 sessions across genealogy, agriculture, and client work</div>
+  </header>
+
+  <!-- Listen Bar -->
+  <div class="listen-bar" id="listenBar">
+    <div class="progress-fill" id="progressFill"></div>
+    <button class="listen-btn" id="listenBtn" aria-label="Listen to brief">
+      <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      <svg id="pauseIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    </button>
+    <div class="listen-label">
+      <span id="listenText">Listen to today's brief</span>
+      <small id="listenSub">Tap to hear a spoken summary</small>
+    </div>
+    <button class="speed-btn" id="speedBtn">1x</button>
+  </div>
+
+  <!-- Session 1: Census Transcription -->
+  <div class="session" data-section="census">
+    <div class="session-header">
+      <div class="session-icon genealogy">&#x1F4DC;</div>
+      <div class="session-meta">
+        <div class="session-title">1950 Census Transcription</div>
+        <div class="session-time">10:26 - 10:45</div>
+      </div>
+    </div>
+    <div class="session-body">
+      <p><span class="tag purple">genealogy</span> Transcribed a 1950 Census sheet for Goffstown, NH and began building a structured family database for the Martel and Gove families.</p>
+      <ul class="detail-list">
+        <li>Full census sheet transcribed (ED 6-10, Sheet 13) covering 14 dwellings and roughly 30 people</li>
+        <li>Created person records for 7 family members: Helen Virginia Gove, Clifford Rupert Martel, their sons Clifford Jr. and Peter, Helen's parents Harold Cartland Gove and Mabelle Farrington Kelley, and newly discovered uncle Douglas Earle Gove</li>
+        <li>FindAGrave research uncovered key corrections: Harold's middle name is "Cartland" not just "C", Mabelle's maiden name is "Kelley" not "Kelly"</li>
+        <li>Douglas Earle Gove (1921-2010) identified as "the unofficial historian of Goffstown"</li>
+        <li>All buried at Westlawn Cemetery, Goffstown, NH</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Session 2: Genealogy Deep Research -->
+  <div class="session" data-section="genealogy">
+    <div class="session-header">
+      <div class="session-icon genealogy">&#x1F50D;</div>
+      <div class="session-meta">
+        <div class="session-title">Gove-Martel Deep Research</div>
+        <div class="session-time">14:30 - 14:55</div>
+      </div>
+    </div>
+    <div class="session-body">
+      <p><span class="tag purple">genealogy</span> Deep genealogical research across FindAGrave, obituaries, and public records. Confirmed dates, found military service records, and traced the family tree back four generations.</p>
+      <ul class="detail-list">
+        <li>Clifford Rupert Martel: born March 13, 1918, Dracut, MA. U.S. Army WWII veteran. Father was Chester Henry Martel (1889-1941)</li>
+        <li>Helen Virginia Gove: born Jan 22, 1918, Cambridge, MA. Married Clifford in 1941. Known for a powerful singing voice, prolific writing, and giving free ski lessons in the 1950s</li>
+        <li>Peter Cartland Martel (1948-1995): U.S. Air Force Vietnam veteran, AT thru-hiker in 1990. Headstone reads "Mr. Moleskin"</li>
+        <li>Traced paternal line to Archibald Robertson Gove (1847-1917), maternal line to Henry Parker Kelley (1847-1924)</li>
+        <li>Clifford Jr.'s 2021 obituary confirmed family connections and that Peter predeceased him</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Session 3: DIY Ag Automation -->
+  <div class="session" data-section="farming">
+    <div class="session-header">
+      <div class="session-icon farming">&#x1F331;</div>
+      <div class="session-meta">
+        <div class="session-title">DIY Ag Automation Research</div>
+        <div class="session-time">14:00</div>
+      </div>
+    </div>
+    <div class="session-body">
+      <p><span class="tag green">farming</span> Comprehensive research on building small-scale farm automation with Raspberry Pi, cheap sensors, and repurposed hardware. Practical, budget-friendly systems that actually work.</p>
+      <ul class="detail-list">
+        <li>18 web searches, 8+ case studies with source URLs, 11 open-source GitHub projects documented</li>
+        <li>Key projects: Mycodo (environmental control), SIP (irrigation), FDRS (sensor mesh network), FruxePi, Pigrow</li>
+        <li>Found Robin Osborne's documented build using a phone as a 4G cellular bridge for remote Pi connectivity</li>
+        <li>Cost comparison: DIY systems run $100-175 vs. commercial solutions at $5,000-50,000+</li>
+        <li>NH-specific resources identified: UNH Extension, NH Farm Network, NE-SARE grants</li>
+        <li>Output saved to diy-ag-automation-case-studies.md</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Session 4: Adelaide Menu -->
+  <div class="session" data-section="adelaide">
+    <div class="session-header">
+      <div class="session-icon client">&#x1F37D;</div>
+      <div class="session-meta">
+        <div class="session-title">Adelaide Restaurant - Menu Files</div>
+        <div class="session-time">13:45</div>
+      </div>
+    </div>
+    <div class="session-body">
+      <p><span class="tag amber">client</span> Deep review of Adelaide menu source materials. Built a full task tracker for the menu additions project.</p>
+      <ul class="detail-list">
+        <li>Created TASKS.md with 6 phases, 22 tasks across the drinks menu addition</li>
+        <li>Organized all source materials: 4 PDFs, 9 SVG assets, InDesign files</li>
+        <li>Identified 4 open blockers: web pricing display, URL structure, cost confirmation, SecBev v03 content</li>
+        <li>Updated STATUS.md to reflect current project state</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<button class="fab" id="fab" aria-label="Listen">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+</button>
+
+<script>
+(function() {
+  // Brief content for speech synthesis - written conversationally for listening
+  var sections = [
+    {
+      id: 'census',
+      title: 'Census Transcription',
+      text: 'This morning you transcribed a 1950 Census sheet from Goffstown, New Hampshire, and started building a structured family database. The sheet covered 14 dwellings and about 30 people. You created person records for seven Martel and Gove family members, starting with Helen Virginia Gove and Clifford Rupert Martel. FindAGrave research turned up some corrections. Harold\'s middle name is Cartland, not just C, and Mabelle\'s maiden name is spelled K-E-L-L-E-Y. You also discovered Douglas Earle Gove, Helen\'s brother, described as the unofficial historian of Goffstown. The whole family is buried at Westlawn Cemetery.'
+    },
+    {
+      id: 'genealogy',
+      title: 'Deep Genealogy Research',
+      text: 'In the afternoon you dove deeper into the Gove and Martel family across FindAGrave, obituary archives, and public records. Key findings: Clifford Rupert Martel was born March 13, 1918 in Dracut, Massachusetts, and served in the Army during World War Two. His father was Chester Henry Martel. Helen was born in Cambridge and married Clifford in 1941. She was known for a powerful singing voice and gave free ski lessons in the 1950s. Peter Cartland Martel, their son, was an Air Force Vietnam veteran and thru-hiked the Appalachian Trail in 1990. His headstone reads "Mister Moleskin." You traced the family tree back four generations to the 1840s.'
+    },
+    {
+      id: 'farming',
+      title: 'Farm Automation Research',
+      text: 'You compiled a comprehensive research document on DIY small-scale agriculture automation. Eighteen web searches, eight case studies, and eleven open-source GitHub projects. The standout tools are Mycodo for environmental control, SIP for irrigation, and FDRS for sensor mesh networks. You found a documented build using a phone as a cellular bridge for remote Raspberry Pi connectivity. The cost comparison is dramatic: DIY systems run 100 to 175 dollars, versus 5,000 to 50,000 for commercial solutions. You also identified New Hampshire resources like UNH Extension and NE-SARE grants.'
+    },
+    {
+      id: 'adelaide',
+      title: 'Adelaide Menu Project',
+      text: 'For Adelaide Restaurant, you did a deep review of all menu source materials and built a full task tracker. The tracker has 6 phases and 22 tasks for the drinks menu addition. You organized 4 PDFs, 9 SVG assets, and InDesign files. Four blockers are still open: web pricing display, URL structure, cost confirmation, and SecBev version 3 content.'
+    }
+  ];
+
+  var introText = "Here's your daily brief for Wednesday, March 19th, 2026. You had four working sessions today covering genealogy, farm automation research, and client work.";
+  var outroText = "That's the full brief. Good walk.";
+
+  var synth = window.speechSynthesis;
+  var state = 'idle'; // idle, playing, paused
+  var currentSection = -1; // -1 = intro, sections.length = outro
+  var utterance = null;
+  var speeds = [1, 1.25, 1.5, 0.85];
+  var speedIdx = 0;
+  var totalSections = sections.length + 2; // intro + sections + outro
+  var chosenVoice = null;
+
+  var btn = document.getElementById('listenBtn');
+  var playIcon = document.getElementById('playIcon');
+  var pauseIcon = document.getElementById('pauseIcon');
+  var label = document.getElementById('listenText');
+  var sub = document.getElementById('listenSub');
+  var speedBtn = document.getElementById('speedBtn');
+  var progressFill = document.getElementById('progressFill');
+  var fab = document.getElementById('fab');
+  var allSessions = document.querySelectorAll('.session');
+
+  function pickVoice() {
+    var voices = synth.getVoices();
+    // Prefer high-quality English voices
+    var prefs = ['Samantha', 'Karen', 'Daniel', 'Moira', 'Tessa', 'Google UK English Female', 'Google US English'];
+    for (var i = 0; i < prefs.length; i++) {
+      for (var j = 0; j < voices.length; j++) {
+        if (voices[j].name.indexOf(prefs[i]) !== -1 && voices[j].lang.indexOf('en') !== -1) {
+          return voices[j];
+        }
+      }
+    }
+    // Fallback: any English voice
+    for (var j = 0; j < voices.length; j++) {
+      if (voices[j].lang.indexOf('en') !== -1) return voices[j];
+    }
+    return voices[0] || null;
+  }
+
+  // Voices load async on some browsers
+  if (synth.onvoiceschanged !== undefined) {
+    synth.onvoiceschanged = function() { chosenVoice = pickVoice(); };
+  }
+  chosenVoice = pickVoice();
+
+  function updateProgress() {
+    var done = currentSection + 1; // +1 because intro is -1
+    var pct = Math.min(100, (done / totalSections) * 100);
+    progressFill.style.width = pct + '%';
+  }
+
+  function highlightSection(idx) {
+    allSessions.forEach(function(s, i) {
+      s.classList.toggle('speaking', i === idx);
+    });
+  }
+
+  function getTextForSection(idx) {
+    if (idx === -1) return introText;
+    if (idx >= sections.length) return outroText;
+    return sections[idx].title + '. ' + sections[idx].text;
+  }
+
+  function speakSection(idx) {
+    currentSection = idx;
+    updateProgress();
+
+    if (idx >= 0 && idx < sections.length) {
+      highlightSection(idx);
+    } else {
+      highlightSection(-1);
+    }
+
+    var text = getTextForSection(idx);
+    utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = speeds[speedIdx];
+    utterance.pitch = 1;
+    if (chosenVoice) utterance.voice = chosenVoice;
+
+    utterance.onend = function() {
+      if (state === 'playing') {
+        var next = idx + 1;
+        if (next <= sections.length) {
+          speakSection(next);
+        } else {
+          stop();
+        }
+      }
+    };
+
+    // iOS Safari workaround: resume interrupted speech
+    utterance.onerror = function(e) {
+      if (e.error === 'interrupted' && state === 'playing') {
+        // skip to next section
+        var next = idx + 1;
+        if (next <= sections.length) speakSection(next);
+        else stop();
+      }
+    };
+
+    synth.speak(utterance);
+  }
+
+  function play() {
+    if (!synth) return;
+    // Re-pick voice in case they loaded late
+    if (!chosenVoice) chosenVoice = pickVoice();
+
+    if (state === 'paused') {
+      synth.resume();
+      state = 'playing';
+    } else {
+      synth.cancel();
+      state = 'playing';
+      speakSection(-1);
+    }
+    showPause();
+  }
+
+  function pause() {
+    synth.pause();
+    state = 'paused';
+    showPlay();
+    label.textContent = 'Paused';
+    sub.textContent = 'Tap to resume';
+  }
+
+  function stop() {
+    synth.cancel();
+    state = 'idle';
+    currentSection = -1;
+    showPlay();
+    highlightSection(-1);
+    progressFill.style.width = '100%';
+    label.textContent = 'Brief complete';
+    sub.textContent = 'Tap to listen again';
+    setTimeout(function() {
+      progressFill.style.width = '0%';
+      label.textContent = 'Listen to today\'s brief';
+      sub.textContent = 'Tap to hear a spoken summary';
+    }, 3000);
+  }
+
+  function showPlay() {
+    playIcon.style.display = '';
+    pauseIcon.style.display = 'none';
+    fab.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+  }
+
+  function showPause() {
+    playIcon.style.display = 'none';
+    pauseIcon.style.display = '';
+    label.textContent = 'Playing...';
+    sub.textContent = sections[Math.max(0, currentSection)]
+      ? sections[Math.max(0, currentSection)].title
+      : 'Introduction';
+    fab.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+  }
+
+  function toggle() {
+    if (state === 'idle') play();
+    else if (state === 'playing') pause();
+    else if (state === 'paused') play();
+  }
+
+  btn.addEventListener('click', toggle);
+  fab.addEventListener('click', toggle);
+
+  speedBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    speedIdx = (speedIdx + 1) % speeds.length;
+    speedBtn.textContent = speeds[speedIdx] + 'x';
+    if (utterance) utterance.rate = speeds[speedIdx];
+    // If currently playing, restart current section at new speed
+    if (state === 'playing') {
+      synth.cancel();
+      speakSection(currentSection);
+    }
+  });
+
+  // Show FAB on scroll
+  var scrollTimer;
+  window.addEventListener('scroll', function() {
+    fab.style.display = 'flex';
+    clearTimeout(scrollTimer);
+  });
+  // Always show FAB on mobile
+  if (window.innerWidth <= 640) fab.style.display = 'flex';
+
+  // Clean up on page hide (iOS)
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden && state === 'playing') {
+      // Keep playing - speech synthesis continues in background on most browsers
+    }
+  });
+
+  // Prevent iOS from stopping speech on scroll
+  var keepAlive;
+  function startKeepAlive() {
+    keepAlive = setInterval(function() {
+      if (state === 'playing' && synth.paused) synth.resume();
+    }, 5000);
+  }
+  function stopKeepAlive() { clearInterval(keepAlive); }
+
+  var origPlay = play;
+  play = function() {
+    origPlay();
+    startKeepAlive();
+  };
+  var origStop = stop;
+  stop = function() {
+    origStop();
+    stopKeepAlive();
+  };
+})();
+</script>
+
+</body>
+</html>
