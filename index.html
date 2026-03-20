@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Daily Brief - March 19, 2026</title>
+<title>Daily Brief - March 20, 2026</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
@@ -24,6 +24,8 @@
     --amber-dim: rgba(255, 183, 77, 0.12);
     --purple: #bb86fc;
     --purple-dim: rgba(187, 134, 252, 0.12);
+    --blue: #4a9eff;
+    --blue-dim: rgba(74, 158, 255, 0.12);
   }
 
   html { font-size: 16px; }
@@ -161,6 +163,7 @@
   .session-icon.genealogy { background: var(--purple-dim); }
   .session-icon.farming { background: var(--green-dim); }
   .session-icon.client { background: var(--amber-dim); }
+  .session-icon.tools { background: var(--blue-dim); }
   .session-meta { flex: 1; min-width: 0; }
   .session-title {
     font-size: 1rem;
@@ -214,6 +217,7 @@
   .tag.purple { background: var(--purple-dim); color: var(--purple); }
   .tag.green { background: var(--green-dim); color: var(--green); }
   .tag.amber { background: var(--amber-dim); color: var(--amber); }
+  .tag.blue { background: var(--blue-dim); color: var(--blue); }
 
   /* Floating listen button (mobile) */
   .fab {
@@ -249,9 +253,9 @@
 
 <div class="container">
   <header class="header">
-    <div class="date-label">Wednesday, March 19, 2026</div>
+    <div class="date-label">Thursday, March 20, 2026</div>
     <h1>Daily Brief</h1>
-    <div class="summary-line">4 sessions across genealogy, agriculture, and client work</div>
+    <div class="summary-line">4 sessions across farming, tools, genetics, and client work</div>
   </header>
 
   <!-- Listen Bar -->
@@ -268,86 +272,86 @@
     <button class="speed-btn" id="speedBtn">1x</button>
   </div>
 
-  <!-- Session 1: Census Transcription -->
-  <div class="session" data-section="census">
-    <div class="session-header">
-      <div class="session-icon genealogy">&#x1F4DC;</div>
-      <div class="session-meta">
-        <div class="session-title">1950 Census Transcription</div>
-        <div class="session-time">10:26 - 10:45</div>
-      </div>
-    </div>
-    <div class="session-body">
-      <p><span class="tag purple">genealogy</span> Transcribed a 1950 Census sheet for Goffstown, NH and began building a structured family database for the Martel and Gove families.</p>
-      <ul class="detail-list">
-        <li>Full census sheet transcribed (ED 6-10, Sheet 13) covering 14 dwellings and roughly 30 people</li>
-        <li>Created person records for 7 family members: Helen Virginia Gove, Clifford Rupert Martel, their sons Clifford Jr. and Peter, Helen's parents Harold Cartland Gove and Mabelle Farrington Kelley, and newly discovered uncle Douglas Earle Gove</li>
-        <li>FindAGrave research uncovered key corrections: Harold's middle name is "Cartland" not just "C", Mabelle's maiden name is "Kelley" not "Kelly"</li>
-        <li>Douglas Earle Gove (1921-2010) identified as "the unofficial historian of Goffstown"</li>
-        <li>All buried at Westlawn Cemetery, Goffstown, NH</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Session 2: Genealogy Deep Research -->
-  <div class="session" data-section="genealogy">
-    <div class="session-header">
-      <div class="session-icon genealogy">&#x1F50D;</div>
-      <div class="session-meta">
-        <div class="session-title">Gove-Martel Deep Research</div>
-        <div class="session-time">14:30 - 14:55</div>
-      </div>
-    </div>
-    <div class="session-body">
-      <p><span class="tag purple">genealogy</span> Deep genealogical research across FindAGrave, obituaries, and public records. Confirmed dates, found military service records, and traced the family tree back four generations.</p>
-      <ul class="detail-list">
-        <li>Clifford Rupert Martel: born March 13, 1918, Dracut, MA. U.S. Army WWII veteran. Father was Chester Henry Martel (1889-1941)</li>
-        <li>Helen Virginia Gove: born Jan 22, 1918, Cambridge, MA. Married Clifford in 1941. Known for a powerful singing voice, prolific writing, and giving free ski lessons in the 1950s</li>
-        <li>Peter Cartland Martel (1948-1995): U.S. Air Force Vietnam veteran, AT thru-hiker in 1990. Headstone reads "Mr. Moleskin"</li>
-        <li>Traced paternal line to Archibald Robertson Gove (1847-1917), maternal line to Henry Parker Kelley (1847-1924)</li>
-        <li>Clifford Jr.'s 2021 obituary confirmed family connections and that Peter predeceased him</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Session 3: DIY Ag Automation -->
-  <div class="session" data-section="farming">
+  <!-- Session 1: Garden Project Commits -->
+  <div class="session" data-section="garden">
     <div class="session-header">
       <div class="session-icon farming">&#x1F331;</div>
       <div class="session-meta">
-        <div class="session-title">DIY Ag Automation Research</div>
-        <div class="session-time">14:00</div>
+        <div class="session-title">Garden Project - Big Commit</div>
+        <div class="session-time">12:00</div>
       </div>
     </div>
     <div class="session-body">
-      <p><span class="tag green">farming</span> Comprehensive research on building small-scale farm automation with Raspberry Pi, cheap sensors, and repurposed hardware. Practical, budget-friendly systems that actually work.</p>
+      <p><span class="tag green">farming</span> Committed all pending grow-together changes in one large push. 29 files capturing the full 14-bed garden expansion.</p>
       <ul class="detail-list">
-        <li>18 web searches, 8+ case studies with source URLs, 11 open-source GitHub projects documented</li>
-        <li>Key projects: Mycodo (environmental control), SIP (irrigation), FDRS (sensor mesh network), FruxePi, Pigrow</li>
-        <li>Found Robin Osborne's documented build using a phone as a 4G cellular bridge for remote Pi connectivity</li>
-        <li>Cost comparison: DIY systems run $100-175 vs. commercial solutions at $5,000-50,000+</li>
-        <li>NH-specific resources identified: UNH Extension, NH Farm Network, NE-SARE grants</li>
-        <li>Output saved to diy-ag-automation-case-studies.md</li>
+        <li>29 files committed in a single batch covering weeks of accumulated work</li>
+        <li>14-bed garden expansion with new crops added to the planning system</li>
+        <li>New HTML tools, reference documents, and incoming files organized</li>
+        <li>Embedded repos integrated into the project structure</li>
+        <li>Currently 18 commits ahead of origin, ready to push</li>
       </ul>
     </div>
   </div>
 
-  <!-- Session 4: Adelaide Menu -->
-  <div class="session" data-section="adelaide">
+  <!-- Session 2: Trackpad Return Hack -->
+  <div class="session" data-section="trackpad">
     <div class="session-header">
-      <div class="session-icon client">&#x1F37D;</div>
+      <div class="session-icon tools">&#x2328;</div>
       <div class="session-meta">
-        <div class="session-title">Adelaide Restaurant - Menu Files</div>
-        <div class="session-time">13:45</div>
+        <div class="session-title">Trackpad Return Key Hack</div>
+        <div class="session-time">12:50 - 13:15</div>
       </div>
     </div>
     <div class="session-body">
-      <p><span class="tag amber">client</span> Deep review of Adelaide menu source materials. Built a full task tracker for the menu additions project.</p>
+      <p><span class="tag blue">tools</span> Built a macOS utility to remap Shane Shelley's Bluetooth Magic Trackpad so click sends Return and trackpad movement is suppressed.</p>
       <ul class="detail-list">
-        <li>Created TASKS.md with 6 phases, 22 tasks across the drinks menu addition</li>
-        <li>Organized all source materials: 4 PDFs, 9 SVG assets, InDesign files</li>
-        <li>Identified 4 open blockers: web pricing display, URL structure, cost confirmation, SecBev v03 content</li>
-        <li>Updated STATUS.md to reflect current project state</li>
+        <li>CGEventTap-based tool intercepts trackpad events at the system level</li>
+        <li>Click mapped to Return key, all movement/gesture events suppressed</li>
+        <li>LaunchAgent configured to auto-start at login</li>
+        <li>Explored Superwhisper's autoSubmitAfterPaste feature for integration — deferred to next session</li>
+        <li>Committed and pushed to github.com/bdmartel/trackpad-return (private)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Session 3: DNA & Ancestry Research -->
+  <div class="session" data-section="dna">
+    <div class="session-header">
+      <div class="session-icon genealogy">&#x1F9EC;</div>
+      <div class="session-meta">
+        <div class="session-title">DNA & Genetic Health Analysis</div>
+        <div class="session-time">12:55 - 13:10</div>
+      </div>
+    </div>
+    <div class="session-body">
+      <p><span class="tag purple">genealogy</span> Downloaded raw DNA from Ancestry.com and analyzed a full FoundMyFitness genetic report. Pivoted the ancestry project toward genetic genealogy.</p>
+      <ul class="detail-list">
+        <li>Downloaded 668,000 SNPs of raw DNA data from Ancestry.com</li>
+        <li>Analyzed 24-page FoundMyFitness report — key finding: APOE4 carrier with compounded Alzheimer's risk (APOE4 + MTNR1A variant)</li>
+        <li>Saturated fat sensitivity identified across 3 gene systems</li>
+        <li>Choline deficiency risk from 3 converging variants</li>
+        <li>Multiple longevity-positive variants identified as counterbalance</li>
+        <li>Created structured foundmyfitness-report.json with all findings and 5 cross-cutting themes</li>
+        <li>GEDmatch recommended for cross-platform genealogical matching</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Session 4: Kurt Photo Setup -->
+  <div class="session" data-section="kurt">
+    <div class="session-header">
+      <div class="session-icon client">&#x1F4F7;</div>
+      <div class="session-meta">
+        <div class="session-title">Kurt - Photo Management Email</div>
+        <div class="session-time">13:45 - 14:00</div>
+      </div>
+    </div>
+    <div class="session-body">
+      <p><span class="tag amber">client</span> Distilled photo management advice from a ChatGPT session into a clean, actionable client email for Kurt, an artist.</p>
+      <ul class="detail-list">
+        <li>Condensed sprawling AI conversation into 5 clear action points</li>
+        <li>Iterated hardware recommendations to keep options open-ended rather than prescriptive</li>
+        <li>Final email focused on practical next steps Kurt can act on immediately</li>
       </ul>
     </div>
   </div>
@@ -362,28 +366,28 @@
   // Brief content for speech synthesis - written conversationally for listening
   var sections = [
     {
-      id: 'census',
-      title: 'Census Transcription',
-      text: 'This morning you transcribed a 1950 Census sheet from Goffstown, New Hampshire, and started building a structured family database. The sheet covered 14 dwellings and about 30 people. You created person records for seven Martel and Gove family members, starting with Helen Virginia Gove and Clifford Rupert Martel. FindAGrave research turned up some corrections. Harold\'s middle name is Cartland, not just C, and Mabelle\'s maiden name is spelled K-E-L-L-E-Y. You also discovered Douglas Earle Gove, Helen\'s brother, described as the unofficial historian of Goffstown. The whole family is buried at Westlawn Cemetery.'
+      id: 'garden',
+      title: 'Garden Project Commits',
+      text: 'You committed all the pending grow-together changes in one big push. 29 files covering the full 14-bed garden expansion, new crops, HTML tools, reference docs, and embedded repos. The project is now 18 commits ahead of origin and ready to push. This captures weeks of accumulated garden planning work in a single clean commit.'
     },
     {
-      id: 'genealogy',
-      title: 'Deep Genealogy Research',
-      text: 'In the afternoon you dove deeper into the Gove and Martel family across FindAGrave, obituary archives, and public records. Key findings: Clifford Rupert Martel was born March 13, 1918 in Dracut, Massachusetts, and served in the Army during World War Two. His father was Chester Henry Martel. Helen was born in Cambridge and married Clifford in 1941. She was known for a powerful singing voice and gave free ski lessons in the 1950s. Peter Cartland Martel, their son, was an Air Force Vietnam veteran and thru-hiked the Appalachian Trail in 1990. His headstone reads "Mister Moleskin." You traced the family tree back four generations to the 1840s.'
+      id: 'trackpad',
+      title: 'Trackpad Return Key Hack',
+      text: 'You built a macOS utility for Shane Shelley that remaps his Bluetooth Magic Trackpad. It uses a CGEventTap to intercept events at the system level. Clicking the trackpad now sends a Return key, and all movement and gesture events are suppressed. You set up a LaunchAgent so it auto-starts at login. You also explored Superwhisper\'s auto-submit-after-paste feature for integration, but deferred that to next session. The whole thing got committed and pushed to a private repo on GitHub.'
     },
     {
-      id: 'farming',
-      title: 'Farm Automation Research',
-      text: 'You compiled a comprehensive research document on DIY small-scale agriculture automation. Eighteen web searches, eight case studies, and eleven open-source GitHub projects. The standout tools are Mycodo for environmental control, SIP for irrigation, and FDRS for sensor mesh networks. You found a documented build using a phone as a cellular bridge for remote Raspberry Pi connectivity. The cost comparison is dramatic: DIY systems run 100 to 175 dollars, versus 5,000 to 50,000 for commercial solutions. You also identified New Hampshire resources like UNH Extension and NE-SARE grants.'
+      id: 'dna',
+      title: 'DNA and Genetic Health Analysis',
+      text: 'You oriented on the Martel-Gove genealogy project from a genetics angle today. First, you downloaded your raw DNA from Ancestry — 668,000 SNPs. Then you analyzed the full FoundMyFitness report, all 24 pages. The big finding: you\'re an APOE4 carrier, which means elevated Alzheimer\'s risk, compounded by an MTNR1A variant. You also have saturated fat sensitivity across three gene systems and choline deficiency risk from three converging variants. On the positive side, multiple longevity-positive variants showed up. You built a structured JSON file with all the findings organized into five cross-cutting themes. GEDmatch was recommended for cross-platform genealogical matching going forward.'
     },
     {
-      id: 'adelaide',
-      title: 'Adelaide Menu Project',
-      text: 'For Adelaide Restaurant, you did a deep review of all menu source materials and built a full task tracker. The tracker has 6 phases and 22 tasks for the drinks menu addition. You organized 4 PDFs, 9 SVG assets, and InDesign files. Four blockers are still open: web pricing display, URL structure, cost confirmation, and SecBev version 3 content.'
+      id: 'kurt',
+      title: 'Kurt Photo Management Email',
+      text: 'For Kurt, an artist client, you distilled a sprawling ChatGPT conversation about photo management into a clean five-point email. You iterated on the hardware recommendations to keep them open-ended rather than prescriptive. The final email is focused and actionable — practical next steps Kurt can act on immediately.'
     }
   ];
 
-  var introText = "Here's your daily brief for Wednesday, March 19th, 2026. You had four working sessions today covering genealogy, farm automation research, and client work.";
+  var introText = "Here's your daily brief for Thursday, March 20th, 2026. You had four sessions today covering farming, tools, genetic research, and client work.";
   var outroText = "That's the full brief. Good walk.";
 
   var synth = window.speechSynthesis;
