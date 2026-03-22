@@ -412,7 +412,7 @@
   function pickVoice() {
     var voices = synth.getVoices();
     // Prefer high-quality English voices
-    var prefs = ['Samantha', 'Karen', 'Daniel', 'Moira', 'Tessa', 'Google UK English Female', 'Google US English'];
+    var prefs = ['Zoe', 'Samantha', 'Karen', 'Daniel', 'Moira', 'Tessa', 'Google UK English Female', 'Google US English'];
     for (var i = 0; i < prefs.length; i++) {
       for (var j = 0; j < voices.length; j++) {
         if (voices[j].name.indexOf(prefs[i]) !== -1 && voices[j].lang.indexOf('en') !== -1) {
