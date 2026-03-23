@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Daily Brief - March 20, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0d0d;
+    --surface: #161616;
+    --surface-hover: #1c1c1c;
+    --border: #2a2a2a;
+    --text: #e0e0e0;
+    --text-muted: #888;
+    --accent: #4a9eff;
+    --accent-dim: rgba(74, 158, 255, 0.12);
+    --green: #3ddc84;
+    --green-dim: rgba(61, 220, 132, 0.12);
+    --amber: #ffb74d;
+    --amber-dim: rgba(255, 183, 77, 0.12);
+    --purple: #bb86fc;
+    --purple-dim: rgba(187, 134, 252, 0.12);
+    --blue: #4a9eff;
+    --blue-dim: rgba(74, 158, 255, 0.12);
+  }
+
+  html { font-size: 16px; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 6rem;
+  }
+
+  /* Header */
+  .header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .header .date-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.25rem;
+  }
+  .header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  .header .summary-line {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+  }
+
+  /* Listen bar */
+  .listen-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .listen-bar .progress-fill {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    background: var(--accent-dim);
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 12px;
+  }
+  .listen-bar > * { position: relative; z-index: 1; }
+  .listen-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: var(--accent);
+    color: #000;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: transform 0.15s, opacity 0.15s;
+  }
+  .listen-btn:active { transform: scale(0.92); }
+  .listen-btn svg { width: 18px; height: 18px; }
+  .listen-label {
+    flex: 1;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .listen-label small {
+    display: block;
+    font-weight: 400;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+  }
+  .speed-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: var(--accent-dim);
+    color: var(--accent);
+    border: none;
+    border-radius: 6px;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .speed-btn:hover { background: rgba(74, 158, 255, 0.2); }
+
+  /* Session cards */
+  .session {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.2s;
+  }
+  .session.speaking { border-color: var(--accent); }
+  .session-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .session-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.1rem;
+  }
+  .session-icon.genealogy { background: var(--purple-dim); }
+  .session-icon.farming { background: var(--green-dim); }
+  .session-icon.client { background: var(--amber-dim); }
+  .session-icon.tools { background: var(--blue-dim); }
+  .session-meta { flex: 1; min-width: 0; }
+  .session-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.3;
+  }
+  .session-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+  }
+  .session-body { font-size: 0.875rem; color: var(--text); }
+  .session-body p { margin-bottom: 0.5rem; }
+  .session-body p:last-child { margin-bottom: 0; }
+
+  .detail-list {
+    list-style: none;
+    margin: 0.5rem 0 0;
+    padding: 0;
+  }
+  .detail-list li {
+    position: relative;
+    padding-left: 1rem;
+    margin-bottom: 0.35rem;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .detail-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.675rem;
+    font-weight: 500;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    margin-right: 0.25rem;
+  }
+  .tag.purple { background: var(--purple-dim); color: var(--purple); }
+  .tag.green { background: var(--green-dim); color: var(--green); }
+  .tag.amber { background: var(--amber-dim); color: var(--amber); }
+  .tag.blue { background: var(--blue-dim); color: var(--blue); }
+
+  /* Floating listen button (mobile) */
+  .fab {
+    display: none;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(74, 158, 255, 0.3);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s;
+  }
+  .fab:active { transform: scale(0.9); }
+  .fab svg { width: 22px; height: 22px; }
+
+  @media (max-width: 480px) {
+    .container { padding: 1rem 0.75rem 7rem; }
+    .header h1 { font-size: 1.5rem; }
+    .listen-bar { border-radius: 10px; padding: 0.625rem 0.875rem; }
+    .session { border-radius: 10px; padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header class="header">
+    <div class="date-label">Thursday, March 20, 2026</div>
+    <h1>Daily Brief</h1>
+    <div class="summary-line">4 sessions across farming, tools, genetics, and client work</div>
+  </header>
+
+  <!-- Listen Bar -->
+  <div class="listen-bar" id="listenBar">
+    <div class="progress-fill" id="progressFill"></div>
+    <button class="listen-btn" id="listenBtn" aria-label="Listen to brief">
+      <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      <svg id="pauseIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    </button>
+    <div class="listen-label">
+      <span id="listenText">Listen to today's brief</span>
+      <small id="listenSub">Tap to hear a spoken summary</small>
+    </div>
+    <button class="speed-btn" id="speedBtn">1x</button>
+  </div>
+
+  <!-- Session 1: Garden Project Commits -->
+  <div class="session" data-section="garden">
+    <div class="session-header">
+      <div class="session-icon farming">&#x1F331;</div>
+      <div class="session-meta">
+        <div class="session-title">Garden Project - Big Commit</div>
+        <div class="session-time">12:00</div>
+      </div>
+    </div>
+    <div class="session-body">
+      <p><span class="tag green">farming</span> Committed all pending grow-together changes in one large push. 29 files capturing the full 14-bed garden expansion.</p>
+      <ul class="detail-list">
+        <li>29 files committed in a single batch covering weeks of accumulated work</li>
+        <li>14-bed garden expansion with new crops added to the planning system</li>
+        <li>New HTML tools, reference documents, and incoming files organized</li>
+        <li>Embedded repos integrated into the project structure</li>
+        <li>Currently 18 commits ahead of origin, ready to push</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Session 2: Trackpad Return Hack -->
+  <div class="session" data-section="trackpad">
+    <div class="session-header">
+      <div class="session-icon tools">&#x2328;</div>
+      <div class="session-meta">
+        <div class="session-title">Trackpad Return Key Hack</div>
+        <div class="session-time">12:50 - 13:15</div>
+      </div>
+    </div>
+    <div class="session-body">
+      <p><span class="tag blue">tools</span> Built a macOS utility to remap Shane Shelley's Bluetooth Magic Trackpad so click sends Return and trackpad movement is suppressed.</p>
+      <ul class="detail-list">
+        <li>CGEventTap-based tool intercepts trackpad events at the system level</li>
+        <li>Click mapped to Return key, all movement/gesture events suppressed</li>
+        <li>LaunchAgent configured to auto-start at login</li>
+        <li>Explored Superwhisper's autoSubmitAfterPaste feature for integration — deferred to next session</li>
+        <li>Committed and pushed to github.com/bdmartel/trackpad-return (private)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Session 3: DNA & Ancestry Research -->
+  <div class="session" data-section="dna">
+    <div class="session-header">
+      <div class="session-icon genealogy">&#x1F9EC;</div>
+      <div class="session-meta">
+        <div class="session-title">DNA & Genetic Health Analysis</div>
+        <div class="session-time">12:55 - 13:10</div>
+      </div>
+    </div>
+    <div class="session-body">
+      <p><span class="tag purple">genealogy</span> Downloaded raw DNA from Ancestry.com and analyzed a full FoundMyFitness genetic report. Pivoted the ancestry project toward genetic genealogy.</p>
+      <ul class="detail-list">
+        <li>Downloaded 668,000 SNPs of raw DNA data from Ancestry.com</li>
+        <li>Analyzed 24-page FoundMyFitness report — key finding: APOE4 carrier with compounded Alzheimer's risk (APOE4 + MTNR1A variant)</li>
+        <li>Saturated fat sensitivity identified across 3 gene systems</li>
+        <li>Choline deficiency risk from 3 converging variants</li>
+        <li>Multiple longevity-positive variants identified as counterbalance</li>
+        <li>Created structured foundmyfitness-report.json with all findings and 5 cross-cutting themes</li>
+        <li>GEDmatch recommended for cross-platform genealogical matching</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Session 4: Kurt Photo Setup -->
+  <div class="session" data-section="kurt">
+    <div class="session-header">
+      <div class="session-icon client">&#x1F4F7;</div>
+      <div class="session-meta">
+        <div class="session-title">Kurt - Photo Management Email</div>
+        <div class="session-time">13:45 - 14:00</div>
+      </div>
+    </div>
+    <div class="session-body">
+      <p><span class="tag amber">client</span> Distilled photo management advice from a ChatGPT session into a clean, actionable client email for Kurt, an artist.</p>
+      <ul class="detail-list">
+        <li>Condensed sprawling AI conversation into 5 clear action points</li>
+        <li>Iterated hardware recommendations to keep options open-ended rather than prescriptive</li>
+        <li>Final email focused on practical next steps Kurt can act on immediately</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<button class="fab" id="fab" aria-label="Listen">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+</button>
+
+<script>
+(function() {
+  // Brief content for speech synthesis - written conversationally for listening
+  var sections = [
+    {
+      id: 'garden',
+      title: 'Garden Project Commits',
+      text: 'You committed all the pending grow-together changes in one big push. 29 files covering the full 14-bed garden expansion, new crops, HTML tools, reference docs, and embedded repos. The project is now 18 commits ahead of origin and ready to push. This captures weeks of accumulated garden planning work in a single clean commit.'
+    },
+    {
+      id: 'trackpad',
+      title: 'Trackpad Return Key Hack',
+      text: 'You built a macOS utility for Shane Shelley that remaps his Bluetooth Magic Trackpad. It uses a CGEventTap to intercept events at the system level. Clicking the trackpad now sends a Return key, and all movement and gesture events are suppressed. You set up a LaunchAgent so it auto-starts at login. You also explored Superwhisper\'s auto-submit-after-paste feature for integration, but deferred that to next session. The whole thing got committed and pushed to a private repo on GitHub.'
+    },
+    {
+      id: 'dna',
+      title: 'DNA and Genetic Health Analysis',
+      text: 'You oriented on the Martel-Gove genealogy project from a genetics angle today. First, you downloaded your raw DNA from Ancestry — 668,000 SNPs. Then you analyzed the full FoundMyFitness report, all 24 pages. The big finding: you\'re an APOE4 carrier, which means elevated Alzheimer\'s risk, compounded by an MTNR1A variant. You also have saturated fat sensitivity across three gene systems and choline deficiency risk from three converging variants. On the positive side, multiple longevity-positive variants showed up. You built a structured JSON file with all the findings organized into five cross-cutting themes. GEDmatch was recommended for cross-platform genealogical matching going forward.'
+    },
+    {
+      id: 'kurt',
+      title: 'Kurt Photo Management Email',
+      text: 'For Kurt, an artist client, you distilled a sprawling ChatGPT conversation about photo management into a clean five-point email. You iterated on the hardware recommendations to keep them open-ended rather than prescriptive. The final email is focused and actionable — practical next steps Kurt can act on immediately.'
+    }
+  ];
+
+  var introText = "Here's your daily brief for Thursday, March 20th, 2026. You had four sessions today covering farming, tools, genetic research, and client work.";
+  var outroText = "That's the full brief. Good walk.";
+
+  var synth = window.speechSynthesis;
+  var state = 'idle'; // idle, playing, paused
+  var currentSection = -1; // -1 = intro, sections.length = outro
+  var utterance = null;
+  var speeds = [1, 1.25, 1.5, 0.85];
+  var speedIdx = 0;
+  var totalSections = sections.length + 2; // intro + sections + outro
+  var chosenVoice = null;
+
+  var btn = document.getElementById('listenBtn');
+  var playIcon = document.getElementById('playIcon');
+  var pauseIcon = document.getElementById('pauseIcon');
+  var label = document.getElementById('listenText');
+  var sub = document.getElementById('listenSub');
+  var speedBtn = document.getElementById('speedBtn');
+  var progressFill = document.getElementById('progressFill');
+  var fab = document.getElementById('fab');
+  var allSessions = document.querySelectorAll('.session');
+
+  function pickVoice() {
+    var voices = synth.getVoices();
+    // Prefer high-quality English voices
+    var prefs = ['Samantha', 'Karen', 'Daniel', 'Moira', 'Tessa', 'Google UK English Female', 'Google US English'];
+    for (var i = 0; i < prefs.length; i++) {
+      for (var j = 0; j < voices.length; j++) {
+        if (voices[j].name.indexOf(prefs[i]) !== -1 && voices[j].lang.indexOf('en') !== -1) {
+          return voices[j];
+        }
+      }
+    }
+    // Fallback: any English voice
+    for (var j = 0; j < voices.length; j++) {
+      if (voices[j].lang.indexOf('en') !== -1) return voices[j];
+    }
+    return voices[0] || null;
+  }
+
+  // Voices load async on some browsers
+  if (synth.onvoiceschanged !== undefined) {
+    synth.onvoiceschanged = function() { chosenVoice = pickVoice(); };
+  }
+  chosenVoice = pickVoice();
+
+  function updateProgress() {
+    var done = currentSection + 1; // +1 because intro is -1
+    var pct = Math.min(100, (done / totalSections) * 100);
+    progressFill.style.width = pct + '%';
+  }
+
+  function highlightSection(idx) {
+    allSessions.forEach(function(s, i) {
+      s.classList.toggle('speaking', i === idx);
+    });
+  }
+
+  function getTextForSection(idx) {
+    if (idx === -1) return introText;
+    if (idx >= sections.length) return outroText;
+    return sections[idx].title + '. ' + sections[idx].text;
+  }
+
+  function speakSection(idx) {
+    currentSection = idx;
+    updateProgress();
+
+    if (idx >= 0 && idx < sections.length) {
+      highlightSection(idx);
+    } else {
+      highlightSection(-1);
+    }
+
+    var text = getTextForSection(idx);
+    utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = speeds[speedIdx];
+    utterance.pitch = 1;
+    if (chosenVoice) utterance.voice = chosenVoice;
+
+    utterance.onend = function() {
+      if (state === 'playing') {
+        var next = idx + 1;
+        if (next <= sections.length) {
+          speakSection(next);
+        } else {
+          stop();
+        }
+      }
+    };
+
+    // iOS Safari workaround: resume interrupted speech
+    utterance.onerror = function(e) {
+      if (e.error === 'interrupted' && state === 'playing') {
+        // skip to next section
+        var next = idx + 1;
+        if (next <= sections.length) speakSection(next);
+        else stop();
+      }
+    };
+
+    synth.speak(utterance);
+  }
+
+  function play() {
+    if (!synth) return;
+    // Re-pick voice in case they loaded late
+    if (!chosenVoice) chosenVoice = pickVoice();
+
+    if (state === 'paused') {
+      synth.resume();
+      state = 'playing';
+    } else {
+      synth.cancel();
+      state = 'playing';
+      speakSection(-1);
+    }
+    showPause();
+  }
+
+  function pause() {
+    synth.pause();
+    state = 'paused';
+    showPlay();
+    label.textContent = 'Paused';
+    sub.textContent = 'Tap to resume';
+  }
+
+  function stop() {
+    synth.cancel();
+    state = 'idle';
+    currentSection = -1;
+    showPlay();
+    highlightSection(-1);
+    progressFill.style.width = '100%';
+    label.textContent = 'Brief complete';
+    sub.textContent = 'Tap to listen again';
+    setTimeout(function() {
+      progressFill.style.width = '0%';
+      label.textContent = 'Listen to today\'s brief';
+      sub.textContent = 'Tap to hear a spoken summary';
+    }, 3000);
+  }
+
+  function showPlay() {
+    playIcon.style.display = '';
+    pauseIcon.style.display = 'none';
+    fab.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+  }
+
+  function showPause() {
+    playIcon.style.display = 'none';
+    pauseIcon.style.display = '';
+    label.textContent = 'Playing...';
+    sub.textContent = sections[Math.max(0, currentSection)]
+      ? sections[Math.max(0, currentSection)].title
+      : 'Introduction';
+    fab.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+  }
+
+  function toggle() {
+    if (state === 'idle') play();
+    else if (state === 'playing') pause();
+    else if (state === 'paused') play();
+  }
+
+  btn.addEventListener('click', toggle);
+  fab.addEventListener('click', toggle);
+
+  speedBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    speedIdx = (speedIdx + 1) % speeds.length;
+    speedBtn.textContent = speeds[speedIdx] + 'x';
+    if (utterance) utterance.rate = speeds[speedIdx];
+    // If currently playing, restart current section at new speed
+    if (state === 'playing') {
+      synth.cancel();
+      speakSection(currentSection);
+    }
+  });
+
+  // Show FAB on scroll
+  var scrollTimer;
+  window.addEventListener('scroll', function() {
+    fab.style.display = 'flex';
+    clearTimeout(scrollTimer);
+  });
+  // Always show FAB on mobile
+  if (window.innerWidth <= 640) fab.style.display = 'flex';
+
+  // Clean up on page hide (iOS)
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden && state === 'playing') {
+      // Keep playing - speech synthesis continues in background on most browsers
+    }
+  });
+
+  // Prevent iOS from stopping speech on scroll
+  var keepAlive;
+  function startKeepAlive() {
+    keepAlive = setInterval(function() {
+      if (state === 'playing' && synth.paused) synth.resume();
+    }, 5000);
+  }
+  function stopKeepAlive() { clearInterval(keepAlive); }
+
+  var origPlay = play;
+  play = function() {
+    origPlay();
+    startKeepAlive();
+  };
+  var origStop = stop;
+  stop = function() {
+    origStop();
+    stopKeepAlive();
+  };
+})();
+</script>
+
+</body>
+</html>

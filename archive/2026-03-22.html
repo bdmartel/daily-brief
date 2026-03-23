@@ -135,87 +135,87 @@
 
   <div class="session" data-section="diy-sensor-aggregation">
     <div class="session-header">
-      <div class="session-icon farming">🌱</div>
+      <div class="session-icon farming">🌾</div>
       <div class="session-meta">
         <div class="session-title">DIY Sensor Aggregation</div>
-        <div class="session-time">12:50</div>
+        <div class="session-time">12:50 PM</div>
       </div>
     </div>
     <div class="session-body">
-      <p><span class="tag green">Farming</span> Explored multi-sensor data aggregation architecture for farm automation without a Raspberry Pi.</p>
+      <p><span class="tag green">Farming</span> Explored phone-based BLE sensor architecture for farm monitoring without a Raspberry Pi.</p>
       <ul class="detail-list">
-        <li>Oriented in the pi-farm-automation project</li>
-        <li>Pivoted approach to phone + BLE sensors instead of Pi</li>
-        <li>You own a Govee H5075; core open question is aggregation architecture</li>
+        <li>Oriented in the pi-farm-automation project codebase</li>
+        <li>Pivoted approach to phone + BLE sensors using the Govee H5075 you own</li>
+        <li>Core open question: how to aggregate multi-sensor data without a Pi as central hub</li>
       </ul>
     </div>
   </div>
 
   <div class="session" data-section="playwright-cli-vs-mcp">
     <div class="session-header">
-      <div class="session-icon tools">🔧</div>
+      <div class="session-icon tools">⚙️</div>
       <div class="session-meta">
         <div class="session-title">Playwright CLI vs MCP</div>
         <div class="session-time">Evening</div>
       </div>
     </div>
     <div class="session-body">
-      <p><span class="tag blue">Tools</span> Compared Playwright CLI and MCP architectures with a focus on token efficiency in Claude Code.</p>
+      <p><span class="tag blue">Tools</span> Compared Playwright CLI and MCP architectures and their token efficiency tradeoffs inside Claude Code.</p>
       <ul class="detail-list">
-        <li>Explained structural differences between CLI and MCP modes</li>
-        <li>Token efficiency is a key tradeoff when choosing between the two</li>
+        <li>Clarified how CLI invocation differs from MCP server model</li>
+        <li>Analyzed token usage implications for each approach</li>
       </ul>
     </div>
   </div>
 
   <div class="session" data-section="cli-anything-research">
     <div class="session-header">
-      <div class="session-icon tools">🔧</div>
+      <div class="session-icon tools">🔍</div>
       <div class="session-meta">
         <div class="session-title">CLI-Anything Research</div>
-        <div class="session-time">20:19</div>
+        <div class="session-time">8:19 PM</div>
       </div>
     </div>
     <div class="session-body">
-      <p><span class="tag blue">Tools</span> Researched CLI-Anything, a Claude Code plugin that auto-generates CLI interfaces for any software.</p>
+      <p><span class="tag blue">Tools</span> Researched CLI-Anything, a high-popularity Claude Code plugin for auto-generating CLI interfaces.</p>
       <ul class="detail-list">
-        <li>HKUDS/CLI-Anything on GitHub — 21.2k stars, MIT license</li>
-        <li>Plugin auto-generates usable CLI interfaces from arbitrary software</li>
+        <li>Project: HKUDS/CLI-Anything on GitHub — 21.2k stars, MIT license</li>
+        <li>Capability: auto-generates CLI interfaces for any arbitrary software</li>
       </ul>
     </div>
   </div>
 
   <div class="session" data-section="superwhisper-clipboard">
     <div class="session-header">
-      <div class="session-icon tools">🔧</div>
+      <div class="session-icon tools">🎙️</div>
       <div class="session-meta">
         <div class="session-title">Superwhisper Clipboard Fix</div>
         <div class="session-time">Evening</div>
       </div>
     </div>
     <div class="session-body">
-      <p><span class="tag blue">Tools</span> Resolved a Superwhisper issue where dictation was overwriting clipboard contents.</p>
+      <p><span class="tag blue">Tools</span> Resolved a Superwhisper bug where dictation was overwriting clipboard contents.</p>
       <ul class="detail-list">
+        <li>Root cause: default behavior clears clipboard after dictation</li>
         <li>Fix: enable "Restore Clipboard" in Superwhisper Advanced Settings</li>
-        <li>Prior clipboard contents are now preserved after dictation completes</li>
       </ul>
     </div>
   </div>
 
   <div class="session" data-section="daily-brief-mar20">
     <div class="session-header">
-      <div class="session-icon tools">🔧</div>
+      <div class="session-icon tools">📋</div>
       <div class="session-meta">
         <div class="session-title">Daily Brief Auto-Generation</div>
-        <div class="session-time">20:30</div>
+        <div class="session-time">8:30 PM</div>
       </div>
     </div>
     <div class="session-body">
-      <p><span class="tag blue">Tools</span> Integrated daily brief auto-generation into daily-dashboard.sh with end-to-end GitHub Pages deployment.</p>
+      <p><span class="tag blue">Tools</span> Integrated daily brief generation into daily-dashboard.sh, fully automated from log to GitHub Pages.</p>
       <ul class="detail-list">
-        <li>Script now auto-generates GitHub Pages TTS brief via <code>claude -p</code></li>
-        <li>Fixed bash 3.2 heredoc quote bug and <code>--max-tokens</code> flag issue</li>
-        <li>Tested end-to-end with 3 sessions; commits and pushes automatically</li>
+        <li>Script now calls <code>claude -p</code> to auto-generate the TTS brief, then commits and pushes</li>
+        <li>Fixed a bash 3.2 heredoc quoting bug and a bad <code>--max-tokens</code> flag</li>
+        <li>Tested end-to-end successfully with three sessions</li>
       </ul>
     </div>
   </div>
@@ -231,30 +231,30 @@
   {
     id: "diy-sensor-aggregation",
     title: "DIY Sensor Aggregation",
-    text: "This morning you dug into farm sensor architecture. You started in the pi-farm-automation project but pivoted away from a Raspberry Pi setup entirely. Instead you're looking at using your phone and BLE sensors — you have a Govee H5075 — and the core problem you're sitting with is how to aggregate data from multiple sensors without a Pi in the loop."
+    text: "This afternoon you dug into your pi-farm-automation project and pivoted the approach. Instead of relying on a Raspberry Pi as the hub, you're now looking at using your phone and Bluetooth Low Energy sensors — specifically the Govee H5075 you already own. The big open question you're sitting with: how do you aggregate data from multiple sensors without a Pi in the loop?"
   },
   {
     id: "playwright-cli-vs-mcp",
     title: "Playwright CLI vs MCP",
-    text: "You worked through the architectural differences between Playwright's CLI mode and MCP mode inside Claude Code. The key angle was token efficiency — understanding which approach costs less in context when you're running browser automation from an agent."
+    text: "You spent some time this evening sorting out the difference between using Playwright as a CLI tool versus running it as an MCP server inside Claude Code. The key distinction comes down to token efficiency — the two architectures handle context very differently, and knowing which to reach for matters depending on what you're automating."
   },
   {
     id: "cli-anything-research",
     title: "CLI-Anything Research",
-    text: "You researched a Claude Code plugin called CLI-Anything from HKUDS on GitHub. It has over twenty-one thousand stars and an MIT license. The pitch is that it auto-generates CLI interfaces for arbitrary software, which could save you from writing repetitive wrapper tooling."
+    text: "Around eight nineteen you looked into a Claude Code plugin called CLI-Anything, from the HKUDS project on GitHub. It has over twenty-one thousand stars and an MIT license. The pitch is straightforward: point it at any software and it auto-generates a CLI interface for it. Worth keeping in your back pocket."
   },
   {
     id: "superwhisper-clipboard",
     title: "Superwhisper Clipboard Fix",
-    text: "You tracked down and fixed an annoying Superwhisper behavior where dictation was overwriting your clipboard. The fix lives in Advanced Settings — there's a toggle called Restore Clipboard that preserves whatever was on your clipboard before you started dictating."
+    text: "You tracked down and fixed an annoying Superwhisper behavior where dictating text was wiping out whatever you had on your clipboard. The fix is in Advanced Settings — there's a toggle called Restore Clipboard that preserves your prior clipboard contents after each dictation. Simple fix, but good to have that one resolved."
   },
   {
     id: "daily-brief-mar20",
     title: "Daily Brief Auto-Generation",
-    text: "You wired up the daily brief so it generates itself automatically. The daily-dashboard script now calls claude with the dash-p flag, commits the result, and pushes straight to GitHub Pages. Along the way you fixed a bash 3.2 heredoc quoting bug and a bad max-tokens flag. You tested it end-to-end with three sessions and it worked."
+    text: "You finished integrating the daily brief into your dashboard script tonight. It now runs fully automatically — claude dash p generates the brief, and the script handles the commit and push to GitHub Pages on its own. You hit a couple of snags along the way: a heredoc quoting issue specific to bash three point two, and a bad flag on the max tokens argument. Both are fixed, and you tested it end-to-end with three sessions successfully."
   }
 ];
-  var introText = "Sunday, March 22nd. Five sessions today — farm sensor architecture in the morning, then an evening run through developer tooling: Playwright modes, CLI-Anything, a Superwhisper fix, and shipping the auto-generated daily brief.";
+  var introText = "Sunday, March 22nd. Five sessions today — a farming architecture pivot in the afternoon, and an evening run through tooling research and fixes.";
   var outroText = "That's the full brief. Good walk.";
 
   var synth = window.speechSynthesis;
