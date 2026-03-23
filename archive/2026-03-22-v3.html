@@ -137,16 +137,16 @@
     <div class="session-header">
       <div class="session-icon farming">🌱</div>
       <div class="session-meta">
-        <div class="session-title">DIY Sensor Aggregation Architecture</div>
+        <div class="session-title">DIY Sensor Aggregation</div>
         <div class="session-time">12:50</div>
       </div>
     </div>
     <div class="session-body">
-      <p><span class="tag green">Farming</span> Explored phone-based BLE sensor architecture for farm automation without a Raspberry Pi.</p>
+      <p><span class="tag green">Farming</span> Explored multi-sensor data aggregation architecture for farm automation without a Raspberry Pi.</p>
       <ul class="detail-list">
-        <li>Oriented in the pi-farm-automation project codebase</li>
-        <li>Pivoted from Pi-based to phone + BLE sensors using owned Govee H5075</li>
-        <li>Core open question: multi-sensor data aggregation architecture without a Pi</li>
+        <li>Oriented in the pi-farm-automation project</li>
+        <li>Pivoted approach to phone + BLE sensors instead of Pi</li>
+        <li>You own a Govee H5075; core open question is aggregation architecture</li>
       </ul>
     </div>
   </div>
@@ -155,15 +155,15 @@
     <div class="session-header">
       <div class="session-icon tools">🔧</div>
       <div class="session-meta">
-        <div class="session-title">Playwright CLI vs MCP Architecture</div>
+        <div class="session-title">Playwright CLI vs MCP</div>
         <div class="session-time">Evening</div>
       </div>
     </div>
     <div class="session-body">
-      <p><span class="tag blue">Tools</span> Clarified the architectural and token-efficiency differences between Playwright CLI and MCP for Claude Code.</p>
+      <p><span class="tag blue">Tools</span> Compared Playwright CLI and MCP architectures with a focus on token efficiency in Claude Code.</p>
       <ul class="detail-list">
-        <li>Explained how CLI and MCP modes differ in how Playwright integrates with Claude Code</li>
-        <li>Covered token efficiency tradeoffs between the two approaches</li>
+        <li>Explained structural differences between CLI and MCP modes</li>
+        <li>Token efficiency is a key tradeoff when choosing between the two</li>
       </ul>
     </div>
   </div>
@@ -172,15 +172,15 @@
     <div class="session-header">
       <div class="session-icon tools">🔧</div>
       <div class="session-meta">
-        <div class="session-title">CLI-Anything Plugin Research</div>
+        <div class="session-title">CLI-Anything Research</div>
         <div class="session-time">20:19</div>
       </div>
     </div>
     <div class="session-body">
       <p><span class="tag blue">Tools</span> Researched CLI-Anything, a Claude Code plugin that auto-generates CLI interfaces for any software.</p>
       <ul class="detail-list">
-        <li>Found HKUDS/CLI-Anything on GitHub — 21.2k stars, MIT license</li>
-        <li>Plugin automatically generates CLI wrappers for arbitrary software tools</li>
+        <li>HKUDS/CLI-Anything on GitHub — 21.2k stars, MIT license</li>
+        <li>Plugin auto-generates usable CLI interfaces from arbitrary software</li>
       </ul>
     </div>
   </div>
@@ -194,10 +194,10 @@
       </div>
     </div>
     <div class="session-body">
-      <p><span class="tag blue">Tools</span> Resolved a Superwhisper issue where dictation was overwriting prior clipboard contents.</p>
+      <p><span class="tag blue">Tools</span> Resolved a Superwhisper issue where dictation was overwriting clipboard contents.</p>
       <ul class="detail-list">
-        <li>Fix: enable "Restore Clipboard" in Superwhisper's Advanced Settings</li>
-        <li>Setting preserves prior clipboard contents after dictation completes</li>
+        <li>Fix: enable "Restore Clipboard" in Superwhisper Advanced Settings</li>
+        <li>Prior clipboard contents are now preserved after dictation completes</li>
       </ul>
     </div>
   </div>
@@ -211,11 +211,11 @@
       </div>
     </div>
     <div class="session-body">
-      <p><span class="tag blue">Tools</span> Integrated daily brief auto-generation into daily-dashboard.sh with end-to-end GitHub Pages TTS deployment.</p>
+      <p><span class="tag blue">Tools</span> Integrated daily brief auto-generation into daily-dashboard.sh with end-to-end GitHub Pages deployment.</p>
       <ul class="detail-list">
-        <li>Script now calls <code>claude -p</code> to auto-generate the brief, then commits and pushes to GitHub Pages</li>
-        <li>Fixed bash 3.2 heredoc quote escaping bug and incorrect <code>--max-tokens</code> flag</li>
-        <li>Tested end-to-end successfully with 3 sessions from March 20th</li>
+        <li>Script now auto-generates GitHub Pages TTS brief via <code>claude -p</code></li>
+        <li>Fixed bash 3.2 heredoc quote bug and <code>--max-tokens</code> flag issue</li>
+        <li>Tested end-to-end with 3 sessions; commits and pushes automatically</li>
       </ul>
     </div>
   </div>
@@ -228,38 +228,43 @@
 <script>
 (function() {
   var sections = [
-    {
-      id: "diy-sensor-aggregation",
-      title: "DIY Sensor Aggregation Architecture",
-      text: "This morning you dug into the pi-farm-automation project and made a significant pivot. Instead of using a Raspberry Pi as the sensor hub, you're going phone-plus-Bluetooth-LE — starting with your Govee H5075. The main open question you left with is how to aggregate data from multiple sensors without a Pi in the loop."
-    },
-    {
-      id: "playwright-cli-vs-mcp",
-      title: "Playwright CLI vs MCP Architecture",
-      text: "You worked through the architectural differences between running Playwright as a CLI tool versus as an MCP server inside Claude Code. The key distinction is token efficiency — the two approaches handle context and tool calls quite differently, and knowing which to reach for depends on how much back-and-forth your automation requires."
-    },
-    {
-      id: "cli-anything-research",
-      title: "CLI-Anything Plugin Research",
-      text: "Around 8:19 in the evening you researched CLI-Anything, a Claude Code plugin from HKUDS on GitHub. It has over 21,000 stars and an MIT license. The idea is that it can automatically generate a CLI interface for essentially any software — worth keeping in your back pocket for tooling work."
-    },
-    {
-      id: "superwhisper-clipboard",
-      title: "Superwhisper Clipboard Fix",
-      text: "You tracked down an annoying Superwhisper bug where dictating text was clobbering whatever you had on your clipboard. The fix is a single toggle: Restore Clipboard in Advanced Settings. Once enabled, Superwhisper puts your original clipboard contents back after each dictation."
-    },
-    {
-      id: "daily-brief-mar20",
-      title: "Daily Brief Auto-Generation",
-      text: "Your evening ended with a solid infrastructure win. You wired daily brief generation directly into daily-dashboard.sh — the script now calls Claude in prompt mode, then commits and pushes the result to GitHub Pages automatically. You fixed two bugs along the way: a bash 3.2 heredoc quoting issue and a bad max-tokens flag. You tested it end-to-end against your March 20th sessions and everything went through cleanly."
-    }
-  ];
-  var audio = new Audio();
+  {
+    id: "diy-sensor-aggregation",
+    title: "DIY Sensor Aggregation",
+    text: "This morning you dug into farm sensor architecture. You started in the pi-farm-automation project but pivoted away from a Raspberry Pi setup entirely. Instead you're looking at using your phone and BLE sensors — you have a Govee H5075 — and the core problem you're sitting with is how to aggregate data from multiple sensors without a Pi in the loop."
+  },
+  {
+    id: "playwright-cli-vs-mcp",
+    title: "Playwright CLI vs MCP",
+    text: "You worked through the architectural differences between Playwright's CLI mode and MCP mode inside Claude Code. The key angle was token efficiency — understanding which approach costs less in context when you're running browser automation from an agent."
+  },
+  {
+    id: "cli-anything-research",
+    title: "CLI-Anything Research",
+    text: "You researched a Claude Code plugin called CLI-Anything from HKUDS on GitHub. It has over twenty-one thousand stars and an MIT license. The pitch is that it auto-generates CLI interfaces for arbitrary software, which could save you from writing repetitive wrapper tooling."
+  },
+  {
+    id: "superwhisper-clipboard",
+    title: "Superwhisper Clipboard Fix",
+    text: "You tracked down and fixed an annoying Superwhisper behavior where dictation was overwriting your clipboard. The fix lives in Advanced Settings — there's a toggle called Restore Clipboard that preserves whatever was on your clipboard before you started dictating."
+  },
+  {
+    id: "daily-brief-mar20",
+    title: "Daily Brief Auto-Generation",
+    text: "You wired up the daily brief so it generates itself automatically. The daily-dashboard script now calls claude with the dash-p flag, commits the result, and pushes straight to GitHub Pages. Along the way you fixed a bash 3.2 heredoc quoting bug and a bad max-tokens flag. You tested it end-to-end with three sessions and it worked."
+  }
+];
+  var introText = "Sunday, March 22nd. Five sessions today — farm sensor architecture in the morning, then an evening run through developer tooling: Playwright modes, CLI-Anything, a Superwhisper fix, and shipping the auto-generated daily brief.";
+  var outroText = "That's the full brief. Good walk.";
+
+  var synth = window.speechSynthesis;
   var state = 'idle';
   var currentSection = -1;
+  var utterance = null;
   var speeds = [1, 1.25, 1.5, 0.85];
   var speedIdx = 0;
   var totalSections = sections.length + 2;
+  var chosenVoice = null;
 
   var btn = document.getElementById('listenBtn');
   var playIcon = document.getElementById('playIcon');
@@ -271,11 +276,26 @@
   var fab = document.getElementById('fab');
   var allSessions = document.querySelectorAll('.session');
 
-  function getAudioSrc(idx) {
-    if (idx === -1) return 'audio/intro.mp3';
-    if (idx >= sections.length) return 'audio/outro.mp3';
-    return 'audio/section-' + idx + '.mp3';
+  function pickVoice() {
+    var voices = synth.getVoices();
+    var prefs = ['Zoe', 'Samantha', 'Karen', 'Daniel', 'Moira', 'Tessa', 'Google UK English Female', 'Google US English'];
+    for (var i = 0; i < prefs.length; i++) {
+      for (var j = 0; j < voices.length; j++) {
+        if (voices[j].name.indexOf(prefs[i]) !== -1 && voices[j].lang.indexOf('en') !== -1) {
+          return voices[j];
+        }
+      }
+    }
+    for (var j = 0; j < voices.length; j++) {
+      if (voices[j].lang.indexOf('en') !== -1) return voices[j];
+    }
+    return voices[0] || null;
   }
+
+  if (synth.onvoiceschanged !== undefined) {
+    synth.onvoiceschanged = function() { chosenVoice = pickVoice(); };
+  }
+  chosenVoice = pickVoice();
 
   function updateProgress() {
     var done = currentSection + 1;
@@ -289,7 +309,13 @@
     });
   }
 
-  function playSection(idx) {
+  function getTextForSection(idx) {
+    if (idx === -1) return introText;
+    if (idx >= sections.length) return outroText;
+    return sections[idx].title + '. ' + sections[idx].text;
+  }
+
+  function speakSection(idx) {
     currentSection = idx;
     updateProgress();
     if (idx >= 0 && idx < sections.length) {
@@ -297,36 +323,47 @@
     } else {
       highlightSection(-1);
     }
-    audio.src = getAudioSrc(idx);
-    audio.playbackRate = speeds[speedIdx];
-    audio.play().catch(function() {});
+    var text = getTextForSection(idx);
+    utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = speeds[speedIdx];
+    utterance.pitch = 1;
+    if (chosenVoice) utterance.voice = chosenVoice;
+    utterance.onend = function() {
+      if (state === 'playing') {
+        var next = idx + 1;
+        if (next <= sections.length) {
+          speakSection(next);
+        } else {
+          stop();
+        }
+      }
+    };
+    utterance.onerror = function(e) {
+      if (e.error === 'interrupted' && state === 'playing') {
+        var next = idx + 1;
+        if (next <= sections.length) speakSection(next);
+        else stop();
+      }
+    };
+    synth.speak(utterance);
+  }
+
+  function play() {
+    if (!synth) return;
+    if (!chosenVoice) chosenVoice = pickVoice();
+    if (state === 'paused') {
+      synth.resume();
+      state = 'playing';
+    } else {
+      synth.cancel();
+      state = 'playing';
+      speakSection(-1);
+    }
     showPause();
   }
 
-  audio.addEventListener('ended', function() {
-    if (state === 'playing') {
-      var next = currentSection + 1;
-      if (next <= sections.length) {
-        playSection(next);
-      } else {
-        stop();
-      }
-    }
-  });
-
-  function play() {
-    if (state === 'paused') {
-      audio.play().catch(function() {});
-      state = 'playing';
-      showPause();
-    } else {
-      state = 'playing';
-      playSection(-1);
-    }
-  }
-
   function pause() {
-    audio.pause();
+    synth.pause();
     state = 'paused';
     showPlay();
     label.textContent = 'Paused';
@@ -334,8 +371,7 @@
   }
 
   function stop() {
-    audio.pause();
-    audio.removeAttribute('src');
+    synth.cancel();
     state = 'idle';
     currentSection = -1;
     showPlay();
@@ -379,7 +415,11 @@
     e.stopPropagation();
     speedIdx = (speedIdx + 1) % speeds.length;
     speedBtn.textContent = speeds[speedIdx] + 'x';
-    audio.playbackRate = speeds[speedIdx];
+    if (utterance) utterance.rate = speeds[speedIdx];
+    if (state === 'playing') {
+      synth.cancel();
+      speakSection(currentSection);
+    }
   });
 
   var scrollTimer;
@@ -388,6 +428,19 @@
     clearTimeout(scrollTimer);
   });
   if (window.innerWidth <= 640) fab.style.display = 'flex';
+
+  var keepAlive;
+  function startKeepAlive() {
+    keepAlive = setInterval(function() {
+      if (state === 'playing' && synth.paused) synth.resume();
+    }, 5000);
+  }
+  function stopKeepAlive() { clearInterval(keepAlive); }
+
+  var origPlay = play;
+  play = function() { origPlay(); startKeepAlive(); };
+  var origStop = stop;
+  stop = function() { origStop(); stopKeepAlive(); };
 })();
 </script>
 </body>
