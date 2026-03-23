@@ -118,7 +118,7 @@
   <header class="header">
     <div class="date-label">Sunday, March 22, 2026</div>
     <h1>Daily Brief</h1>
-    <div class="summary-line">6 sessions across tools, farming, client</div>
+    <div class="summary-line">5 sessions across farming, tools</div>
   </header>
   <div class="listen-bar" id="listenBar">
     <div class="progress-fill" id="progressFill"></div>
@@ -137,107 +137,85 @@
     <div class="session-header">
       <div class="session-icon farming">🌱</div>
       <div class="session-meta">
-        <div class="session-title">DIY Sensor Aggregation</div>
-        <div class="session-time">12:50 PM</div>
+        <div class="session-title">DIY Sensor Aggregation Architecture</div>
+        <div class="session-time">12:50</div>
       </div>
     </div>
     <div class="session-body">
-      <p><span class="tag green">Farming</span> Explored phone and BLE sensor architecture for farm automation without a Raspberry Pi.</p>
+      <p><span class="tag green">Farming</span> Explored phone-based BLE sensor architecture for farm automation without a Raspberry Pi.</p>
       <ul class="detail-list">
-        <li>Oriented in the pi-farm-automation project, then pivoted away from Pi hardware</li>
-        <li>You own a Govee H5075 — identified it as a starting sensor</li>
-        <li>Core open question: how to aggregate data from multiple BLE sensors without a central hub</li>
+        <li>Oriented in the pi-farm-automation project codebase</li>
+        <li>Pivoted from Pi-based to phone + BLE sensors using owned Govee H5075</li>
+        <li>Core open question: multi-sensor data aggregation architecture without a Pi</li>
       </ul>
     </div>
   </div>
 
   <div class="session" data-section="playwright-cli-vs-mcp">
     <div class="session-header">
-      <div class="session-icon tools">⚙️</div>
+      <div class="session-icon tools">🔧</div>
       <div class="session-meta">
-        <div class="session-title">Playwright: CLI vs MCP</div>
+        <div class="session-title">Playwright CLI vs MCP Architecture</div>
         <div class="session-time">Evening</div>
       </div>
     </div>
     <div class="session-body">
-      <p><span class="tag blue">Tools</span> Clarified the architectural difference between Playwright CLI and MCP modes for use in Claude Code.</p>
+      <p><span class="tag blue">Tools</span> Clarified the architectural and token-efficiency differences between Playwright CLI and MCP for Claude Code.</p>
       <ul class="detail-list">
-        <li>CLI mode runs Playwright as an external subprocess — separate process, no shared context</li>
-        <li>MCP mode keeps Playwright in-process, more token-efficient for iterative browser tasks</li>
+        <li>Explained how CLI and MCP modes differ in how Playwright integrates with Claude Code</li>
+        <li>Covered token efficiency tradeoffs between the two approaches</li>
       </ul>
     </div>
   </div>
 
   <div class="session" data-section="cli-anything-research">
     <div class="session-header">
-      <div class="session-icon tools">⚙️</div>
+      <div class="session-icon tools">🔧</div>
       <div class="session-meta">
-        <div class="session-title">CLI-Anything Research</div>
-        <div class="session-time">8:19 PM</div>
+        <div class="session-title">CLI-Anything Plugin Research</div>
+        <div class="session-time">20:19</div>
       </div>
     </div>
     <div class="session-body">
       <p><span class="tag blue">Tools</span> Researched CLI-Anything, a Claude Code plugin that auto-generates CLI interfaces for any software.</p>
       <ul class="detail-list">
-        <li>Project: HKUDS/CLI-Anything on GitHub — 21,200+ stars, MIT license</li>
-        <li>Generates Claude Code-compatible CLI wrappers automatically from software interfaces</li>
+        <li>Found HKUDS/CLI-Anything on GitHub — 21.2k stars, MIT license</li>
+        <li>Plugin automatically generates CLI wrappers for arbitrary software tools</li>
       </ul>
     </div>
   </div>
 
   <div class="session" data-section="superwhisper-clipboard">
     <div class="session-header">
-      <div class="session-icon tools">⚙️</div>
+      <div class="session-icon tools">🔧</div>
       <div class="session-meta">
         <div class="session-title">Superwhisper Clipboard Fix</div>
         <div class="session-time">Evening</div>
       </div>
     </div>
     <div class="session-body">
-      <p><span class="tag blue">Tools</span> Resolved a Superwhisper bug that was overwriting clipboard contents after dictation.</p>
+      <p><span class="tag blue">Tools</span> Resolved a Superwhisper issue where dictation was overwriting prior clipboard contents.</p>
       <ul class="detail-list">
-        <li>Fix: enable "Restore Clipboard" in Superwhisper Advanced Settings</li>
-        <li>Prior clipboard content is now preserved after every dictation session</li>
+        <li>Fix: enable "Restore Clipboard" in Superwhisper's Advanced Settings</li>
+        <li>Setting preserves prior clipboard contents after dictation completes</li>
       </ul>
     </div>
   </div>
 
   <div class="session" data-section="daily-brief-mar20">
     <div class="session-header">
-      <div class="session-icon tools">⚙️</div>
+      <div class="session-icon tools">🔧</div>
       <div class="session-meta">
         <div class="session-title">Daily Brief Auto-Generation</div>
-        <div class="session-time">8:30 PM – 10:00 PM</div>
+        <div class="session-time">20:30</div>
       </div>
     </div>
     <div class="session-body">
-      <p><span class="tag blue">Tools</span> Integrated automated daily brief generation into the daily dashboard script with edge-tts audio.</p>
+      <p><span class="tag blue">Tools</span> Integrated daily brief auto-generation into daily-dashboard.sh with end-to-end GitHub Pages TTS deployment.</p>
       <ul class="detail-list">
-        <li>daily-dashboard.sh now runs <code>claude -p</code> to auto-generate the GitHub Pages brief and push it</li>
-        <li>Fixed two bugs: bash 3.2 heredoc quoting issue and an invalid <code>--max-tokens</code> flag</li>
-        <li>Added archive/ folder for previous brief versions</li>
-        <li>Swapped Web Speech API for edge-tts with Ava voice — pre-generated MP3s</li>
-        <li>Audio works but voice quality not human enough — premium TTS (ElevenLabs/OpenAI) queued for next session</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="session" data-section="adelaide-beverage-build">
-    <div class="session-header">
-      <div class="session-icon client">💼</div>
-      <div class="session-meta">
-        <div class="session-title">Adelaide Beverage Build</div>
-        <div class="session-time">9:30 PM – 10:10 PM</div>
-      </div>
-    </div>
-    <div class="session-body">
-      <p><span class="tag amber">Client</span> Cleared three Adelaide blockers and made significant progress on the Webflow beverage page build.</p>
-      <ul class="detail-list">
-        <li>Found 1Password price increase email — created calendar reminder for April 9 renewal ($908.80/mo total subscriptions)</li>
-        <li>Resolved blocker 0.1: no prices on web; blocker 0.2: /food + /beverage URL slugs; blocker 0.3: $1,500 client approval — all web work now unblocked</li>
-        <li>Set page slugs in Webflow, uploaded 9 SVG assets</li>
-        <li>Wired header, underlines, and wine sub-headings — beverage page skeleton complete</li>
-        <li>Next step: CMS Collection Lists for menu content</li>
+        <li>Script now calls <code>claude -p</code> to auto-generate the brief, then commits and pushes to GitHub Pages</li>
+        <li>Fixed bash 3.2 heredoc quote escaping bug and incorrect <code>--max-tokens</code> flag</li>
+        <li>Tested end-to-end successfully with 3 sessions from March 20th</li>
       </ul>
     </div>
   </div>
@@ -252,33 +230,28 @@
   var sections = [
     {
       id: "diy-sensor-aggregation",
-      title: "DIY Sensor Aggregation",
-      text: "This morning you dug into your pi-farm-automation project and pivoted away from using a Raspberry Pi entirely. Your plan shifted to using your phone and Bluetooth Low Energy sensors — you already have a Govee H5075. The open question you landed on is how to aggregate data from multiple BLE sensors without a central hub. That architecture question is still unresolved and worth picking back up."
+      title: "DIY Sensor Aggregation Architecture",
+      text: "This morning you dug into the pi-farm-automation project and made a significant pivot. Instead of using a Raspberry Pi as the sensor hub, you're going phone-plus-Bluetooth-LE — starting with your Govee H5075. The main open question you left with is how to aggregate data from multiple sensors without a Pi in the loop."
     },
     {
       id: "playwright-cli-vs-mcp",
-      title: "Playwright CLI vs MCP",
-      text: "You worked through the difference between running Playwright as a CLI tool versus as an MCP server inside Claude Code. The key takeaway: MCP mode keeps Playwright in-process, which is more token-efficient when you're doing iterative browser work. CLI mode spins up a separate subprocess — more isolated, but more overhead."
+      title: "Playwright CLI vs MCP Architecture",
+      text: "You worked through the architectural differences between running Playwright as a CLI tool versus as an MCP server inside Claude Code. The key distinction is token efficiency — the two approaches handle context and tool calls quite differently, and knowing which to reach for depends on how much back-and-forth your automation requires."
     },
     {
       id: "cli-anything-research",
-      title: "CLI-Anything Research",
-      text: "You researched a Claude Code plugin called CLI-Anything from HKUDS on GitHub. It has over twenty-one thousand stars and an MIT license. The pitch is that it auto-generates CLI interfaces for any software, making it easy to wire new tools into Claude Code without manual setup."
+      title: "CLI-Anything Plugin Research",
+      text: "Around 8:19 in the evening you researched CLI-Anything, a Claude Code plugin from HKUDS on GitHub. It has over 21,000 stars and an MIT license. The idea is that it can automatically generate a CLI interface for essentially any software — worth keeping in your back pocket for tooling work."
     },
     {
       id: "superwhisper-clipboard",
       title: "Superwhisper Clipboard Fix",
-      text: "You tracked down a Superwhisper annoyance — after dictating, it was overwriting whatever you had copied to your clipboard. The fix was simple: turn on Restore Clipboard in Advanced Settings. Your clipboard now survives dictation sessions intact."
+      text: "You tracked down an annoying Superwhisper bug where dictating text was clobbering whatever you had on your clipboard. The fix is a single toggle: Restore Clipboard in Advanced Settings. Once enabled, Superwhisper puts your original clipboard contents back after each dictation."
     },
     {
       id: "daily-brief-mar20",
       title: "Daily Brief Auto-Generation",
-      text: "You wired up automatic daily brief generation inside your daily-dashboard script. It now calls Claude with a prompt flag, generates the GitHub Pages brief, commits, and pushes — all without you touching it. You fixed two bugs along the way: a bash heredoc quoting issue specific to version 3.2, and an invalid max-tokens flag. You also added an archive folder for old briefs and swapped the browser's Web Speech API for pre-generated edge-tts MP3s using the Ava voice. The audio player works, but the voice quality isn't where you want it. Premium TTS from ElevenLabs or OpenAI is queued for the next session."
-    },
-    {
-      id: "adelaide-beverage-build",
-      title: "Adelaide Beverage Build",
-      text: "You had a productive evening on the Adelaide client project. First, you caught a 1Password price increase in your email and set a calendar reminder for April 9th — your total subscription spend is sitting at about nine hundred dollars a month. Then you cleared three blockers that were holding up web work: the no-prices decision, the slash food and slash beverage URL structure, and getting the fifteen-hundred-dollar client approval locked in. With those out of the way, you moved fast in Webflow — set the page slugs, uploaded nine SVG assets, and wired up the header, underlines, and wine sub-headings. The beverage page skeleton is done. Your next step is setting up CMS Collection Lists to populate the menu content."
+      text: "Your evening ended with a solid infrastructure win. You wired daily brief generation directly into daily-dashboard.sh — the script now calls Claude in prompt mode, then commits and pushes the result to GitHub Pages automatically. You fixed two bugs along the way: a bash 3.2 heredoc quoting issue and a bad max-tokens flag. You tested it end-to-end against your March 20th sessions and everything went through cleanly."
     }
   ];
   var audio = new Audio();
