@@ -140,108 +140,109 @@
 
   <div class="session" data-section="diy-sensor-aggregation">
     <div class="session-header">
-      <div class="session-icon farming">🌡️</div>
+      <div class="session-icon farming">🌱</div>
       <div class="session-meta">
         <div class="session-title">DIY Sensor Aggregation</div>
         <div class="session-time">12:50</div>
       </div>
     </div>
     <div class="session-body">
-      <p><span class="tag green">Farming</span> Explored phone-based BLE sensor architecture for farm monitoring without a Raspberry Pi.</p>
+      <p><span class="tag green">Farming</span> Explored phone-plus-BLE sensor architecture for farm monitoring without a Raspberry Pi.</p>
       <ul class="detail-list">
-        <li>Oriented in the pi-farm-automation project, then pivoted away from Pi-based setup</li>
-        <li>You own a Govee H5075 — identified as viable sensor source via BLE</li>
-        <li>Core open question: how to aggregate data from multiple sensors without a Pi hub</li>
+        <li>Oriented in pi-farm-automation project; pivoted from Pi-based to phone + BLE approach</li>
+        <li>You own a Govee H5075 temperature/humidity sensor as the starting hardware</li>
+        <li>Core open question: how to aggregate data from multiple BLE sensors without a Pi hub</li>
       </ul>
     </div>
   </div>
 
   <div class="session" data-section="playwright-cli-vs-mcp">
     <div class="session-header">
-      <div class="session-icon tools">🎭</div>
+      <div class="session-icon tools">🔧</div>
       <div class="session-meta">
         <div class="session-title">Playwright CLI vs MCP</div>
-        <div class="session-time">—</div>
+        <div class="session-time">Evening</div>
       </div>
     </div>
     <div class="session-body">
-      <p><span class="tag blue">Tools</span> Compared Playwright CLI and MCP architectures for use within Claude Code.</p>
+      <p><span class="tag blue">Tools</span> Compared Playwright CLI and MCP integration architectures for use inside Claude Code.</p>
       <ul class="detail-list">
-        <li>Covered the architectural differences between running Playwright via CLI versus as an MCP server</li>
-        <li>Examined token efficiency tradeoffs for each approach</li>
+        <li>Walked through the architectural differences between CLI mode and MCP server mode</li>
+        <li>Discussed token efficiency tradeoffs relevant to Claude Code workflows</li>
       </ul>
     </div>
   </div>
 
   <div class="session" data-section="cli-anything-research">
     <div class="session-header">
-      <div class="session-icon tools">🔍</div>
+      <div class="session-icon tools">🔧</div>
       <div class="session-meta">
         <div class="session-title">CLI-Anything Research</div>
         <div class="session-time">20:19</div>
       </div>
     </div>
     <div class="session-body">
-      <p><span class="tag blue">Tools</span> Researched CLI-Anything, a Claude Code plugin that auto-generates CLI interfaces for any software.</p>
+      <p><span class="tag blue">Tools</span> Researched HKUDS/CLI-Anything, a Claude Code plugin that auto-generates CLI interfaces for any software.</p>
       <ul class="detail-list">
-        <li>Project: HKUDS/CLI-Anything on GitHub — 21.2k stars, MIT license</li>
-        <li>Key capability: wraps arbitrary software with auto-generated command-line interfaces for Claude Code</li>
+        <li>21.2k GitHub stars, MIT license — well-established plugin</li>
+        <li>Automatically generates CLI interfaces without manual configuration</li>
       </ul>
     </div>
   </div>
 
   <div class="session" data-section="superwhisper-clipboard">
     <div class="session-header">
-      <div class="session-icon tools">🎙️</div>
+      <div class="session-icon tools">🔧</div>
       <div class="session-meta">
         <div class="session-title">Superwhisper Clipboard Fix</div>
-        <div class="session-time">—</div>
+        <div class="session-time">Evening</div>
       </div>
     </div>
     <div class="session-body">
-      <p><span class="tag blue">Tools</span> Resolved a Superwhisper issue where dictation was overwriting clipboard contents.</p>
+      <p><span class="tag blue">Tools</span> Resolved a Superwhisper bug that was overwriting the clipboard after each dictation.</p>
       <ul class="detail-list">
-        <li>Fix: enable "Restore Clipboard" in Superwhisper's Advanced Settings</li>
-        <li>Prior clipboard contents are now preserved after each dictation session</li>
+        <li>Issue: dictation replaced whatever was previously copied to clipboard</li>
+        <li>Fix: enable "Restore Clipboard" under Superwhisper Advanced Settings</li>
       </ul>
     </div>
   </div>
 
   <div class="session" data-section="daily-brief-mar20">
     <div class="session-header">
-      <div class="session-icon tools">📰</div>
+      <div class="session-icon tools">🔧</div>
       <div class="session-meta">
-        <div class="session-title">Daily Brief Automation</div>
+        <div class="session-title">Daily Brief Auto-Generation</div>
         <div class="session-time">20:30 – 22:00</div>
       </div>
     </div>
     <div class="session-body">
-      <p><span class="tag blue">Tools</span> Integrated auto-generation of the daily brief into daily-dashboard.sh and overhauled the audio pipeline.</p>
+      <p><span class="tag blue">Tools</span> Integrated automatic daily brief generation into daily-dashboard.sh and upgraded the audio pipeline.</p>
       <ul class="detail-list">
-        <li>Script now auto-generates the GitHub Pages TTS brief via <code>claude -p</code>, then commits and pushes</li>
-        <li>Fixed a bash 3.2 heredoc quote bug and a <code>--max-tokens</code> flag issue; tested end-to-end</li>
-        <li>Added archive/ directory for previous brief versions</li>
-        <li>Swapped Web Speech API for edge-tts (Ava voice) pre-generated MP3s — audio works but voice quality not human enough</li>
-        <li>Next session: evaluate premium TTS (ElevenLabs or OpenAI)</li>
+        <li>Script now auto-generates via <code>claude -p</code>, commits, and pushes to GitHub Pages end-to-end</li>
+        <li>Fixed bash 3.2 heredoc quote bug and <code>--max-tokens</code> flag issue discovered during testing</li>
+        <li>Added <code>archive/</code> directory for versioned previous briefs</li>
+        <li>Swapped Web Speech API for edge-tts with Ava voice — audio works but quality not human enough</li>
+        <li>Next session: implement premium TTS via ElevenLabs or OpenAI</li>
       </ul>
     </div>
   </div>
 
   <div class="session" data-section="adelaide-beverage-build">
     <div class="session-header">
-      <div class="session-icon client">🍷</div>
+      <div class="session-icon client">💼</div>
       <div class="session-meta">
         <div class="session-title">Adelaide Beverage Build</div>
         <div class="session-time">21:30 – 22:10</div>
       </div>
     </div>
     <div class="session-body">
-      <p><span class="tag amber">Client</span> Cleared three client blockers and built out the Adelaide beverage page skeleton in Webflow.</p>
+      <p><span class="tag amber">Client</span> Cleared three Adelaide blockers and advanced the beverage page skeleton in Webflow.</p>
       <ul class="detail-list">
-        <li>Found 1Password price increase email — created April 9 renewal reminder; total subscriptions now $908.80/mo</li>
-        <li>Resolved blockers: no prices on web (0.1), /food + /beverage URL routing (0.2), $1,500 client approval (0.3)</li>
-        <li>Set page slugs in Webflow, uploaded 9 SVG assets, wired header, underlines, and wine sub-headings</li>
-        <li>Beverage page skeleton complete — CMS Collection Lists are the next step</li>
+        <li>Caught 1Password price increase email; set calendar reminder for April 9 renewal ($908.80/mo total subscriptions)</li>
+        <li>Unblocked: pricing display on web (0.1), /food + /beverage URL slugs (0.2), $1,500 client approval (0.3)</li>
+        <li>Set page slugs in Webflow and uploaded 9 SVG assets</li>
+        <li>Wired header, underlines, and wine sub-headings — beverage skeleton complete</li>
+        <li>Next: build out CMS Collection Lists for beverage content</li>
       </ul>
     </div>
   </div>
@@ -257,32 +258,32 @@
   {
     id: "diy-sensor-aggregation",
     title: "DIY Sensor Aggregation",
-    text: "You started the afternoon looking at the pi-farm-automation project, then pivoted to a phone-and-BLE-only approach — no Raspberry Pi. You have a Govee H5075 that can be read over Bluetooth, but the big open question you landed on is how to aggregate data from multiple sensors without a central hub. That architecture question is still unresolved."
+    text: "Around midday you dug into your pi-farm-automation project and shifted direction. Instead of centering everything on a Raspberry Pi, you're now looking at using your phone and Bluetooth Low Energy sensors as the foundation. You have a Govee H5075 already in hand. The big question you left open is how to aggregate data from multiple BLE sensors without a Pi acting as the hub — that's the architecture problem to solve next."
   },
   {
     id: "playwright-cli-vs-mcp",
     title: "Playwright CLI vs MCP",
-    text: "You looked into the difference between running Playwright as a CLI tool versus as an MCP server inside Claude Code. The key tradeoff was token efficiency — the two architectures handle context and round-trips differently, and understanding that helps you pick the right one for automation tasks."
+    text: "You did a quick research session on how Playwright fits into Claude Code — specifically the difference between running it as a CLI tool versus wiring it up as an MCP server. The key tradeoff is token efficiency: the two modes handle context differently, which matters for how much runway you get in a Claude Code session."
   },
   {
     id: "cli-anything-research",
     title: "CLI-Anything Research",
-    text: "You researched CLI-Anything, a Claude Code plugin from HKUDS on GitHub. It has over twenty-one thousand stars and an MIT license. The idea is that it can auto-generate a CLI interface for basically any software, which could be a useful addition to your toolchain."
+    text: "You looked into a Claude Code plugin called CLI-Anything, built by HKUDS on GitHub. It auto-generates CLI interfaces for any software without you having to configure them manually. It's got over twenty-one thousand stars and an MIT license, so it's well-proven. Worth keeping in your toolkit."
   },
   {
     id: "superwhisper-clipboard",
     title: "Superwhisper Clipboard Fix",
-    text: "You tracked down and fixed a Superwhisper annoyance — dictation was wiping out whatever was in your clipboard. The fix was simple: turn on Restore Clipboard in the Advanced Settings. Now your clipboard survives dictation sessions intact."
+    text: "You tracked down an annoying Superwhisper bug — every time you finished dictating, it was clobbering whatever you had on your clipboard. The fix was simple: turn on Restore Clipboard in the Advanced Settings. Your clipboard now survives dictation intact."
   },
   {
     id: "daily-brief-mar20",
-    title: "Daily Brief Automation",
-    text: "You did a significant overhaul of the daily brief pipeline. The dashboard script now calls Claude directly to auto-generate the brief, then commits and pushes to GitHub Pages without any manual steps. Along the way you fixed a bash heredoc quoting bug and a flag issue with max tokens. You also replaced the browser's built-in speech synthesis with pre-generated MP3s using edge-tts and the Ava voice. The audio plays, but the voice still doesn't sound human enough — premium TTS from ElevenLabs or OpenAI is on the list for next session."
+    title: "Daily Brief Auto-Generation",
+    text: "You spent a solid chunk of the evening wiring up the daily brief to generate itself automatically. The daily dashboard script now calls Claude with the dash-p flag, commits the result, and pushes it to GitHub Pages without you touching it. Along the way you fixed a bash three-point-two heredoc quoting bug and a bad max-tokens flag. You also added an archive folder for old briefs and swapped the browser's built-in speech synthesis for edge-tts using the Ava voice. Audio playback works, but the voice still sounds synthetic. Next session you're going to try a premium option like ElevenLabs or OpenAI to get something that sounds actually human."
   },
   {
     id: "adelaide-beverage-build",
     title: "Adelaide Beverage Build",
-    text: "You had a productive evening on the Adelaide client site. You cleared three blockers that were stalling web work: the no-prices decision, the food and beverage URL structure, and getting the fifteen-hundred-dollar scope approved. With those resolved, you moved fast — set the page slugs in Webflow, uploaded nine SVG assets, and wired up the header, underline styles, and wine sub-headings. The beverage page skeleton is done. Next up is building out the CMS Collection Lists. You also caught a 1Password renewal coming up on April ninth and logged it against the subscription total, which is now just over nine hundred dollars a month."
+    text: "You wrapped the evening with a productive push on Adelaide. First, you caught a 1Password price increase in your inbox and set a calendar reminder for April ninth before the renewal hits — your total subscription load is sitting at just over nine hundred dollars a month. Then you cleared three blockers that had been stalling the web work: getting prices visible on the site, setting the slash food and slash beverage URL slugs, and confirming a fifteen-hundred-dollar client approval. With those out of the way you got into Webflow — set the page slugs, uploaded nine SVG assets, and wired up the header, section underlines, and wine sub-headings. The beverage page skeleton is done. Next up is building out the CMS Collection Lists to populate the actual content."
   }
 ];
   var sessionLookup = {"diy-sensor-aggregation":"/Users/a7-13-2024/projects/explore/raspberry-pi-farm-automation","playwright-cli-vs-mcp":"/Users/a7-13-2024/projects/notebooklm-data-extractor","superwhisper-clipboard":"/Users/a7-13-2024/projects/adelaide","dashboard-resume-button":"/Users/a7-13-2024/projects","daily-brief-mar20":"/Users/a7-13-2024/projects/daily-brief","daily-brief-page":"/Users/a7-13-2024/projects/daily-brief","gove-martel-genealogy-research":"/Users/a7-13-2024/projects/family/ancestry","kurt-photo-setup":"/Users/a7-13-2024/projects","commit-garden-updates":"/Users/a7-13-2024/projects/grow-together","ancestry-census-transcription":"/Users/a7-13-2024/projects/family/ancestry","cli-anything-research":"/Users/a7-13-2024/projects/notebooklm-data-extractor","adelaide-beverage-build":"/Users/a7-13-2024/projects/adelaide","trackpad-return-hack":"/Users/a7-13-2024/projects","dna-ancestry-research":"/Users/a7-13-2024/projects/family/ancestry","diy-ag-automation-research":"/Users/a7-13-2024/projects/explore/glucose-monitor-company-tect-explore-for-tobin-ashley","daily-dashboard-refresh":"/Users/a7-13-2024/projects/grow-together"};
@@ -421,7 +422,7 @@
   });
   if (window.innerWidth <= 640) fab.style.display = 'flex';
 
-  // Add Continue links to session cards (copies cmux command to clipboard)
+  // Add Continue links to session cards
   allSessions.forEach(function(card) {
     var slug = card.dataset.section;
     var cwd = sessionLookup[slug];
@@ -432,14 +433,14 @@
       link.className = 'continue-link';
       link.textContent = 'Continue';
       link.href = '#';
-      link.addEventListener('click', function(e) {
+      link.onclick = function(e) {
         e.preventDefault();
-        var cmd = 'cd ' + cwd + ' && claude -c';
+        var cmd = 'cmux new-workspace --command "cd ' + cwd + ' && claude -c"';
         navigator.clipboard.writeText(cmd).then(function() {
           link.textContent = 'Copied!';
           setTimeout(function() { link.textContent = 'Continue'; }, 2000);
         });
-      });
+      };
       li.appendChild(link);
       var list = card.querySelector('.detail-list');
       if (list) list.appendChild(li);
