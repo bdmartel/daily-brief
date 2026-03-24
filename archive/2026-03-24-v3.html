@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Daily Brief - March 23, 2026</title>
+<title>Daily Brief - March 24, 2026</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -149,9 +149,9 @@
 <body>
 <div class="page-wrapper">
   <header class="header">
-    <div class="date-label">Monday, March 23, 2026</div>
+    <div class="date-label">Tuesday, March 24, 2026</div>
     <h1>Daily Brief</h1>
-    <div class="summary-line">4 sessions across client, tools, farming</div>
+    <div class="summary-line">1 session across tools</div>
   </header>
   <div class="listen-bar" id="listenBar">
     <div class="progress-fill" id="progressFill"></div>
@@ -166,76 +166,19 @@
     <button class="speed-btn" id="speedBtn">1x</button>
   </div>
 
-  <div class="session" data-section="adelaide-beverage-build">
+  <div class="session" data-section="project-inventory">
     <div class="session-header">
-      <div class="session-icon client">💼</div>
+      <div class="session-icon tools">🗂️</div>
       <div class="session-meta">
-        <div class="session-title">Adelaide Beverage Page Build</div>
-        <div class="session-time">12:30 – 14:15</div>
+        <div class="session-title">Project Inventory</div>
+        <div class="session-time">10:55</div>
       </div>
     </div>
     <div class="session-body">
-      <p><span class="tag amber">Client</span> Built and refined Webflow beverage page classes for Adelaide, then researched local MCP setup for next phase.</p>
+      <p><span class="tag blue">Tools</span> Catalogued all active project folders and surfaced them in the daily brief.</p>
       <ul class="detail-list">
-        <li>Reverted shared class edits; created bev-* classes matching food page specs (Montserrat 0.9375rem, line-height 1.8, #35190d)</li>
-        <li>Fixed header sizing (220px centered), layout stacking (flex-column), wine sub-headings to live script font</li>
-        <li>Captured 5 feedback memories from user-taught lessons</li>
-        <li>Researched local Webflow MCP; wrote full migration guide at docs/webflow-mcp-local-setup.md</li>
-        <li>Next: switch to local MCP + cocktail lounge print menu</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="session" data-section="usage-strategy">
-    <div class="session-header">
-      <div class="session-icon tools">🔧</div>
-      <div class="session-meta">
-        <div class="session-title">Claude Usage Strategy</div>
-        <div class="session-time">14:10 – 14:30</div>
-      </div>
-    </div>
-    <div class="session-body">
-      <p><span class="tag blue">Tools</span> Built a Claude Code activity tracker dashboard and made a data-driven decision to stay on Max with a new tiered model strategy.</p>
-      <ul class="detail-list">
-        <li>Built ~/projects/claude-activity-tracker/ — reads history.jsonl, stats-cache.json, and 341 session files</li>
-        <li>Dashboard shows daily/weekly trends, heatmaps, project breakdown, streaks, model usage</li>
-        <li>Analyzed real usage: 96% Opus, 2,334 prompts in March (20x February), never rate-limited</li>
-        <li>Decision: stay on Max; restructure into Tier 1 Sonnet (daily execution), Tier 2 Opus (judgment/planning), Tier 3 Haiku/Sonnet (agent workers)</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="session" data-section="cynthia-hajjar-wix">
-    <div class="session-header">
-      <div class="session-icon client">💼</div>
-      <div class="session-meta">
-        <div class="session-title">Cynthia Hajjar Client Setup</div>
-        <div class="session-time">17:30</div>
-      </div>
-    </div>
-    <div class="session-body">
-      <p><span class="tag amber">Client</span> Onboarded new client Cynthia Hajjar — Wix website tweaks for her wellness business.</p>
-      <ul class="detail-list">
-        <li>Created ~/projects/cynthia-hajjar/ with full client profile</li>
-        <li>Profile populated from Gmail and iMessage data</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="session" data-section="fix-johnnys-images">
-    <div class="session-header">
-      <div class="session-icon farming">🌱</div>
-      <div class="session-meta">
-        <div class="session-title">Johnny's Seed Images Fix</div>
-        <div class="session-time">21:10</div>
-      </div>
-    </div>
-    <div class="session-body">
-      <p><span class="tag green">Farming</span> Replaced watermelon placeholder images with correct product photos and filled in missing metadata for 16 of 19 Johnny's seeds.</p>
-      <ul class="detail-list">
-        <li>Fixed 16/19 entries: correct product photos from johnnyseeds.com</li>
-        <li>Populated days_to_maturity, description, and source_url for all 16</li>
-        <li>Three seeds not found on Johnny's site: Monstrosome Tall Mix, Runder, Butterfle</li>
+        <li>Listed all 46 folders under ~/projects/ with descriptions</li>
+        <li>Added categorized inventory to the daily brief</li>
       </ul>
     </div>
   </div>
@@ -557,29 +500,14 @@
 
 <script>
 (function() {
-  var sections = [
-  {
-    id: "adelaide-beverage-build",
-    title: "Adelaide Beverage Page Build",
-    text: "You spent most of the early afternoon on the Adelaide beverage page. You started by reverting some shared class edits that were causing problems, then built out a full set of bev-dash classes matching the food page spec — Montserrat at just under one rem, line height one point eight, and that deep brown color. You fixed the header sizing, got the layout stacking correctly with flex column, and switched the wine sub-headings to the live script font. You captured five feedback memories along the way so those lessons stick. Then you shifted into research mode and put together a complete local Webflow MCP setup guide. The package is webflow-mcp-server version one, and you'll need your Webflow token as an environment variable. Next session: cut over to the local MCP and tackle the cocktail lounge print menu."
-  },
-  {
-    id: "usage-strategy",
-    title: "Claude Usage Strategy",
-    text: "You built a Claude Code activity tracker dashboard that reads directly from your history and session files — all 341 of them. It surfaces daily and weekly trends, heatmaps, project breakdowns, streaks, and model usage. Then you used it to make a real decision: you're staying on Max. Your usage in March was twenty times February, you're running ninety-six percent Opus, and you've never been rate-limited. The new strategy is a three-tier model structure — Sonnet for daily execution, Opus reserved for judgment and planning calls, and Haiku or Sonnet for agent workers. Default to Sonnet, use Opus deliberately."
-  },
-  {
-    id: "cynthia-hajjar-wix",
-    title: "Cynthia Hajjar Client Setup",
-    text: "You onboarded a new client in the evening — Cynthia Hajjar, who needs Wix website tweaks for her wellness business. You created the project folder and built out a full client profile from your Gmail and iMessage history with her."
-  },
-  {
-    id: "fix-johnnys-images",
-    title: "Johnny's Seed Images Fix",
-    text: "Late in the evening you cleaned up the Johnny's seed catalog. Sixteen out of nineteen entries had watermelon placeholder images — you replaced all of them with the correct product photos pulled from Johnny's website, and also filled in days to maturity, descriptions, and source URLs for each one. Three seeds came up empty on their site: Monstrosome Tall Mix, Runder, and Butterfle — those will need another source."
-  }
-];
-  var sessionLookup = {"diy-sensor-aggregation":"/Users/a7-13-2024/projects/explore/raspberry-pi-farm-automation","playwright-cli-vs-mcp":"/Users/a7-13-2024/projects/notebooklm-data-extractor","superwhisper-clipboard":"/Users/a7-13-2024/projects/adelaide","dashboard-resume-button":"/Users/a7-13-2024/projects","daily-brief-mar20":"/Users/a7-13-2024/projects/daily-brief","daily-brief-page":"/Users/a7-13-2024/projects/daily-brief","usage-strategy-model-tiers":"/Users/a7-13-2024/projects","gove-martel-genealogy-research":"/Users/a7-13-2024/projects/family/ancestry","uppercase-renames":"/Users/a7-13-2024/projects","kurt-photo-setup":"/Users/a7-13-2024/projects","commit-garden-updates":"/Users/a7-13-2024/projects/grow-together","ancestry-census-transcription":"/Users/a7-13-2024/projects/family/ancestry","clawed-spec-library":"/Users/a7-13-2024/projects","cli-anything-research":"/Users/a7-13-2024/projects/notebooklm-data-extractor","project-inventory":"/Users/a7-13-2024/projects","cynthia-hajjar-wix":"/Users/a7-13-2024/projects","adelaide-beverage-build":"/Users/a7-13-2024/projects/adelaide","trackpad-return-hack":"/Users/a7-13-2024/projects","dna-ancestry-research":"/Users/a7-13-2024/projects/family/ancestry","global-note-two-selves":"/Users/a7-13-2024/projects","cafe-ambient-audio-search":"/Users/a7-13-2024/projects","fix-johnnys-images":"/Users/a7-13-2024/projects/grow-together/seeds","diy-ag-automation-research":"/Users/a7-13-2024/projects/explore/glucose-monitor-company-tect-explore-for-tobin-ashley","daily-dashboard-refresh":"/Users/a7-13-2024/projects/grow-together"};
+  var sections =   [
+    {
+      id: "project-inventory",
+      title: "Project Inventory",
+      text: "This morning you did a full sweep of your projects directory. You catalogued all 46 folders under tilde-slash-projects, wrote up descriptions for each one, and added a categorized inventory to your daily brief. Good way to get a clear picture of everything you have in flight."
+    }
+  ];
+  var sessionLookup = {"diy-sensor-aggregation":"/Users/a7-13-2024/projects/explore/raspberry-pi-farm-automation","playwright-cli-vs-mcp":"/Users/a7-13-2024/projects/notebooklm-data-extractor","superwhisper-clipboard":"/Users/a7-13-2024/projects/adelaide","dashboard-resume-button":"/Users/a7-13-2024/projects","daily-brief-mar20":"/Users/a7-13-2024/projects/daily-brief","daily-brief-page":"/Users/a7-13-2024/projects/daily-brief","usage-strategy-model-tiers":"/Users/a7-13-2024/projects","gove-martel-genealogy-research":"/Users/a7-13-2024/projects/family/ancestry","kurt-photo-setup":"/Users/a7-13-2024/projects","commit-garden-updates":"/Users/a7-13-2024/projects/grow-together","ancestry-census-transcription":"/Users/a7-13-2024/projects/family/ancestry","clawed-spec-library":"/Users/a7-13-2024/projects","cli-anything-research":"/Users/a7-13-2024/projects/notebooklm-data-extractor","project-inventory":"/Users/a7-13-2024/projects","cynthia-hajjar-wix":"/Users/a7-13-2024/projects","adelaide-beverage-build":"/Users/a7-13-2024/projects/adelaide","trackpad-return-hack":"/Users/a7-13-2024/projects","dna-ancestry-research":"/Users/a7-13-2024/projects/family/ancestry","global-note-two-selves":"/Users/a7-13-2024/projects","cafe-ambient-audio-search":"/Users/a7-13-2024/projects","fix-johnnys-images":"/Users/a7-13-2024/projects/grow-together/seeds","diy-ag-automation-research":"/Users/a7-13-2024/projects/explore/glucose-monitor-company-tect-explore-for-tobin-ashley","daily-dashboard-refresh":"/Users/a7-13-2024/projects/grow-together"};
   var audio = new Audio();
   var state = 'idle';
   var currentSection = -1;
@@ -598,9 +526,9 @@
   var allSessions = document.querySelectorAll('.session');
 
   function getAudioSrc(idx) {
-    if (idx === -1) return 'audio/intro.mp3';
-    if (idx >= sections.length) return 'audio/outro.mp3';
-    return 'audio/section-' + idx + '.mp3';
+    if (idx === -1) return '2026-03-24-audio/intro.mp3';
+    if (idx >= sections.length) return '2026-03-24-audio/outro.mp3';
+    return '2026-03-24-audio/section-' + idx + '.mp3';
   }
 
   function updateProgress() {
