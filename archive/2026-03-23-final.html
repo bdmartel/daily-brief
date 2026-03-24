@@ -121,9 +121,9 @@
 <body>
 <div class="container">
   <header class="header">
-    <div class="date-label">Sunday, March 22, 2026</div>
+    <div class="date-label">Monday, March 23, 2026</div>
     <h1>Daily Brief</h1>
-    <div class="summary-line">6 sessions across tools, farming, client</div>
+    <div class="summary-line">4 sessions across client work, tools, strategy</div>
   </header>
   <div class="listen-bar" id="listenBar">
     <div class="progress-fill" id="progressFill"></div>
@@ -138,111 +138,103 @@
     <button class="speed-btn" id="speedBtn">1x</button>
   </div>
 
-  <div class="session" data-section="diy-sensor-aggregation">
-    <div class="session-header">
-      <div class="session-icon farming">🌱</div>
-      <div class="session-meta">
-        <div class="session-title">DIY Sensor Aggregation Architecture</div>
-        <div class="session-time">12:50</div>
-      </div>
-    </div>
-    <div class="session-body">
-      <p><span class="tag green">Farming</span> Explored multi-sensor data aggregation without a Raspberry Pi, pivoting to phone and BLE sensors.</p>
-      <ul class="detail-list">
-        <li>Oriented in pi-farm-automation project context</li>
-        <li>Confirmed ownership of Govee H5075 sensor</li>
-        <li>Core open question: how to aggregate multi-sensor data without a Pi as hub</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="session" data-section="playwright-cli-vs-mcp">
-    <div class="session-header">
-      <div class="session-icon tools">🔧</div>
-      <div class="session-meta">
-        <div class="session-title">Playwright CLI vs MCP Architecture</div>
-        <div class="session-time">evening</div>
-      </div>
-    </div>
-    <div class="session-body">
-      <p><span class="tag blue">Tools</span> Compared Playwright CLI and MCP integration modes for use with Claude Code.</p>
-      <ul class="detail-list">
-        <li>Covered architectural differences between CLI and MCP approaches</li>
-        <li>Discussed token efficiency tradeoffs for Claude Code workflows</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="session" data-section="cli-anything-research">
-    <div class="session-header">
-      <div class="session-icon tools">🔧</div>
-      <div class="session-meta">
-        <div class="session-title">CLI-Anything Research</div>
-        <div class="session-time">20:19</div>
-      </div>
-    </div>
-    <div class="session-body">
-      <p><span class="tag blue">Tools</span> Researched CLI-Anything, a Claude Code plugin that auto-generates CLI interfaces for any software.</p>
-      <ul class="detail-list">
-        <li>Project: HKUDS/CLI-Anything, 21.2k stars, MIT license</li>
-        <li>Generates CLI interfaces on demand for arbitrary software targets</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="session" data-section="superwhisper-clipboard">
-    <div class="session-header">
-      <div class="session-icon tools">🔧</div>
-      <div class="session-meta">
-        <div class="session-title">Superwhisper Clipboard Fix</div>
-        <div class="session-time">evening</div>
-      </div>
-    </div>
-    <div class="session-body">
-      <p><span class="tag blue">Tools</span> Resolved a Superwhisper issue where dictation was overwriting clipboard contents.</p>
-      <ul class="detail-list">
-        <li>Fix: enable "Restore Clipboard" in Advanced Settings</li>
-        <li>Prior clipboard contents now preserved after dictation completes</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="session" data-section="daily-brief-mar20">
-    <div class="session-header">
-      <div class="session-icon tools">🔧</div>
-      <div class="session-meta">
-        <div class="session-title">Daily Brief Auto-Generation</div>
-        <div class="session-time">20:30 – 22:00</div>
-      </div>
-    </div>
-    <div class="session-body">
-      <p><span class="tag blue">Tools</span> Integrated daily brief generation into daily-dashboard.sh with edge-tts audio and GitHub Pages deployment.</p>
-      <ul class="detail-list">
-        <li>Script now auto-generates GitHub Pages TTS brief via <code>claude -p</code>, commits, and pushes</li>
-        <li>Fixed bash 3.2 heredoc quote bug and <code>--max-tokens</code> flag issue</li>
-        <li>Added archive/ directory for previous brief versions</li>
-        <li>Swapped Web Speech API for edge-tts Ava voice pre-generated MP3s</li>
-        <li>Voice quality still not human enough — next: ElevenLabs or OpenAI TTS</li>
-      </ul>
-    </div>
-  </div>
-
   <div class="session" data-section="adelaide-beverage-build">
     <div class="session-header">
       <div class="session-icon client">💼</div>
       <div class="session-meta">
-        <div class="session-title">Adelaide Beverage Build</div>
-        <div class="session-time">21:30 – 22:10</div>
+        <div class="session-title">Adelaide Beverage Page Build</div>
+        <div class="session-time">12:30 – 14:15</div>
       </div>
     </div>
     <div class="session-body">
-      <p><span class="tag amber">Client</span> Cleared three Adelaide blockers and completed the beverage page skeleton in Webflow.</p>
+      <p><span class="tag amber">Client</span> Major progress on the Adelaide beverage page in Webflow. Reverted risky shared-class edits and rebuilt with a safe, scoped approach.</p>
       <ul class="detail-list">
-        <li>Found 1Password price increase email — calendar reminder set for April 9 renewal ($908.80/mo total subscriptions)</li>
-        <li>Resolved: no prices on web (0.1), /food + /beverage URL slugs (0.2), $1,500 client approval gate (0.3)</li>
-        <li>Set page slugs in Webflow, uploaded 9 SVG assets</li>
-        <li>Wired header, underlines, and wine sub-headings — beverage skeleton complete</li>
-        <li>Next step: CMS Collection Lists</li>
+        <li>Reverted all shared class modifications to prevent breaking live food page</li>
+        <li>Built /webflow-audit skill enforcing PDF mockup matching and new-class-only rule</li>
+        <li>Created 4 beverage-specific classes: bev-item-line, bev-item-name, bev-item-desc, bev-item</li>
+        <li>Fixed header sizing (bev-header 220px centered) and layout stacking (bev-stacked flex-column)</li>
+        <li>Wine sub-headings switched from SVG images to live script font</li>
+        <li>Captured 5 feedback memories for future Webflow sessions</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="session" data-section="adelaide-webflow-mcp">
+    <div class="session-header">
+      <div class="session-icon client">💼</div>
+      <div class="session-meta">
+        <div class="session-title">Webflow MCP Local Setup</div>
+        <div class="session-time">14:15</div>
+      </div>
+    </div>
+    <div class="session-body">
+      <p><span class="tag amber">Client</span> Researched and documented local Webflow MCP server setup for faster Adelaide development.</p>
+      <ul class="detail-list">
+        <li>Created full migration guide: docs/webflow-mcp-local-setup.md</li>
+        <li>Package: webflow-mcp-server v1.0.0 with WEBFLOW_TOKEN env var</li>
+        <li>Next session: switch to local MCP + cocktail lounge print menu</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="session" data-section="activity-tracker">
+    <div class="session-header">
+      <div class="session-icon tools">🔧</div>
+      <div class="session-meta">
+        <div class="session-title">Claude Code Activity Tracker</div>
+        <div class="session-time">14:10</div>
+      </div>
+    </div>
+    <div class="session-body">
+      <p><span class="tag blue">Tools</span> Built an activity dashboard that visualizes all Claude Code usage from local data files.</p>
+      <ul class="detail-list">
+        <li>Created ~/projects/claude-activity-tracker/ with Python generator + HTML dashboard</li>
+        <li>Reads history.jsonl (2,328 prompts), stats-cache.json (33K messages), 341 session files</li>
+        <li>Shows daily/weekly trends, heatmaps, project breakdown, streaks, model usage</li>
+        <li>Run: python3 generate.py --open</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="session" data-section="usage-strategy">
+    <div class="session-header">
+      <div class="session-icon tools">🔧</div>
+      <div class="session-meta">
+        <div class="session-title">Usage Strategy: Pro vs Max Decision</div>
+        <div class="session-time">14:20</div>
+      </div>
+    </div>
+    <div class="session-body">
+      <p><span class="tag blue">Strategy</span> Analyzed real usage data to decide between the $100 Pro and $200 Max plans, then mapped out a smarter way to work going forward.</p>
+      <ul class="detail-list">
+        <li>Data: 96% Opus usage, 2,334 prompts in March alone (20x Feb), 6 of 18 tracked days over 2,000 messages</li>
+        <li>Never hit rate limits on Max. Dropping to Pro would force mostly Sonnet and likely cause throttling</li>
+        <li>Decision: stay on Max but restructure how models are used</li>
+        <li>New framework: Tier 1 (Sonnet) for daily execution, Tier 2 (Opus) for judgment calls, Tier 3 (Haiku/Sonnet) for agent workers</li>
+        <li>Default model should be Sonnet. Use /model opus deliberately like a gear shift</li>
+        <li>Skills and hooks are the real multiplier. More encoded patterns = less raw intelligence needed per session</li>
+        <li>Shorter, goal-oriented sessions beat marathon 3,000-message sessions</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="session" data-section="tomorrow-goal" style="border-color: var(--accent); border-width: 2px;">
+    <div class="session-header">
+      <div class="session-icon" style="background: var(--accent-dim);">🎯</div>
+      <div class="session-meta">
+        <div class="session-title">Tomorrow's Goal: Skill Evolution System</div>
+        <div class="session-time">one goal for the day</div>
+      </div>
+    </div>
+    <div class="session-body">
+      <p><span class="tag blue">Infrastructure</span> Build the foundation for a self-evolving skill system that observes your work and generates skills automatically.</p>
+      <ul class="detail-list">
+        <li>Create a skill observer that analyzes chat logs for repeating action patterns</li>
+        <li>Build a candidate tracker that surfaces potential skills with frequency and value signals</li>
+        <li>Wire up a skill generator that writes proper skill files from observed candidates</li>
+        <li>Set up a nightly batch job to regenerate and refine skills while you're offline</li>
+        <li>Integrate a "skills changelog" section into the daily brief</li>
+        <li>End goal: Sonnet sessions informed by encoded skills perform at the level of today's Opus sessions</li>
       </ul>
     </div>
   </div>
@@ -256,37 +248,32 @@
 (function() {
   var sections = [
   {
-    id: "diy-sensor-aggregation",
-    title: "DIY Sensor Aggregation",
-    text: "This afternoon you dug into the pi-farm-automation project and made a significant pivot: instead of routing everything through a Raspberry Pi, you're looking at using your phone and BLE sensors directly. You have the Govee H5075 in hand. The big open question you're sitting with is how to aggregate data from multiple sensors without a Pi as a central hub."
-  },
-  {
-    id: "playwright-cli-vs-mcp",
-    title: "Playwright CLI vs MCP",
-    text: "At some point in the evening you looked at the difference between running Playwright as a CLI tool versus as an MCP server inside Claude Code. The key takeaway was around token efficiency — the two architectures handle context and tool calls differently, which matters when you're working inside an agent loop."
-  },
-  {
-    id: "cli-anything-research",
-    title: "CLI-Anything Research",
-    text: "Around eight-twenty you researched a Claude Code plugin called CLI-Anything, from HKUDS on GitHub. It has over twenty-one thousand stars and an MIT license. The concept is straightforward: it auto-generates a CLI interface for any software you point it at. Worth keeping in mind for tool integration work."
-  },
-  {
-    id: "superwhisper-clipboard",
-    title: "Superwhisper Clipboard Fix",
-    text: "You also solved a small but annoying Superwhisper problem. Every time you dictated something, it was overwriting your clipboard. The fix is buried in Advanced Settings: enable Restore Clipboard. With that on, Superwhisper puts your prior clipboard contents back after it finishes dictating."
-  },
-  {
-    id: "daily-brief-mar20",
-    title: "Daily Brief Pipeline",
-    text: "From about eight-thirty to ten you made the daily brief fully automated. The daily-dashboard script now calls Claude with the pipe flag, generates a GitHub Pages brief, commits, and pushes — no manual steps. You fixed a bash three-point-two heredoc quoting bug and a bad max-tokens flag along the way. You also swapped out the browser's Web Speech API for pre-generated MP3s using edge-tts with the Ava voice and added an archive folder for older briefs. The voice quality is better but still not human enough. Next session you're looking at ElevenLabs or OpenAI for premium TTS."
-  },
-  {
     id: "adelaide-beverage-build",
-    title: "Adelaide Beverage Build",
-    text: "Late in the evening you made real progress on Adelaide. You cleared three blockers that had been holding up web work: the no-prices issue, the slash-food and slash-beverage URL routing, and the fifteen-hundred dollar client approval checkpoint. While you were at it, you caught a 1Password price increase email and set a calendar reminder for April ninth — your subscriptions are running about nine hundred eight dollars a month total. On the build side, you set the page slugs in Webflow, uploaded nine SVG assets, and wired up the header, underlines, and wine sub-headings. The beverage page skeleton is done. Next up is wiring the CMS Collection Lists."
+    title: "Adelaide Beverage Page",
+    text: "You spent the morning on the Adelaide beverage page in Webflow. You discovered that earlier shared-class edits were risky, so you reverted everything and started fresh with a scoped approach. You built a new webflow-audit skill that enforces matching against the PDF mockup and a new-class-only rule so you never accidentally break the live food page again. You created four beverage-specific classes for menu items, fixed the header sizing at two-twenty pixels centered, and switched the wine sub-headings from SVG images to a live script font. Five feedback memories were captured so future Webflow sessions start smarter."
+  },
+  {
+    id: "adelaide-webflow-mcp",
+    title: "Webflow MCP Local Setup",
+    text: "After the build work, you researched setting up a local Webflow MCP server instead of relying on the cloud version. You created a full migration guide in the Adelaide docs folder. The package is webflow-mcp-server version one-point-zero, configured with a Webflow token environment variable. Next session you plan to switch to the local MCP and start on the cocktail lounge print menu."
+  },
+  {
+    id: "activity-tracker",
+    title: "Activity Tracker Dashboard",
+    text: "You built an activity tracker for your Claude Code usage. It reads from three local data sources: history dot jsonl with over twenty-three hundred prompts, the stats cache with thirty-three thousand messages, and three hundred forty-one per-session conversation files. The dashboard shows daily and weekly trends, a heatmap of when you work, project breakdowns, streaks, and model usage. It lives in projects slash claude-activity-tracker and you generate it with python three generate dot py dash dash open."
+  },
+  {
+    id: "usage-strategy",
+    title: "Usage Strategy",
+    text: "This was the big one. You looked at your actual usage data to decide whether to stay on the two hundred dollar Max plan or drop to the one hundred dollar Pro plan. The numbers were clear: ninety-six percent of your usage is on Opus, you sent over twenty-three hundred prompts in March alone which is twenty times February, and six of the eighteen tracked days exceeded two thousand messages. You've never once been rate limited on Max. Dropping to Pro would force you onto Sonnet for most work and you'd likely get throttled on heavy days. So you're staying on Max. But the more important outcome was a restructuring of how you use the models. The new framework has three tiers. Tier one is Sonnet for daily execution work: file edits, CSS changes, searches, routine coding. Tier two is Opus, used deliberately for judgment calls, planning sessions, and architecture decisions. Tier three is Haiku or Sonnet for sub-agent workers that just need to follow instructions. The default model should be Sonnet. You use slash model opus like a gear shift, only when the task actually demands deeper reasoning. The real force multiplier isn't model intelligence, it's your skills and hooks. The more patterns you encode into reusable skills, the less raw model capability you need per session. And shorter, goal-oriented sessions beat marathon three-thousand message sessions every time."
+  },
+  {
+    id: "tomorrow-goal",
+    title: "Tomorrow's Goal",
+    text: "One goal for tomorrow. Build the foundation for a skill evolution system. Here's the idea: instead of you manually deciding what skills to build, the system watches how you work and notices patterns on its own. A skill observer scans your chat logs for repeating action sequences. A candidate tracker surfaces those patterns with signals for how often they come up and how much value they'd add. Then a skill generator writes the actual skill files from the best candidates. You wire up a nightly batch job so while you're sleeping, the system regenerates and refines skills based on everything it observed that day. And each morning, the daily brief includes a skills changelog showing what was created or updated overnight. The end goal is clear: Sonnet sessions running with well-encoded skills should perform at the same level as the Opus sessions you're used to. This is how you make the three-tier model framework actually work long term. The intelligence doesn't disappear. It gets captured and reused."
   }
 ];
-  var sessionLookup = {"diy-sensor-aggregation":"/Users/a7-13-2024/projects/explore/raspberry-pi-farm-automation","playwright-cli-vs-mcp":"/Users/a7-13-2024/projects/notebooklm-data-extractor","superwhisper-clipboard":"/Users/a7-13-2024/projects/adelaide","dashboard-resume-button":"/Users/a7-13-2024/projects","daily-brief-mar20":"/Users/a7-13-2024/projects/daily-brief","daily-brief-page":"/Users/a7-13-2024/projects/daily-brief","gove-martel-genealogy-research":"/Users/a7-13-2024/projects/family/ancestry","kurt-photo-setup":"/Users/a7-13-2024/projects","commit-garden-updates":"/Users/a7-13-2024/projects/grow-together","ancestry-census-transcription":"/Users/a7-13-2024/projects/family/ancestry","cli-anything-research":"/Users/a7-13-2024/projects/notebooklm-data-extractor","adelaide-beverage-build":"/Users/a7-13-2024/projects/adelaide","trackpad-return-hack":"/Users/a7-13-2024/projects","dna-ancestry-research":"/Users/a7-13-2024/projects/family/ancestry","diy-ag-automation-research":"/Users/a7-13-2024/projects/explore/glucose-monitor-company-tect-explore-for-tobin-ashley","daily-dashboard-refresh":"/Users/a7-13-2024/projects/grow-together"};
+  var sessionLookup = {"adelaide-beverage-build":"/Users/a7-13-2024/projects/adelaide","adelaide-webflow-mcp":"/Users/a7-13-2024/projects/adelaide","activity-tracker":"/Users/a7-13-2024/projects/claude-activity-tracker","usage-strategy":"/Users/a7-13-2024/projects/claude-activity-tracker","tomorrow-goal":"/Users/a7-13-2024/projects"};
   var audio = new Audio();
   var state = 'idle';
   var currentSection = -1;
