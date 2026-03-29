@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Daily Brief - March 24, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0d0d0d; --surface: #161616; --surface-hover: #1c1c1c;
+    --border: #2a2a2a; --text: #e0e0e0; --text-muted: #888;
+    --accent: #4a9eff; --accent-dim: rgba(74, 158, 255, 0.12);
+    --green: #3ddc84; --green-dim: rgba(61, 220, 132, 0.12);
+    --amber: #ffb74d; --amber-dim: rgba(255, 183, 77, 0.12);
+    --purple: #bb86fc; --purple-dim: rgba(187, 134, 252, 0.12);
+    --blue: #4a9eff; --blue-dim: rgba(74, 158, 255, 0.12);
+  }
+  html { font-size: 16px; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    -webkit-font-smoothing: antialiased;
+  }
+  .page-wrapper { max-width: 640px; margin: 0 auto; padding: 1.5rem 1rem 6rem; }
+  .header { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+  .header .date-label {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 0.25rem;
+  }
+  .header h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; color: #fff; margin-bottom: 0.5rem; }
+  .header .summary-line { color: var(--text-muted); font-size: 0.875rem; }
+  .session {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.25rem; margin-bottom: 1rem; transition: border-color 0.2s;
+  }
+  .session-header { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; }
+  .session-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.1rem;
+  }
+  .session-icon.tools { background: var(--blue-dim); }
+  .session-icon.farming { background: var(--green-dim); }
+  .session-icon.client { background: var(--amber-dim); }
+  .session-meta { flex: 1; min-width: 0; }
+  .session-title { font-size: 1rem; font-weight: 600; color: #fff; line-height: 1.3; }
+  .session-time { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--text-muted); margin-top: 0.15rem; }
+  .session-body { font-size: 0.875rem; color: var(--text); }
+  .session-body p { margin-bottom: 0.5rem; }
+  .session-body p:last-child { margin-bottom: 0; }
+  .detail-list { list-style: none; margin: 0.5rem 0 0; padding: 0; }
+  .detail-list li {
+    position: relative; padding-left: 1rem; margin-bottom: 0.35rem;
+    font-size: 0.8125rem; color: var(--text-muted); line-height: 1.5;
+  }
+  .detail-list li::before {
+    content: ''; position: absolute; left: 0; top: 0.55em;
+    width: 4px; height: 4px; border-radius: 50%; background: var(--border);
+  }
+  .tag {
+    display: inline-block; font-family: 'JetBrains Mono', monospace;
+    font-size: 0.675rem; font-weight: 500; padding: 0.15rem 0.4rem;
+    border-radius: 4px; margin-right: 0.25rem;
+  }
+  .tag.blue { background: var(--blue-dim); color: var(--blue); }
+  .tag.green { background: var(--green-dim); color: var(--green); }
+  .tag.amber { background: var(--amber-dim); color: var(--amber); }
+  .archive-badge {
+    display: inline-block; font-family: 'JetBrains Mono', monospace;
+    font-size: 0.675rem; font-weight: 500; padding: 0.2rem 0.5rem;
+    border-radius: 4px; background: var(--accent-dim); color: var(--accent);
+    margin-left: 0.5rem; vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+  <div class="header">
+    <div class="date-label">Monday, March 24, 2026</div>
+    <h1>Daily Brief <span class="archive-badge">Archive</span></h1>
+    <div class="summary-line">4 sessions: project organization, tooling config, and deep farming research.</div>
+  </div>
+
+  <div class="session" data-section="project-inventory">
+    <div class="session-header">
+      <div class="session-icon tools">📋</div>
+      <div class="session-meta">
+        <div class="session-title">Project Inventory</div>
+        <div class="session-time">10:55</div>
+      </div>
+    </div>
+    <div class="session-body">
+      <p><span class="tag blue">Tools</span> Catalogued all forty-six project folders with descriptions and added a categorized inventory to the daily brief system.</p>
+      <ul class="detail-list">
+        <li>Listed every folder in ~/projects/ with a short description</li>
+        <li>Organized into categories: active clients, farming, infrastructure, sandbox, archive</li>
+        <li>Integrated the inventory into the daily brief for ongoing visibility</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="session" data-section="uppercase-renames">
+    <div class="session-header">
+      <div class="session-icon tools">🔤</div>
+      <div class="session-meta">
+        <div class="session-title">Uppercase Workspace Renames</div>
+        <div class="session-time">~11:00</div>
+      </div>
+    </div>
+    <div class="session-body">
+      <p><span class="tag blue">Tools</span> Updated the auto-rename hook script and CLAUDE.md instructions so cmux workspace titles are always generated in uppercase.</p>
+      <ul class="detail-list">
+        <li>Modified auto-rename-counter.sh to produce UPPERCASE titles</li>
+        <li>Updated CLAUDE.md rename instructions to match</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="session" data-section="webflow-mcp-setup">
+    <div class="session-header">
+      <div class="session-icon tools">🔧</div>
+      <div class="session-meta">
+        <div class="session-title">Webflow MCP Phase 1 Setup</div>
+        <div class="session-time">21:05</div>
+      </div>
+    </div>
+    <div class="session-body">
+      <p><span class="tag blue">Tools</span> Completed Phase 1 of Webflow plus Claude MCP integration, switching from remote OAuth to a local MCP server.</p>
+      <ul class="detail-list">
+        <li>Generated a new Webflow API token named "claude1"</li>
+        <li>Switched from remote OAuth flow to a local MCP server (webflow-local)</li>
+        <li>Removed old remote config to keep things clean</li>
+        <li>Phase 2 (Understanding Toolsets) queued for next session</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="session" data-section="eliot-coleman-integration">
+    <div class="session-header">
+      <div class="session-icon farming">🌱</div>
+      <div class="session-meta">
+        <div class="session-title">Eliot Coleman Integration</div>
+        <div class="session-time">22:52 – 23:15</div>
+      </div>
+    </div>
+    <div class="session-body">
+      <p><span class="tag green">Farming</span> Deep work session: integrated the incoming queue and extracted detailed farming data from Eliot Coleman's "The Self-Fed Farm and Garden."</p>
+      <ul class="detail-list">
+        <li>Moved irrigation-systems.md to planting/reference/</li>
+        <li>Archived three already-processed files (cover-crops, consolidation notes, Cory transcript)</li>
+        <li>Full text of Coleman's book filed to planting/reference/</li>
+        <li>Updated cover-crop-reference.md: seven updated profiles, three new profiles, three technique sections</li>
+        <li>Created self-fed-farm-crop-rotation.md: family table, sequencing synergies, field layout, home garden method</li>
+        <li>All extracted data tagged with [SF] for source tracking</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

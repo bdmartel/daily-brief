@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Daily Brief - March 22, 2026</title>
+<title>Daily Brief - March 23, 2026</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -23,7 +23,7 @@
     padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
     -webkit-font-smoothing: antialiased;
   }
-  .container { max-width: 640px; margin: 0 auto; padding: 1.5rem 1rem 6rem; }
+  .page-wrapper { max-width: 640px; margin: 0 auto; padding: 1.5rem 1rem 6rem; }
   .header { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
   .header .date-label {
     font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
@@ -96,6 +96,11 @@
   .tag.green { background: var(--green-dim); color: var(--green); }
   .tag.amber { background: var(--amber-dim); color: var(--amber); }
   .tag.blue { background: var(--blue-dim); color: var(--blue); }
+  .continue-link {
+    color: var(--accent); text-decoration: underline; cursor: pointer;
+    font-size: 0.8125rem; font-weight: 500;
+  }
+  .continue-link:hover { color: #6db3ff; }
   .fab {
     display: none; position: fixed; bottom: 1.5rem; right: 1.5rem;
     width: 56px; height: 56px; border-radius: 50%;
@@ -105,8 +110,36 @@
   }
   .fab:active { transform: scale(0.9); }
   .fab svg { width: 22px; height: 22px; }
+  .projects-section { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+  .projects-header {
+    font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem;
+  }
+  .projects-subtitle {
+    font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 1.5rem;
+  }
+  .project-category {
+    font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--accent); margin: 1.5rem 0 0.5rem;
+  }
+  .project-category:first-of-type { margin-top: 0; }
+  .project-item {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 0.75rem 1rem; margin-bottom: 0.5rem;
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem;
+  }
+  .project-info { flex: 1; min-width: 0; }
+  .project-name { font-size: 0.875rem; font-weight: 600; color: #fff; }
+  .project-desc {
+    font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.5;
+  }
+  .proj-continue {
+    color: var(--accent); text-decoration: none; cursor: pointer;
+    font-size: 0.75rem; font-weight: 500; flex-shrink: 0; margin-top: 0.15rem;
+    opacity: 0.5; transition: opacity 0.15s;
+  }
+  .proj-continue:hover { opacity: 1; text-decoration: underline; }
   @media (max-width: 480px) {
-    .container { padding: 1rem 0.75rem 7rem; }
+    .page-wrapper { padding: 1rem 0.75rem 7rem; }
     .header h1 { font-size: 1.5rem; }
     .listen-bar { border-radius: 10px; padding: 0.625rem 0.875rem; }
     .session { border-radius: 10px; padding: 1rem; }
@@ -114,11 +147,11 @@
 </style>
 </head>
 <body>
-<div class="container">
+<div class="page-wrapper">
   <header class="header">
-    <div class="date-label">Sunday, March 22, 2026</div>
+    <div class="date-label">Monday, March 23, 2026</div>
     <h1>Daily Brief</h1>
-    <div class="summary-line">5 sessions across farming, tools</div>
+    <div class="summary-line">4 sessions across client, tools, farming</div>
   </header>
   <div class="listen-bar" id="listenBar">
     <div class="progress-fill" id="progressFill"></div>
@@ -133,90 +166,383 @@
     <button class="speed-btn" id="speedBtn">1x</button>
   </div>
 
-  <div class="session" data-section="diy-sensor-aggregation">
-    <div class="session-header">
-      <div class="session-icon farming">🌱</div>
-      <div class="session-meta">
-        <div class="session-title">DIY Sensor Aggregation Architecture</div>
-        <div class="session-time">12:50</div>
-      </div>
-    </div>
-    <div class="session-body">
-      <p><span class="tag green">Farming</span> Explored phone-based BLE sensor architecture for farm automation without a Raspberry Pi.</p>
-      <ul class="detail-list">
-        <li>Oriented in the pi-farm-automation project codebase</li>
-        <li>Pivoted from Pi-based to phone + BLE sensors using owned Govee H5075</li>
-        <li>Core open question: multi-sensor data aggregation architecture without a Pi</li>
-      </ul>
+<div class="session" data-section="adelaide-beverage-build">
+  <div class="session-header">
+    <div class="session-icon client">🤝</div>
+    <div class="session-meta">
+      <div class="session-title">Adelaide Beverage Page Build</div>
+      <div class="session-time">12:30 PM – 2:15 PM</div>
     </div>
   </div>
-
-  <div class="session" data-section="playwright-cli-vs-mcp">
-    <div class="session-header">
-      <div class="session-icon tools">🔧</div>
-      <div class="session-meta">
-        <div class="session-title">Playwright CLI vs MCP Architecture</div>
-        <div class="session-time">Evening</div>
-      </div>
-    </div>
-    <div class="session-body">
-      <p><span class="tag blue">Tools</span> Clarified the architectural and token-efficiency differences between Playwright CLI and MCP for Claude Code.</p>
-      <ul class="detail-list">
-        <li>Explained how CLI and MCP modes differ in how Playwright integrates with Claude Code</li>
-        <li>Covered token efficiency tradeoffs between the two approaches</li>
-      </ul>
+  <div class="session-body">
+    <p><span class="tag amber">client</span> Built out Adelaide's beverage page with custom classes, fixed layout issues, and prepped for local Webflow MCP migration.</p>
+    <ul class="detail-list">
+      <li>Reverted shared class edits, created bev-* classes matching food page specs (Montserrat 0.9375rem, line-height 1.8, #35190d)</li>
+      <li>Fixed header sizing (bev-header 220px centered) and layout stacking (bev-stacked flex-column)</li>
+      <li>Switched wine sub-headings to live script font; captured 5 feedback memories</li>
+      <li>Built /webflow-audit skill and created full local MCP migration guide</li>
+      <li>Next: switch to local MCP + cocktail lounge print menu</li>
+    </ul>
+  </div>
+</div>
+<div class="session" data-section="usage-strategy">
+  <div class="session-header">
+    <div class="session-icon tools">🔧</div>
+    <div class="session-meta">
+      <div class="session-title">Claude Usage Strategy</div>
+      <div class="session-time">2:10 PM – 2:30 PM</div>
     </div>
   </div>
-
-  <div class="session" data-section="cli-anything-research">
-    <div class="session-header">
-      <div class="session-icon tools">🔧</div>
-      <div class="session-meta">
-        <div class="session-title">CLI-Anything Plugin Research</div>
-        <div class="session-time">20:19</div>
-      </div>
-    </div>
-    <div class="session-body">
-      <p><span class="tag blue">Tools</span> Researched CLI-Anything, a Claude Code plugin that auto-generates CLI interfaces for any software.</p>
-      <ul class="detail-list">
-        <li>Found HKUDS/CLI-Anything on GitHub — 21.2k stars, MIT license</li>
-        <li>Plugin automatically generates CLI wrappers for arbitrary software tools</li>
-      </ul>
+  <div class="session-body">
+    <p><span class="tag blue">tools</span> Built an activity tracker dashboard and analyzed real usage data to restructure model usage across tiers.</p>
+    <ul class="detail-list">
+      <li>Built Claude Code activity tracker reading history.jsonl, stats-cache.json, and 341 session files</li>
+      <li>Dashboard shows daily/weekly trends, heatmaps, project breakdown, streaks, model usage</li>
+      <li>Analyzed March data: 96% Opus, 2,334 prompts (20x February), never rate-limited</li>
+      <li>Staying on Max plan but restructuring: Sonnet for daily execution, Opus for judgment/planning, Haiku for agent workers</li>
+    </ul>
+  </div>
+</div>
+<div class="session" data-section="cynthia-hajjar-wix">
+  <div class="session-header">
+    <div class="session-icon client">🤝</div>
+    <div class="session-meta">
+      <div class="session-title">Cynthia Hajjar – Wix Setup</div>
+      <div class="session-time">5:30 PM</div>
     </div>
   </div>
-
-  <div class="session" data-section="superwhisper-clipboard">
-    <div class="session-header">
-      <div class="session-icon tools">🔧</div>
-      <div class="session-meta">
-        <div class="session-title">Superwhisper Clipboard Fix</div>
-        <div class="session-time">Evening</div>
-      </div>
-    </div>
-    <div class="session-body">
-      <p><span class="tag blue">Tools</span> Resolved a Superwhisper issue where dictation was overwriting prior clipboard contents.</p>
-      <ul class="detail-list">
-        <li>Fix: enable "Restore Clipboard" in Superwhisper's Advanced Settings</li>
-        <li>Setting preserves prior clipboard contents after dictation completes</li>
-      </ul>
+  <div class="session-body">
+    <p><span class="tag amber">client</span> Set up a new client project for Cynthia Hajjar's wellness business Wix site.</p>
+    <ul class="detail-list">
+      <li>Created ~/projects/cynthia-hajjar/ with full client profile</li>
+      <li>Compiled background from Gmail and iMessage data for website tweaks</li>
+    </ul>
+  </div>
+</div>
+<div class="session" data-section="fix-johnnys-images">
+  <div class="session-header">
+    <div class="session-icon farming">🌱</div>
+    <div class="session-meta">
+      <div class="session-title">Johnny's Seed Image Fixes</div>
+      <div class="session-time">9:10 PM</div>
     </div>
   </div>
-
-  <div class="session" data-section="daily-brief-mar20">
-    <div class="session-header">
-      <div class="session-icon tools">🔧</div>
-      <div class="session-meta">
-        <div class="session-title">Daily Brief Auto-Generation</div>
-        <div class="session-time">20:30</div>
+  <div class="session-body">
+    <p><span class="tag green">farming</span> Fixed 16 of 19 seed images in the database, replacing watermelon placeholders with correct product photos.</p>
+    <ul class="detail-list">
+      <li>Replaced placeholders with correct photos from johnnyseeds.com for 16 seeds</li>
+      <li>Populated days_to_maturity, description, and source_url for all 16</li>
+      <li>Three seeds not found on Johnny's site: Monstrosome Tall Mix, Runder, Butterfle</li>
+    </ul>
+  </div>
+</div>
+  <div class="projects-section">
+    <div class="projects-header">Projects</div>
+    <div class="projects-subtitle">43 active folders in ~/projects</div>
+    <div class="project-category">Active Client Work</div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/adelaide">
+      <div class="project-info">
+        <div class="project-name">adelaide</div>
+        <div class="project-desc">Webflow-powered restaurant site for Adelaide in New Jersey, built with designer Kristen Cahill. Currently live and in active development adding beverage pages and menu items.</div>
       </div>
+      <a class="proj-continue" href="#">Continue</a>
     </div>
-    <div class="session-body">
-      <p><span class="tag blue">Tools</span> Integrated daily brief auto-generation into daily-dashboard.sh with end-to-end GitHub Pages TTS deployment.</p>
-      <ul class="detail-list">
-        <li>Script now calls <code>claude -p</code> to auto-generate the brief, then commits and pushes to GitHub Pages</li>
-        <li>Fixed bash 3.2 heredoc quote escaping bug and incorrect <code>--max-tokens</code> flag</li>
-        <li>Tested end-to-end successfully with 3 sessions from March 20th</li>
-      </ul>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/cynthia-hajjar">
+      <div class="project-info">
+        <div class="project-name">cynthia-hajjar</div>
+        <div class="project-desc">Active client project for website tweaks on a Wix site, currently awaiting credentials. Also tracking ongoing property maintenance work.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/kurt-photos">
+      <div class="project-info">
+        <div class="project-name">kurt-photos</div>
+        <div class="project-desc">Photo organization consulting for an artist client. Sent a 5-point action plan for library management, awaiting response.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/spacepoint-revamp">
+      <div class="project-info">
+        <div class="project-name">spacepoint-revamp</div>
+        <div class="project-desc">Website rebuild for a space technology organization with an integrated copy editor and content management tool.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/valli-passport-docs">
+      <div class="project-info">
+        <div class="project-name">valli-passport-docs</div>
+        <div class="project-desc">Passport photo session for Valli, photo taken and emailed.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-category">Farming</div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/garden-planner">
+      <div class="project-info">
+        <div class="project-name">garden-planner</div>
+        <div class="project-desc">Seasonal garden planning tools with crop layout and timing for the Wilton property.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/grow-together">
+      <div class="project-info">
+        <div class="project-name">grow-together</div>
+        <div class="project-desc">Core farming-as-a-service knowledge base including planting schedules, seed inventory app, grow automation docs, and marketing materials.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-category">Migrations</div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/aliceattie_migration">
+      <div class="project-info">
+        <div class="project-name">aliceattie_migration</div>
+        <div class="project-desc">Completed migration of Alice Attie's photography portfolio from GoDaddy/Plesk to a DigitalOcean droplet running WordPress with NextGen Gallery and SSL.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/chatgpt_migration">
+      <div class="project-info">
+        <div class="project-name">chatgpt_migration</div>
+        <div class="project-desc">Personal knowledge archive extracted from 5,195 ChatGPT conversations with a searchable index and taxonomy of curated reference docs.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/migrations">
+      <div class="project-info">
+        <div class="project-name">migrations</div>
+        <div class="project-desc">Container directory for 14 domain migration projects being moved off the old GoDaddy/Plesk server.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-category">Tools</div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/claude-activity-tracker">
+      <div class="project-info">
+        <div class="project-name">claude-activity-tracker</div>
+        <div class="project-desc">Dashboard that visualizes Claude Code session activity, time tracking, and usage trends from local data files.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/claude-spec-library">
+      <div class="project-info">
+        <div class="project-name">claude-spec-library</div>
+        <div class="project-desc">Library of reusable spec interview templates for rapidly materializing app ideas into working prototypes.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/coffitivity">
+      <div class="project-info">
+        <div class="project-name">coffitivity</div>
+        <div class="project-desc">Ambient sound app with looped coffee shop background noise for focus, built as a single-file HTML app with embedded audio.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/cronjobs">
+      <div class="project-info">
+        <div class="project-name">cronjobs</div>
+        <div class="project-desc">Automated task runner focused on printer test page generation via Python ReportLab and shell scripting.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/daily-brief">
+      <div class="project-info">
+        <div class="project-name">daily-brief</div>
+        <div class="project-desc">This daily briefing system with audio narration, session cards, and project inventory.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/droplet-notification-sound">
+      <div class="project-info">
+        <div class="project-name">droplet-notification-sound</div>
+        <div class="project-desc">Notification sound files for the DigitalOcean droplet system alerts.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/invoice-agent-teams">
+      <div class="project-info">
+        <div class="project-name">invoice-agent-teams</div>
+        <div class="project-desc">Variant of the invoice manager exploring multi-agent and team-based invoice workflows.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/invoice">
+      <div class="project-info">
+        <div class="project-name">invoice</div>
+        <div class="project-desc">Single-file invoice manager app with PDF generation, dark theme, offline support. Deployed to Cloudflare Pages.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/notebooklm-data-extractor">
+      <div class="project-info">
+        <div class="project-name">notebooklm-data-extractor</div>
+        <div class="project-desc">Python tool using Playwright automation to extract data from Google NotebookLM and generate slideshows and infographics.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/ops">
+      <div class="project-info">
+        <div class="project-name">ops</div>
+        <div class="project-desc">Operational planning overlay that tracks plans, decisions, and status across all projects without duplicating work.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/personal-hardcopy-library-digitizer">
+      <div class="project-info">
+        <div class="project-name">personal-hardcopy-library-digitizer</div>
+        <div class="project-desc">Python CLI tool that converts video recordings of book page-flips into full-text markdown via frame extraction, dedup, and OCR.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/playground">
+      <div class="project-info">
+        <div class="project-name">playground</div>
+        <div class="project-desc">Experimentation sandbox for testing Claude features hands-on with self-contained examples.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/superwhisper-config">
+      <div class="project-info">
+        <div class="project-name">superwhisper-config</div>
+        <div class="project-desc">Configuration tracking for Superwhisper voice dictation app, documenting setup and punctuation behavior.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/timer">
+      <div class="project-info">
+        <div class="project-name">timer</div>
+        <div class="project-desc">Connection Hour visual timer for structured relationship conversations, with three color-coded phases.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/verses">
+      <div class="project-info">
+        <div class="project-name">verses</div>
+        <div class="project-desc">Infinite canvas knowledge map tool for creating nodes, connecting ideas visually, embedding images, with auto-backup.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-category">Media</div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/audio">
+      <div class="project-info">
+        <div class="project-name">audio</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/canon-photo-lab">
+      <div class="project-info">
+        <div class="project-name">canon-photo-lab</div>
+        <div class="project-desc">Post-processing and diagnostic pipeline for Canon EOS 5D Mark II using RAW files, test shoots, and ImageMagick/Python correction scripts.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/google-maps-timeline">
+      <div class="project-info">
+        <div class="project-name">google-maps-timeline</div>
+        <div class="project-desc">Location history visualization and analysis tool built from Google Takeout data.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/spotify-cleanup">
+      <div class="project-info">
+        <div class="project-name">spotify-cleanup</div>
+        <div class="project-desc">Python tool to remove consecutive duplicate albums from Spotify liked songs, with dry-run and execute modes.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-category">Personal</div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/emily">
+      <div class="project-info">
+        <div class="project-name">emily</div>
+        <div class="project-desc">Personal projects including short-film documentation and transcription notes.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/finance">
+      <div class="project-info">
+        <div class="project-name">finance</div>
+        <div class="project-desc">Financial tracking dashboard with statement imports, subscription management, and deduction summaries.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/genetic-genealogy">
+      <div class="project-info">
+        <div class="project-name">genetic-genealogy</div>
+        <div class="project-desc">Martel and Gove family ancestry research centered on Goffstown, NH, with person profiles, census data, and DNA analysis.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/rc">
+      <div class="project-info">
+        <div class="project-name">rc</div>
+        <div class="project-desc">Relationship conversation prep materials with structured meeting notes, talking points, and an HTML presentation view.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/tax-2024">
+      <div class="project-info">
+        <div class="project-name">tax-2024</div>
+        <div class="project-desc">2024 tax filing preparation with bank statements, deductions, mileage log, and Venmo reconciliation.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-category">Other</div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/apple-data">
+      <div class="project-info">
+        <div class="project-name">apple-data</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/explore">
+      <div class="project-info">
+        <div class="project-name">explore</div>
+        <div class="project-desc">Research folders for raspberry pi farm automation and glucose monitor company tech exploration.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/gerad-one-offs">
+      <div class="project-info">
+        <div class="project-name">gerad-one-offs</div>
+        <div class="project-desc">Miscellaneous one-off projects including BetterUnite thermometer research and asset collections.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/incoming">
+      <div class="project-info">
+        <div class="project-name">incoming</div>
+        <div class="project-desc">Staging area for external project files and workflowy exports pending integration.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/learning">
+      <div class="project-info">
+        <div class="project-name">learning</div>
+        <div class="project-desc">Learning resource collection with Claude feature screenshots and analysis notebooks.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/monitor-stand">
+      <div class="project-info">
+        <div class="project-name">monitor-stand</div>
+        <div class="project-desc">DIY monitor stand design with HTML cutsheets and concept visualizations.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/resource">
+      <div class="project-info">
+        <div class="project-name">resource</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/trackpad-return">
+      <div class="project-info">
+        <div class="project-name">trackpad-return</div>
+        <div class="project-desc">Trackpad hardware diagnostic and return documentation.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/training">
+      <div class="project-info">
+        <div class="project-name">training</div>
+        <div class="project-desc">UIGen, a React component generator with AI-powered live preview and sandboxed rendering.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
     </div>
   </div>
 </div>
@@ -228,32 +554,28 @@
 <script>
 (function() {
   var sections = [
-    {
-      id: "diy-sensor-aggregation",
-      title: "DIY Sensor Aggregation Architecture",
-      text: "This morning you dug into the pi-farm-automation project and made a significant pivot. Instead of using a Raspberry Pi as the sensor hub, you're going phone-plus-Bluetooth-LE — starting with your Govee H5075. The main open question you left with is how to aggregate data from multiple sensors without a Pi in the loop."
-    },
-    {
-      id: "playwright-cli-vs-mcp",
-      title: "Playwright CLI vs MCP Architecture",
-      text: "You worked through the architectural differences between running Playwright as a CLI tool versus as an MCP server inside Claude Code. The key distinction is token efficiency — the two approaches handle context and tool calls quite differently, and knowing which to reach for depends on how much back-and-forth your automation requires."
-    },
-    {
-      id: "cli-anything-research",
-      title: "CLI-Anything Plugin Research",
-      text: "Around 8:19 in the evening you researched CLI-Anything, a Claude Code plugin from HKUDS on GitHub. It has over 21,000 stars and an MIT license. The idea is that it can automatically generate a CLI interface for essentially any software — worth keeping in your back pocket for tooling work."
-    },
-    {
-      id: "superwhisper-clipboard",
-      title: "Superwhisper Clipboard Fix",
-      text: "You tracked down an annoying Superwhisper bug where dictating text was clobbering whatever you had on your clipboard. The fix is a single toggle: Restore Clipboard in Advanced Settings. Once enabled, Superwhisper puts your original clipboard contents back after each dictation."
-    },
-    {
-      id: "daily-brief-mar20",
-      title: "Daily Brief Auto-Generation",
-      text: "Your evening ended with a solid infrastructure win. You wired daily brief generation directly into daily-dashboard.sh — the script now calls Claude in prompt mode, then commits and pushes the result to GitHub Pages automatically. You fixed two bugs along the way: a bash 3.2 heredoc quoting issue and a bad max-tokens flag. You tested it end-to-end against your March 20th sessions and everything went through cleanly."
-    }
-  ];
+  {
+    id: "adelaide-beverage-build",
+    title: "Adelaide Beverage Page Build",
+    text: "You spent the early afternoon on Adelaide's beverage page. You reverted the shared class edits that were causing issues and built out a full set of bev-star classes to match the food page specs — Montserrat at point-nine-three-seven-five rem, line-height one-point-eight, that dark brown color. You fixed the header sizing at two-twenty pixels centered, got the layout stacking working with flex-column, and switched the wine sub-headings over to the live script font. You also built a webflow-audit skill and put together a full local MCP migration guide. Next time you're picking this up, you're switching to the local MCP setup and starting on the cocktail lounge print menu."
+  },
+  {
+    id: "usage-strategy",
+    title: "Claude Usage Strategy",
+    text: "You built a Claude Code activity tracker dashboard that reads your history files and all three-hundred-forty-one session files. It shows daily and weekly trends, heatmaps, project breakdowns, and streaks. Then you dug into the actual numbers for your Pro versus Max plan decision. Turns out you're ninety-six percent Opus, over twenty-three hundred prompts in March — that's twenty times February — and you've never been rate-limited. You're staying on Max but restructuring into tiers: Sonnet for daily execution, Opus for judgment and planning, and Haiku or Sonnet for agent workers."
+  },
+  {
+    id: "cynthia-hajjar-wix",
+    title: "Cynthia Hajjar – Wix Setup",
+    text: "Late afternoon you onboarded a new client — Cynthia Hajjar. She needs Wix website tweaks for her wellness business. You set up the project directory and pulled together a full client profile from Gmail and iMessage conversations to get a clear picture of what she needs."
+  },
+  {
+    id: "fix-johnnys-images",
+    title: "Johnny's Seed Image Fixes",
+    text: "In the evening you tackled the seed database images. You fixed sixteen out of nineteen entries, replacing those watermelon placeholder photos with the correct product images from Johnny's Seeds. You also filled in days to maturity, descriptions, and source URLs for all sixteen. Three seeds — Monstrosome Tall Mix, Runder, and Butterfle — weren't found on the Johnny's site, so those still need attention."
+  }
+];
+  var sessionLookup = {"diy-sensor-aggregation":"/Users/a7-13-2024/projects/explore/raspberry-pi-farm-automation","playwright-cli-vs-mcp":"/Users/a7-13-2024/projects/notebooklm-data-extractor","superwhisper-clipboard":"/Users/a7-13-2024/projects/adelaide","dashboard-resume-button":"/Users/a7-13-2024/projects","daily-brief-mar20":"/Users/a7-13-2024/projects/daily-brief","daily-brief-page":"/Users/a7-13-2024/projects/daily-brief","usage-strategy-model-tiers":"/Users/a7-13-2024/projects","gove-martel-genealogy-research":"/Users/a7-13-2024/projects/family/ancestry","uppercase-renames":"/Users/a7-13-2024/projects","kurt-photo-setup":"/Users/a7-13-2024/projects","cory-garden-advice":"/Users/a7-13-2024/projects/grow-together","commit-garden-updates":"/Users/a7-13-2024/projects/grow-together","ancestry-census-transcription":"/Users/a7-13-2024/projects/family/ancestry","clawed-spec-library":"/Users/a7-13-2024/projects","cli-anything-research":"/Users/a7-13-2024/projects/notebooklm-data-extractor","project-inventory":"/Users/a7-13-2024/projects","cynthia-hajjar-wix":"/Users/a7-13-2024/projects","adelaide-beverage-build":"/Users/a7-13-2024/projects/adelaide","trackpad-return-hack":"/Users/a7-13-2024/projects","dna-ancestry-research":"/Users/a7-13-2024/projects/family/ancestry","global-note-two-selves":"/Users/a7-13-2024/projects","cafe-ambient-audio-search":"/Users/a7-13-2024/projects","fix-johnnys-images":"/Users/a7-13-2024/projects/grow-together/seeds","diy-ag-automation-research":"/Users/a7-13-2024/projects/explore/glucose-monitor-company-tect-explore-for-tobin-ashley","daily-dashboard-refresh":"/Users/a7-13-2024/projects/grow-together"};
   var audio = new Audio();
   var state = 'idle';
   var currentSection = -1;
@@ -388,6 +710,44 @@
     clearTimeout(scrollTimer);
   });
   if (window.innerWidth <= 640) fab.style.display = 'flex';
+
+  // Add Continue links to session cards (copies cmux command to clipboard)
+  allSessions.forEach(function(card) {
+    var slug = card.dataset.section;
+    var cwd = sessionLookup[slug];
+    if (cwd) {
+      var li = document.createElement('li');
+      li.style.marginTop = '0.5rem';
+      var link = document.createElement('a');
+      link.className = 'continue-link';
+      link.textContent = 'Continue';
+      link.href = '#';
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var cmd = 'cd ' + cwd + ' && claude -c';
+        navigator.clipboard.writeText(cmd).then(function() {
+          link.textContent = 'Copied!';
+          setTimeout(function() { link.textContent = 'Continue'; }, 2000);
+        });
+      });
+      li.appendChild(link);
+      var list = card.querySelector('.detail-list');
+      if (list) list.appendChild(li);
+    }
+  });
+
+  // Add Continue links to project items
+  document.querySelectorAll('.proj-continue').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var path = link.closest('.project-item').dataset.path;
+      var cmd = 'cd ' + path + ' && claude';
+      navigator.clipboard.writeText(cmd).then(function() {
+        link.textContent = 'Copied!';
+        setTimeout(function() { link.textContent = 'Continue'; }, 2000);
+      });
+    });
+  });
 })();
 </script>
 </body>

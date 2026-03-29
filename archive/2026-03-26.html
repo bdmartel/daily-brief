@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Daily Brief - March 26, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0d0d0d; --surface: #161616; --surface-hover: #1c1c1c;
+    --border: #2a2a2a; --text: #e0e0e0; --text-muted: #888;
+    --accent: #4a9eff; --accent-dim: rgba(74, 158, 255, 0.12);
+    --green: #3ddc84; --green-dim: rgba(61, 220, 132, 0.12);
+    --amber: #ffb74d; --amber-dim: rgba(255, 183, 77, 0.12);
+    --purple: #bb86fc; --purple-dim: rgba(187, 134, 252, 0.12);
+    --blue: #4a9eff; --blue-dim: rgba(74, 158, 255, 0.12);
+  }
+  html { font-size: 16px; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    -webkit-font-smoothing: antialiased;
+  }
+  .page-wrapper { max-width: 640px; margin: 0 auto; padding: 1.5rem 1rem 6rem; }
+  .header { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+  .header .date-label {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 0.25rem;
+  }
+  .header h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; color: #fff; margin-bottom: 0.5rem; }
+  .header .summary-line { color: var(--text-muted); font-size: 0.875rem; }
+  .listen-bar {
+    display: flex; align-items: center; gap: 0.75rem;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 0.75rem 1rem; margin-bottom: 2rem;
+    position: relative; overflow: hidden;
+  }
+  .listen-bar .progress-fill {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    background: var(--accent-dim); width: 0%; transition: width 0.3s ease; border-radius: 12px;
+  }
+  .listen-bar > * { position: relative; z-index: 1; }
+  .listen-btn {
+    display: flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 50%; border: none;
+    background: var(--accent); color: #000; cursor: pointer; flex-shrink: 0;
+    transition: transform 0.15s, opacity 0.15s;
+  }
+  .listen-btn:active { transform: scale(0.92); }
+  .listen-btn svg { width: 18px; height: 18px; }
+  .listen-label { flex: 1; font-size: 0.875rem; font-weight: 500; color: var(--text); }
+  .listen-label small { display: block; font-weight: 400; color: var(--text-muted); font-size: 0.75rem; }
+  .speed-btn {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 500;
+    background: var(--accent-dim); color: var(--accent); border: none;
+    border-radius: 6px; padding: 0.25rem 0.5rem; cursor: pointer; transition: background 0.15s;
+  }
+  .speed-btn:hover { background: rgba(74, 158, 255, 0.2); }
+  .session {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.25rem; margin-bottom: 1rem; transition: border-color 0.2s;
+  }
+  .session.speaking { border-color: var(--accent); }
+  .session-header { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; }
+  .session-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.1rem;
+  }
+  .session-icon.tools { background: var(--blue-dim); }
+  .session-icon.client { background: var(--amber-dim); }
+  .session-meta { flex: 1; min-width: 0; }
+  .session-title { font-size: 1rem; font-weight: 600; color: #fff; line-height: 1.3; }
+  .session-time { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--text-muted); margin-top: 0.15rem; }
+  .session-body { font-size: 0.875rem; color: var(--text); }
+  .session-body p { margin-bottom: 0.5rem; }
+  .session-body p:last-child { margin-bottom: 0; }
+  .detail-list { list-style: none; margin: 0.5rem 0 0; padding: 0; }
+  .detail-list li {
+    position: relative; padding-left: 1rem; margin-bottom: 0.35rem;
+    font-size: 0.8125rem; color: var(--text-muted); line-height: 1.5;
+  }
+  .detail-list li::before {
+    content: ''; position: absolute; left: 0; top: 0.55em;
+    width: 4px; height: 4px; border-radius: 50%; background: var(--border);
+  }
+  .tag {
+    display: inline-block; font-family: 'JetBrains Mono', monospace;
+    font-size: 0.675rem; font-weight: 500; padding: 0.15rem 0.4rem;
+    border-radius: 4px; margin-right: 0.25rem;
+  }
+  .tag.blue { background: var(--blue-dim); color: var(--blue); }
+  .tag.amber { background: var(--amber-dim); color: var(--amber); }
+  .continue-link {
+    color: var(--accent); text-decoration: underline; cursor: pointer;
+    font-size: 0.8125rem; font-weight: 500;
+  }
+  .continue-link:hover { color: #6db3ff; }
+  .fab {
+    display: none; position: fixed; bottom: 1.5rem; right: 1.5rem;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--accent); color: #000; border: none; cursor: pointer;
+    box-shadow: 0 4px 20px rgba(74, 158, 255, 0.3);
+    z-index: 100; align-items: center; justify-content: center; transition: transform 0.15s;
+  }
+  .fab:active { transform: scale(0.9); }
+  .fab svg { width: 22px; height: 22px; }
+  @media (max-width: 480px) {
+    .page-wrapper { padding: 1rem 0.75rem 7rem; }
+    .header h1 { font-size: 1.5rem; }
+    .listen-bar { border-radius: 10px; padding: 0.625rem 0.875rem; }
+    .session { border-radius: 10px; padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+  <header class="header">
+    <div class="date-label">Wednesday, March 26, 2026</div>
+    <h1>Daily Brief</h1>
+    <div class="summary-line">2 sessions: project folder reorg, Kelley content search</div>
+  </header>
+  <div class="listen-bar" id="listenBar">
+    <div class="progress-fill" id="progressFill"></div>
+    <button class="listen-btn" id="listenBtn" aria-label="Listen to brief">
+      <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      <svg id="pauseIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    </button>
+    <div class="listen-label">
+      <span id="listenText">Listen to today's brief</span>
+      <small id="listenSub">Tap to hear a spoken summary</small>
+    </div>
+    <button class="speed-btn" id="speedBtn">1x</button>
+  </div>
+
+  <div class="session" data-section="projects-folder-reorg">
+    <div class="session-header">
+      <div class="session-icon tools">🔧</div>
+      <div class="session-meta">
+        <div class="session-title">Projects Folder Reorg</div>
+        <div class="session-time">16:15 – 20:55</div>
+      </div>
+    </div>
+    <div class="session-body">
+      <p><span class="tag blue">Tools</span> Completed a full assessment of ~/projects (46 GB, 47 directories), then executed Phase 1 of the reorganization.</p>
+      <ul class="detail-list">
+        <li>Categorized every folder by lifecycle state; 93% of disk usage was cold data</li>
+        <li>Delivered 7 recommendations: archive boundary, root manifest, standardized CLAUDE.md + STATUS.md, disk offload, git critical projects, rename ambiguous folders, consolidate meta-tooling</li>
+        <li>Executed Phase 1: created archive/ (13 items) and sandbox/ (8 items), deleted 2 empty dirs, rehomed 8 loose files</li>
+        <li>Created PROJECTS.md manifest at the root and updated MEMORY.md paths</li>
+        <li>Top-level items reduced from 52 down to 29</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="session" data-section="kelley-content-search">
+    <div class="session-header">
+      <div class="session-icon client">💼</div>
+      <div class="session-meta">
+        <div class="session-title">Kelley Content Search</div>
+        <div class="session-time">20:45</div>
+      </div>
+    </div>
+    <div class="session-body">
+      <p><span class="tag amber">Client</span> Ran a multi-channel sweep across iMessage for Kelley's website content updates.</p>
+      <ul class="detail-list">
+        <li>Found two voice memos (ROWIDs 223800 and 223813) with detailed build instructions</li>
+        <li>Content includes: depression rebel photo, art card write-ups, print ordering details, band design, and butterfly decoration request</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<button class="fab" id="fab" aria-label="Listen">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+</button>
+
+<script>
+(function() {
+  var sections = [
+  {
+    id: "projects-folder-reorg",
+    title: "Projects Folder Reorg",
+    text: "You spent the afternoon and evening doing a deep cleanup on your projects folder. You started with a full assessment: forty-six gigs across forty-seven directories, and ninety-three percent of that disk space was cold data just sitting there. You categorized every folder by lifecycle state and came out with seven recommendations, including setting a clear archive boundary, building a root manifest, standardizing on CLAUDE dot md and STATUS dot md files in each project, offloading old data to free up disk, getting critical projects into git, renaming ambiguous folders, and consolidating your meta-tooling. Then you executed Phase 1. You created an archive folder and moved thirteen items in. You set up a sandbox folder with eight items. Deleted two empty directories and rehomed eight loose files that were cluttering the root. You built a PROJECTS dot md manifest at the top level and updated your MEMORY dot md paths to match the new structure. Net result: top-level items went from fifty-two down to twenty-nine."
+  },
+  {
+    id: "kelley-content-search",
+    title: "Kelley Content Search",
+    text: "Later in the evening you ran a multi-channel sweep through your iMessage history looking for content updates for Kelley's website. The key find was two voice memos, ROWIDs two two three eight zero zero and two two three eight one three. They contained detailed build instructions covering the depression rebel photo, art card write-ups, print ordering details, band design notes, and a butterfly decoration request. That gives you a solid batch of content queued up for the next iteration of her site."
+  }
+];
+  var sessionLookup = {"projects-folder-reorg":"/Users/a7-13-2024/projects","kelley-content-search":"/Users/a7-13-2024/projects"};
+  var audio = new Audio();
+  var state = 'idle';
+  var currentSection = -1;
+  var speeds = [1, 1.25, 1.5, 0.85];
+  var speedIdx = 0;
+  var totalSections = sections.length + 2;
+
+  var btn = document.getElementById('listenBtn');
+  var playIcon = document.getElementById('playIcon');
+  var pauseIcon = document.getElementById('pauseIcon');
+  var label = document.getElementById('listenText');
+  var sub = document.getElementById('listenSub');
+  var speedBtn = document.getElementById('speedBtn');
+  var progressFill = document.getElementById('progressFill');
+  var fab = document.getElementById('fab');
+  var allSessions = document.querySelectorAll('.session');
+
+  function getAudioSrc(idx) {
+    if (idx === -1) return '2026-03-26-audio/intro.mp3';
+    if (idx >= sections.length) return '2026-03-26-audio/outro.mp3';
+    return '2026-03-26-audio/section-' + idx + '.mp3';
+  }
+
+  function updateProgress() {
+    var done = currentSection + 1;
+    var pct = Math.min(100, (done / totalSections) * 100);
+    progressFill.style.width = pct + '%';
+  }
+
+  function highlightSection(idx) {
+    allSessions.forEach(function(s, i) {
+      s.classList.toggle('speaking', i === idx);
+    });
+  }
+
+  function playSection(idx) {
+    currentSection = idx;
+    updateProgress();
+    if (idx >= 0 && idx < sections.length) {
+      highlightSection(idx);
+    } else {
+      highlightSection(-1);
+    }
+    audio.src = getAudioSrc(idx);
+    audio.playbackRate = speeds[speedIdx];
+    audio.play().catch(function() {});
+    showPause();
+  }
+
+  audio.addEventListener('ended', function() {
+    if (state === 'playing') {
+      var next = currentSection + 1;
+      if (next <= sections.length) {
+        playSection(next);
+      } else {
+        stop();
+      }
+    }
+  });
+
+  function play() {
+    if (state === 'paused') {
+      audio.play().catch(function() {});
+      state = 'playing';
+      showPause();
+    } else {
+      state = 'playing';
+      playSection(-1);
+    }
+  }
+
+  function pause() {
+    audio.pause();
+    state = 'paused';
+    showPlay();
+    label.textContent = 'Paused';
+    sub.textContent = 'Tap to resume';
+  }
+
+  function stop() {
+    audio.pause();
+    audio.removeAttribute('src');
+    state = 'idle';
+    currentSection = -1;
+    showPlay();
+    highlightSection(-1);
+    progressFill.style.width = '100%';
+    label.textContent = 'Brief complete';
+    sub.textContent = 'Tap to listen again';
+    setTimeout(function() {
+      progressFill.style.width = '0%';
+      label.textContent = 'Listen to today\'s brief';
+      sub.textContent = 'Tap to hear a spoken summary';
+    }, 3000);
+  }
+
+  function showPlay() {
+    playIcon.style.display = '';
+    pauseIcon.style.display = 'none';
+    fab.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+  }
+
+  function showPause() {
+    playIcon.style.display = 'none';
+    pauseIcon.style.display = '';
+    label.textContent = 'Playing...';
+    sub.textContent = sections[Math.max(0, currentSection)]
+      ? sections[Math.max(0, currentSection)].title
+      : 'Introduction';
+    fab.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+  }
+
+  function toggle() {
+    if (state === 'idle') play();
+    else if (state === 'playing') pause();
+    else if (state === 'paused') play();
+  }
+
+  btn.addEventListener('click', toggle);
+  fab.addEventListener('click', toggle);
+
+  speedBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    speedIdx = (speedIdx + 1) % speeds.length;
+    speedBtn.textContent = speeds[speedIdx] + 'x';
+    audio.playbackRate = speeds[speedIdx];
+  });
+
+  var scrollTimer;
+  window.addEventListener('scroll', function() {
+    fab.style.display = 'flex';
+    clearTimeout(scrollTimer);
+  });
+  if (window.innerWidth <= 640) fab.style.display = 'flex';
+
+  allSessions.forEach(function(card) {
+    var slug = card.dataset.section;
+    var cwd = sessionLookup[slug];
+    if (cwd) {
+      var li = document.createElement('li');
+      li.style.marginTop = '0.5rem';
+      var link = document.createElement('a');
+      link.className = 'continue-link';
+      link.textContent = 'Continue';
+      link.href = '#';
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var cmd = 'cd ' + cwd + ' && claude -c';
+        navigator.clipboard.writeText(cmd).then(function() {
+          link.textContent = 'Copied!';
+          setTimeout(function() { link.textContent = 'Continue'; }, 2000);
+        });
+      });
+      li.appendChild(link);
+      var list = card.querySelector('.detail-list');
+      if (list) list.appendChild(li);
+    }
+  });
+})();
+</script>
+</body>
+</html>
