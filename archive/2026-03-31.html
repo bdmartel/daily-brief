@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Daily Brief - March 31, 2026</title>
+<title>Daily Brief - March 27, 2026</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -15,6 +15,7 @@
     --amber: #ffb74d; --amber-dim: rgba(255, 183, 77, 0.12);
     --purple: #bb86fc; --purple-dim: rgba(187, 134, 252, 0.12);
     --blue: #4a9eff; --blue-dim: rgba(74, 158, 255, 0.12);
+    --red: #ff6b6b; --red-dim: rgba(255, 107, 107, 0.12);
   }
   html { font-size: 16px; }
   body {
@@ -68,10 +69,9 @@
     width: 36px; height: 36px; border-radius: 10px;
     display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.1rem;
   }
-  .session-icon.genealogy { background: var(--purple-dim); }
-  .session-icon.farming { background: var(--green-dim); }
   .session-icon.client { background: var(--amber-dim); }
   .session-icon.tools { background: var(--blue-dim); }
+  .session-icon.infra { background: var(--red-dim); }
   .session-meta { flex: 1; min-width: 0; }
   .session-title { font-size: 1rem; font-weight: 600; color: #fff; line-height: 1.3; }
   .session-time { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--text-muted); margin-top: 0.15rem; }
@@ -92,31 +92,17 @@
     font-size: 0.675rem; font-weight: 500; padding: 0.15rem 0.4rem;
     border-radius: 4px; margin-right: 0.25rem;
   }
-  .tag.purple { background: var(--purple-dim); color: var(--purple); }
-  .tag.green { background: var(--green-dim); color: var(--green); }
   .tag.amber { background: var(--amber-dim); color: var(--amber); }
   .tag.blue { background: var(--blue-dim); color: var(--blue); }
+  .tag.red { background: var(--red-dim); color: var(--red); }
   .continue-link {
     color: var(--accent); text-decoration: underline; cursor: pointer;
     font-size: 0.8125rem; font-weight: 500;
   }
   .continue-link:hover { color: #6db3ff; }
-  .fab {
-    display: none; position: fixed; bottom: 1.5rem; right: 1.5rem;
-    width: 56px; height: 56px; border-radius: 50%;
-    background: var(--accent); color: #000; border: none; cursor: pointer;
-    box-shadow: 0 4px 20px rgba(74, 158, 255, 0.3);
-    z-index: 100; align-items: center; justify-content: center; transition: transform 0.15s;
-  }
-  .fab:active { transform: scale(0.9); }
-  .fab svg { width: 22px; height: 22px; }
   .projects-section { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); }
-  .projects-header {
-    font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem;
-  }
-  .projects-subtitle {
-    font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 1.5rem;
-  }
+  .projects-header { font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem; }
+  .projects-subtitle { font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 1.5rem; }
   .project-category {
     font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
     letter-spacing: 0.08em; color: var(--accent); margin: 1.5rem 0 0.5rem;
@@ -129,15 +115,22 @@
   }
   .project-info { flex: 1; min-width: 0; }
   .project-name { font-size: 0.875rem; font-weight: 600; color: #fff; }
-  .project-desc {
-    font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.5;
-  }
+  .project-desc { font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.5; }
   .proj-continue {
     color: var(--accent); text-decoration: none; cursor: pointer;
     font-size: 0.75rem; font-weight: 500; flex-shrink: 0; margin-top: 0.15rem;
     opacity: 0.5; transition: opacity 0.15s;
   }
   .proj-continue:hover { opacity: 1; text-decoration: underline; }
+  .fab {
+    display: none; position: fixed; bottom: 1.5rem; right: 1.5rem;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--accent); color: #000; border: none; cursor: pointer;
+    box-shadow: 0 4px 20px rgba(74, 158, 255, 0.3);
+    z-index: 100; align-items: center; justify-content: center; transition: transform 0.15s;
+  }
+  .fab:active { transform: scale(0.9); }
+  .fab svg { width: 22px; height: 22px; }
   @media (max-width: 480px) {
     .page-wrapper { padding: 1rem 0.75rem 7rem; }
     .header h1 { font-size: 1.5rem; }
@@ -149,9 +142,9 @@
 <body>
 <div class="page-wrapper">
   <header class="header">
-    <div class="date-label">Tuesday, March 31, 2026</div>
+    <div class="date-label">Friday, March 27, 2026</div>
     <h1>Daily Brief</h1>
-    <div class="summary-line">2 sessions across farming</div>
+    <div class="summary-line">3 sessions across client work, debugging, and infrastructure</div>
   </header>
   <div class="listen-bar" id="listenBar">
     <div class="progress-fill" id="progressFill"></div>
@@ -166,276 +159,228 @@
     <button class="speed-btn" id="speedBtn">1x</button>
   </div>
 
-<div class="session" data-section="crop-families-poster">
+<div class="session" data-section="secbev-exact-build">
   <div class="session-header">
-    <div class="session-icon farming">🌱</div>
+    <div class="session-icon client">🤝</div>
     <div class="session-meta">
-      <div class="session-title">Crop Families Poster</div>
-      <div class="session-time">~2:00 PM</div>
+      <div class="session-title">InDesign-to-Web Pipeline</div>
+      <div class="session-time">11:00 AM - 2:00 PM</div>
     </div>
   </div>
   <div class="session-body">
-    <p><span class="tag green">farming</span> Redesigned the crop families reference as a frame-worthy 11×17 botanical poster.</p>
+    <p><span class="tag amber">client</span> Full session rebuilding the PDF parser and overlay comparison tool for Adelaide's SecBev menu.</p>
     <ul class="detail-list">
-      <li>Playfair Display + Inter fonts with muted earthy print palette</li>
-      <li>5-column CSS Grid layout for crop family groupings</li>
-      <li>Deployed, committed, and pushed to remote</li>
+      <li>Rewrote pdf_to_html.py with char-level gap detection at 12pt threshold</li>
+      <li>Built PDF overlay tool (pdf.js, toggle, opacity, scale, drag-to-reposition)</li>
+      <li>Converted all CSS from pt to px, set 1in/0.75in margins with vertical centering</li>
+      <li>Key rule: match the design document exactly, no dedup, no content editing</li>
+      <li>Adjusted column gaps and widths to prevent brandy wrapping</li>
+      <li>Next: sync generator template with hand-edited HTML</li>
     </ul>
   </div>
 </div>
-<div class="session" data-section="grow-together-hub-deploy">
+
+<div class="session" data-section="escape-key-fix">
   <div class="session-header">
-    <div class="session-icon farming">🚀</div>
+    <div class="session-icon tools">🔧</div>
     <div class="session-meta">
-      <div class="session-title">Grow Together Hub Deploy</div>
-      <div class="session-time">~6:00 PM</div>
+      <div class="session-title">Escape Key System Fix</div>
+      <div class="session-time">1:25 PM - 1:53 PM</div>
     </div>
   </div>
   <div class="session-body">
-    <p><span class="tag green">farming</span> Full audit and deployment of offline pages to somoreseeds.com with a new hub link repository.</p>
+    <p><span class="tag blue">tools</span> Diagnosed and fixed system-wide Escape key failure caused by stuck Siri event taps.</p>
     <ul class="detail-list">
-      <li>Audited 50+ HTML files for deployment readiness</li>
-      <li>Deployed 16 offline pages to somoreseeds.com</li>
-      <li>Created /hub link repository and verified all 23 URLs live</li>
+      <li>Checked hidutil, Karabiner, modifier remaps -- all clean</li>
+      <li>Found trackpad-return app with KeepAlive agent running since Sunday, injecting synthetic events</li>
+      <li>Enumerated CGEvent taps: Siri had two ACTIVE-FILTER taps on all keyboard events in bad state</li>
+      <li>Killed Siri + SiriNCService -- Escape immediately started working</li>
+      <li>Siri respawned clean, reloaded trackpad-return agent, both working</li>
     </ul>
   </div>
 </div>
+
+<div class="session" data-section="godaddy-no-more">
+  <div class="session-header">
+    <div class="session-icon infra">🏗</div>
+    <div class="session-meta">
+      <div class="session-title">GoDaddy No More</div>
+      <div class="session-time">12:30 PM - 12:00 AM</div>
+    </div>
+  </div>
+  <div class="session-body">
+    <p><span class="tag red">infra</span> Full-day Plesk migration marathon. Completed sharonrousseau.com, built two more sites, backed up everything, cancelled hosting.</p>
+    <ul class="detail-list">
+      <li>sharonrousseau.com: DNS switched via Netfirms, SSL cert installed, migration complete (9/9)</li>
+      <li>shebangstudio.com: new $6/mo droplet (64.227.17.166), 1.7GB WordPress, PHP 7.4 for compatibility</li>
+      <li>nycahill.com: Kristen's personal portfolio, same droplet, 1.6GB copied and configured</li>
+      <li>Full Plesk backup: 14 sites, 70 databases, all email -- 4.1 GB total</li>
+      <li>Deleted ghost duplicate droplet ($4/mo waste)</li>
+      <li>Both GoDaddy hosting plans cancelled -- $140/mo eliminated</li>
+      <li>Blocker: shebangstudio.com + nycahill.com need Kristen's GoDaddy login for DNS switch</li>
+    </ul>
+  </div>
+</div>
+
   <div class="projects-section">
     <div class="projects-header">Projects</div>
-    <div class="projects-subtitle">35 active folders in ~/projects</div>
+    <div class="projects-subtitle">29 active folders in ~/projects</div>
+
     <div class="project-category">Active Client Work</div>
     <div class="project-item" data-path="/Users/a7-13-2024/projects/adelaide">
       <div class="project-info">
         <div class="project-name">adelaide</div>
-        <div class="project-desc">| Name | Role | Email | Phone |</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/cynthia-hajjar">
-      <div class="project-info">
-        <div class="project-name">cynthia-hajjar</div>
-        <div class="project-desc">Ben offered: &quot;Happy to take a look at your website btw&quot;</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/kurt-photos">
-      <div class="project-info">
-        <div class="project-name">kurt-photos</div>
-        <div class="project-desc">Kurt needs help organizing his photo library (art-related). Ben distilled advice into a 5-point action plan and sent via email.</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/spacepoint-revamp">
-      <div class="project-info">
-        <div class="project-name">spacepoint-revamp</div>
-        <div class="project-desc">Website rebuild for Spacepoint (space technology organization). Includes a homepage and a copy editing tool for managing site content.</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-category">Farming</div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/grow-together">
-      <div class="project-info">
-        <div class="project-name">grow-together</div>
-        <div class="project-desc">Knowledge base and operational docs for the farming-as-a-service business.</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-category">Migrations</div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/chatgpt_migration">
-      <div class="project-info">
-        <div class="project-name">chatgpt_migration</div>
-        <div class="project-desc">Personal knowledge archive extracted from 5,195 ChatGPT conversations (~200MB raw JSON).</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-category">Tools</div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/claude-activity-tracker">
-      <div class="project-info">
-        <div class="project-name">claude-activity-tracker</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/claude-spec-library">
-      <div class="project-info">
-        <div class="project-name">claude-spec-library</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/coffitivity">
-      <div class="project-info">
-        <div class="project-name">coffitivity</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/daily-brief">
-      <div class="project-info">
-        <div class="project-name">daily-brief</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/invoice">
-      <div class="project-info">
-        <div class="project-name">invoice</div>
-        <div class="project-desc">Self-contained invoice creation and management app. Dark theme, PDF generation via jsPDF, works offline and from file://.</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/notebooklm-data-extractor">
-      <div class="project-info">
-        <div class="project-name">notebooklm-data-extractor</div>
-        <div class="project-desc">Tool to extract data from Google's NotebookLM using Playwright browser automation.</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/ops">
-      <div class="project-info">
-        <div class="project-name">ops</div>
-        <div class="project-desc">Operational planning and review repo. A lightweight overlay that tracks plans, decisions, and status across all projects without duplicating or moving existing work.</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/personal-hardcopy-library-digitizer">
-      <div class="project-info">
-        <div class="project-name">personal-hardcopy-library-digitizer</div>
-        <div class="project-desc">A Python CLI tool that converts video recordings of book page-flips into full-text markdown files. Designed for digitizing a personal farming/reference book library.</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/superwhisper-config">
-      <div class="project-info">
-        <div class="project-name">superwhisper-config</div>
-        <div class="project-desc">Superwhisper's Whisper model adds a trailing period to transcriptions automatically. This breaks slash commands in Claude Code:</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/timer">
-      <div class="project-info">
-        <div class="project-name">timer</div>
-        <div class="project-desc">Visual timer for structured relationship conversations. Three phases: Opening (warm coral), Middle (teal), Closing (soft purple). Each phase has its own color and feel.</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/verses">
-      <div class="project-info">
-        <div class="project-name">verses</div>
-        <div class="project-desc">Infinite canvas knowledge map tool. Create nodes, connect them, organize ideas visually. Supports images in nodes, auto-backup, and can import seed inventory data.</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-category">Media</div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/spotify-cleanup">
-      <div class="project-info">
-        <div class="project-name">spotify-cleanup</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-category">Personal</div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/emily">
-      <div class="project-info">
-        <div class="project-name">emily</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/finance">
-      <div class="project-info">
-        <div class="project-name">finance</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/genetic-genealogy">
-      <div class="project-info">
-        <div class="project-name">genetic-genealogy</div>
-        <div class="project-desc">Martel/Gove family ancestry research centered on Goffstown, New Hampshire.</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/rc">
-      <div class="project-info">
-        <div class="project-name">rc</div>
-        <div class="project-desc">Structured notes and prep materials for relationship conversations. Includes meeting format, talking points, values exercises, and an HTML presentation view.</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/tax-2024">
-      <div class="project-info">
-        <div class="project-name">tax-2024</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-category">Other</div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/apple-data">
-      <div class="project-info">
-        <div class="project-name">apple-data</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/archive">
-      <div class="project-info">
-        <div class="project-name">archive</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/indesign-to-web">
-      <div class="project-info">
-        <div class="project-name">indesign-to-web</div>
-        <div class="project-desc">Pipeline for converting InDesign layouts (IDML/PDF) into production HTML/CSS. Built for a designer-developer workflow where Kristen (Shebang Studio) sends InDesign files and Ben converts them to web pages.</div>
+        <div class="project-desc">Webflow restaurant site for Adelaide NJ. Beverage page build in progress with designer Kristen Cahill.</div>
       </div>
       <a class="proj-continue" href="#">Continue</a>
     </div>
     <div class="project-item" data-path="/Users/a7-13-2024/projects/kelley">
       <div class="project-info">
         <div class="project-name">kelley</div>
-        <div class="project-desc">Kelley is Ben's sister, SF-based artist (paintings on canvas + paper) and medium. Building her a portfolio/business site covering art and mediumship as one unified presence — &quot;the whole me.&quot;</div>
+        <div class="project-desc">Artist and mediumship portfolio for Kelley Martel. Iterating on v1 prototype from voice feedback.</div>
       </div>
       <a class="proj-continue" href="#">Continue</a>
     </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/live-artical-disussion-app">
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/cynthia-hajjar">
       <div class="project-info">
-        <div class="project-name">live-artical-disussion-app</div>
-        <div class="project-desc">Wired, published/updated 3/30/26: &quot;How the Trump Administration Is Targeting the 2026 Midterms&quot;</div>
+        <div class="project-name">cynthia-hajjar</div>
+        <div class="project-desc">Wix website tweaks for wellness business. Awaiting credentials.</div>
       </div>
       <a class="proj-continue" href="#">Continue</a>
     </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/sandbox">
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/kurt-photos">
       <div class="project-info">
-        <div class="project-name">sandbox</div>
+        <div class="project-name">kurt-photos</div>
+        <div class="project-desc">Photo organization consulting. Action plan sent, awaiting response.</div>
       </div>
       <a class="proj-continue" href="#">Continue</a>
     </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/tax-2024-snapshot-2026-03-28">
+
+    <div class="project-category">Farming</div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/grow-together">
       <div class="project-info">
-        <div class="project-name">tax-2024-snapshot-2026-03-28</div>
+        <div class="project-name">grow-together</div>
+        <div class="project-desc">Farming knowledge base: planting schedules, seed inventory (somoreseeds.com), cover crops, irrigation research.</div>
       </div>
       <a class="proj-continue" href="#">Continue</a>
     </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/trackpad-return">
+
+    <div class="project-category">Tools</div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/daily-brief">
       <div class="project-info">
-        <div class="project-name">trackpad-return</div>
+        <div class="project-name">daily-brief</div>
+        <div class="project-desc">This daily briefing system with audio narration and session cards.</div>
       </div>
       <a class="proj-continue" href="#">Continue</a>
     </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/untitled folder">
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/claude-activity-tracker">
       <div class="project-info">
-        <div class="project-name">untitled folder</div>
+        <div class="project-name">claude-activity-tracker</div>
+        <div class="project-desc">Session tracking and usage dashboard. Heatmaps, streaks, model breakdowns.</div>
       </div>
       <a class="proj-continue" href="#">Continue</a>
     </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/voice-pipeline">
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/invoice">
       <div class="project-info">
-        <div class="project-name">voice-pipeline</div>
-        <div class="project-desc">Custom voice-to-prompt tool replacing Superwhisper. Speak naturally → local transcription → AI rewrite → clipboard.</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/watchdog">
-      <div class="project-info">
-        <div class="project-name">watchdog</div>
+        <div class="project-name">invoice</div>
+        <div class="project-desc">Single-file invoice manager with PDF generation, dark theme, offline support.</div>
       </div>
       <a class="proj-continue" href="#">Continue</a>
     </div>
     <div class="project-item" data-path="/Users/a7-13-2024/projects/weather-history">
       <div class="project-info">
         <div class="project-name">weather-history</div>
+        <div class="project-desc">Interactive historic weather data viewer. Daily temps, precipitation, and trends.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/timer">
+      <div class="project-info">
+        <div class="project-name">timer</div>
+        <div class="project-desc">Connection Hour visual timer with three color-coded phases.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/verses">
+      <div class="project-info">
+        <div class="project-name">verses</div>
+        <div class="project-desc">Infinite canvas knowledge map. Draggable nodes, images, pan and zoom.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/claude-spec-library">
+      <div class="project-info">
+        <div class="project-name">claude-spec-library</div>
+        <div class="project-desc">Reusable spec interview templates for rapid prototyping.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/notebooklm-data-extractor">
+      <div class="project-info">
+        <div class="project-name">notebooklm-data-extractor</div>
+        <div class="project-desc">Playwright automation for NotebookLM slideshows and infographics.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/personal-hardcopy-library-digitizer">
+      <div class="project-info">
+        <div class="project-name">personal-hardcopy-library-digitizer</div>
+        <div class="project-desc">Video-to-text book scanning pipeline. OCR with deduplication.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+
+    <div class="project-category">Infrastructure</div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/ops">
+      <div class="project-info">
+        <div class="project-name">ops</div>
+        <div class="project-desc">Lightweight planning overlay. Weekly plans, migration tracking.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+
+    <div class="project-category">Data &amp; Archives</div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/chatgpt_migration">
+      <div class="project-info">
+        <div class="project-name">chatgpt_migration</div>
+        <div class="project-desc">5,195 ChatGPT conversations indexed and searchable. Curated reference docs.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/finance">
+      <div class="project-info">
+        <div class="project-name">finance</div>
+        <div class="project-desc">Bank statements, transaction CSVs, dashboard with subscription detection.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/genetic-genealogy">
+      <div class="project-info">
+        <div class="project-name">genetic-genealogy</div>
+        <div class="project-desc">Martel/Gove family ancestry. Census records, DNA data, FindAGrave.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/apple-data">
+      <div class="project-info">
+        <div class="project-name">apple-data</div>
+        <div class="project-desc">Apple Notes export and iMessage search tool.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+
+    <div class="project-category">Personal</div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/emily">
+      <div class="project-info">
+        <div class="project-name">emily</div>
+        <div class="project-desc">Short film collaboration. Experimental video/projection concept.</div>
+      </div>
+      <a class="proj-continue" href="#">Continue</a>
+    </div>
+    <div class="project-item" data-path="/Users/a7-13-2024/projects/spacepoint-revamp">
+      <div class="project-info">
+        <div class="project-name">spacepoint-revamp</div>
+        <div class="project-desc">Space advocacy site on Cloudflare Pages. Maintenance mode.</div>
       </div>
       <a class="proj-continue" href="#">Continue</a>
     </div>
@@ -450,17 +395,22 @@
 (function() {
   var sections = [
   {
-    id: "crop-families-poster",
-    title: "Crop Families Poster",
-    text: "This afternoon you turned the crop families reference into a proper 11-by-17 botanical poster. You went with Playfair Display and Inter for the typography, laid everything out in a five-column CSS Grid, and dialed in a muted earthy palette designed for print. Once it looked right, you deployed it and pushed it up."
+    id: "secbev-exact-build",
+    title: "InDesign-to-Web Pipeline",
+    text: "You spent the morning on Adelaide's SecBev menu, rebuilding the PDF-to-HTML pipeline. You rewrote the parser with character-level gap detection at a twelve-point threshold, which finally gets the column splitting right. Then you built a PDF overlay comparison tool with pdf.js so you can toggle between the original design and your output, with opacity controls and drag-to-reposition. You converted all the CSS from points to pixels, set one-inch and three-quarter-inch margins with vertical centering, and dialed in the column gaps to prevent brandy text from wrapping. Important rule you locked in: match the design document exactly. No deduplication, no content editing. Next up is syncing the generator template with the hand-edited HTML."
   },
   {
-    id: "grow-together-hub-deploy",
-    title: "Grow Together Hub Deploy",
-    text: "Later in the evening you did a full deployment push for Grow Together. You audited over fifty HTML files, deployed sixteen offline pages to somoreseeds.com, and built out a new hub link repository. You verified all twenty-three URLs are live and working."
+    id: "escape-key-fix",
+    title: "Escape Key System Fix",
+    text: "Quick debugging session in the early afternoon. Your Escape key stopped working system-wide. You checked hidutil, Karabiner, modifier remapping -- all clean. Turns out the trackpad-return app had been running since Sunday with a KeepAlive launch agent, injecting synthetic keyboard events the whole time. That put Siri's CGEvent taps into a bad state -- two active filter taps stuck on all keyboard events. You killed the Siri processes, Escape came back immediately. Siri respawned clean, you reloaded the trackpad-return agent, and everything's working again. Took about half an hour start to finish."
+  },
+  {
+    id: "godaddy-no-more",
+    title: "GoDaddy No More",
+    text: "This was the big one. A full-day marathon to close out the Plesk migration project. You started by switching sharonrousseau.com's DNS through Netfirms, got the SSL cert installed, and that completed migration number nine out of nine. Then you pivoted to Kristen Cahill's sites. You spun up a new six-dollar-a-month droplet and moved shebangstudio.com over -- one-point-seven gigs of WordPress that needed PHP seven-point-four for compatibility. Then you did the same for nycahill.com, her personal portfolio, on the same droplet. After that you ran a complete backup of the old Plesk server: fourteen sites, seventy databases, and all the email accounts -- four-point-one gigs total. You found and deleted a ghost duplicate droplet that was burning four dollars a month. And then at midnight, you cancelled both GoDaddy hosting plans. That's one-hundred-forty dollars a month eliminated. The only thing left is getting Kristen's GoDaddy login to switch DNS for shebang and nycahill."
   }
 ];
-  var sessionLookup = {"diy-sensor-aggregation":"/Users/a7-13-2024/projects/explore/raspberry-pi-farm-automation","playwright-cli-vs-mcp":"/Users/a7-13-2024/projects/notebooklm-data-extractor","superwhisper-clipboard":"/Users/a7-13-2024/projects/adelaide","dashboard-resume-button":"/Users/a7-13-2024/projects","escape-key-fix":"/Users/a7-13-2024/projects","daily-brief-mar20":"/Users/a7-13-2024/projects/daily-brief","daily-brief-page":"/Users/a7-13-2024/projects/daily-brief","usage-strategy-model-tiers":"/Users/a7-13-2024/projects","gove-martel-genealogy-research":"/Users/a7-13-2024/projects/family/ancestry","projects-folder-assessment":"/Users/a7-13-2024/projects","uppercase-renames":"/Users/a7-13-2024/projects","kurt-photo-setup":"/Users/a7-13-2024/projects","cory-garden-advice":"/Users/a7-13-2024/projects/grow-together","commit-garden-updates":"/Users/a7-13-2024/projects/grow-together","ancestry-census-transcription":"/Users/a7-13-2024/projects/family/ancestry","clawed-spec-library":"/Users/a7-13-2024/projects","grow-together-hub-deploy":"/Users/a7-13-2024/projects/grow-together","incoming-queue-integration":"/Users/a7-13-2024/projects/grow-together","voice-pipeline-build":"/Users/a7-13-2024/projects/notebooklm-data-extractor","mapper-drag-fix":"/Users/a7-13-2024/projects","kelley-website-kickoff":"/Users/a7-13-2024/projects/kelley","cli-anything-research":"/Users/a7-13-2024/projects/notebooklm-data-extractor","project-inventory":"/Users/a7-13-2024/projects","cynthia-hajjar-wix":"/Users/a7-13-2024/projects","adelaide-sheets-menus":"/Users/a7-13-2024/projects/adelaide","webflow-mcp-phase-setup":"/Users/a7-13-2024/projects/adelaide","weather-history-app":"/Users/a7-13-2024/projects","adelaide-beverage-build":"/Users/a7-13-2024/projects/adelaide","kelley-content-search":"/Users/a7-13-2024/projects/kelley","trackpad-return-hack":"/Users/a7-13-2024/projects","dna-ancestry-research":"/Users/a7-13-2024/projects/family/ancestry","global-note-two-selves":"/Users/a7-13-2024/projects","google-sheets-mcp-research":"/Users/a7-13-2024/projects/adelaide","secbev-exact-build":"/Users/a7-13-2024/projects/indesign-to-web","webflow-mcp-auth-research":"/Users/a7-13-2024/projects/adelaide","cafe-ambient-audio-search":"/Users/a7-13-2024/projects","crop-families-poster":"/Users/a7-13-2024/projects/grow-together","fix-johnnys-images":"/Users/a7-13-2024/projects/grow-together/seeds","farm-email-review":"/Users/a7-13-2024/projects/grow-together","diy-ag-automation-research":"/Users/a7-13-2024/projects/explore/glucose-monitor-company-tect-explore-for-tobin-ashley","daily-dashboard-refresh":"/Users/a7-13-2024/projects/grow-together"};
+
   var audio = new Audio();
   var state = 'idle';
   var currentSection = -1;
@@ -479,9 +429,9 @@
   var allSessions = document.querySelectorAll('.session');
 
   function getAudioSrc(idx) {
-    if (idx === -1) return 'audio/intro.mp3';
-    if (idx >= sections.length) return 'audio/outro.mp3';
-    return 'audio/section-' + idx + '.mp3';
+    if (idx === -1) return '2026-03-31-audio/intro.mp3';
+    if (idx >= sections.length) return '2026-03-31-audio/outro.mp3';
+    return '2026-03-31-audio/section-' + idx + '.mp3';
   }
 
   function updateProgress() {
@@ -596,7 +546,12 @@
   });
   if (window.innerWidth <= 640) fab.style.display = 'flex';
 
-  // Add Continue links to session cards (copies cmux command to clipboard)
+  // Session continue links
+  var sessionLookup = {
+    "secbev-exact-build": "/Users/a7-13-2024/projects/adelaide",
+    "escape-key-fix": "/Users/a7-13-2024/projects",
+    "godaddy-no-more": "/Users/a7-13-2024/projects"
+  };
   allSessions.forEach(function(card) {
     var slug = card.dataset.section;
     var cwd = sessionLookup[slug];
@@ -621,7 +576,7 @@
     }
   });
 
-  // Add Continue links to project items
+  // Project continue links
   document.querySelectorAll('.proj-continue').forEach(function(link) {
     link.addEventListener('click', function(e) {
       e.preventDefault();
