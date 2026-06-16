@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Daily Brief - June 15, 2026</title>
+<title>Daily Brief - June 9, 2026</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -240,9 +240,9 @@
 <body>
 <div class="page-wrapper">
   <header class="header">
-    <div class="date-label">Monday, June 15, 2026</div>
+    <div class="date-label">Tuesday, June 9, 2026</div>
     <h1>Daily Brief</h1>
-    <div class="summary-line">2 sessions across client, tools</div>
+    <div class="summary-line">2 sessions across farming</div>
   </header>
   <div class="listen-bar" id="listenBar">
     <div class="progress-fill" id="progressFill"></div>
@@ -274,45 +274,41 @@
     <div class="ask-response-body" id="askResponseBody"></div>
   </div>
 
-<div class="session" data-section="therapy-site">
-  <div class="session-header">
-    <div class="session-icon client">🔒</div>
-    <div class="session-meta">
-      <div class="session-title">Therapy Site: Auth, Read-Aloud & Update Pipeline</div>
-      <div class="session-time">01:20 – 22:00</div>
+  <div class="session" data-section="orient-and-commit-cleanup">
+    <div class="session-header">
+      <div class="session-icon farming">🐦</div>
+      <div class="session-meta">
+        <div class="session-title">Bird Audio & Compost Poem</div>
+        <div class="session-time">11:38 AM</div>
+      </div>
+    </div>
+    <div class="session-body">
+      <p><span class="tag green">farming</span> A spoken-poem tangent during cleanup work that blended bird-audio analysis with a compost-themed poem.</p>
+      <ul class="detail-list">
+        <li>Veered off the orient-and-commit-cleanup task into a creative aside</li>
+        <li>Combined bird-audio analysis with a compost poem</li>
+      </ul>
     </div>
   </div>
-  <div class="session-body">
-    <p><span class="tag amber">client</span> Took therapy.benmartel.com live behind password protection with a read-aloud feature and scoped out the content-update pipeline.</p>
-    <ul class="detail-list">
-      <li>Shipped password-only login (no username) plus a read-aloud footer on/off toggle, both live</li>
-      <li>Site now live behind Basic Auth with read-aloud; auto-updater installed but dormant until Drive auth</li>
-      <li>Added a working password-protection on/off toggle (server gate + footer button)</li>
-      <li>Explored pulling Markdown from a separate claude.ai chat — no direct pull, so recommended a Drive bridge or direct paste for on-demand updates</li>
-      <li>Next: doc-edit → Claude incorporate → save-to-Drive feature (architecture TBD)</li>
-    </ul>
-  </div>
-</div>
-<div class="session" data-section="narrate-voice-global">
-  <div class="session-header">
-    <div class="session-icon tools">🎙️</div>
-    <div class="session-meta">
-      <div class="session-title">"The Voice" Made Globally Evocable</div>
-      <div class="session-time">21:32</div>
+  <div class="session" data-section="poems">
+    <div class="session-header">
+      <div class="session-icon farming">🌱</div>
+      <div class="session-meta">
+        <div class="session-title">"The Sacred Part"</div>
+        <div class="session-time">11:42 AM</div>
+      </div>
+    </div>
+    <div class="session-body">
+      <p><span class="tag green">farming</span> Narrated a meditation on work as sacred and the self as shepherd of natural process.</p>
+      <ul class="detail-list">
+        <li>Narrated the poem "The sacred part"</li>
+        <li>Explored a work-as-sacred, shepherd-of-natural-process theme</li>
+      </ul>
     </div>
   </div>
-  <div class="session-body">
-    <p><span class="tag blue">tools</span> Made the narration voice callable from any project through a global trigger and spec.</p>
-    <ul class="detail-list">
-      <li>Created ~/.claude/voice.md spec and added "the voice / narrate" triggers to the global CLAUDE.md</li>
-      <li>Verified narrate (OpenAI shimmer) renders from any project</li>
-      <li>Confirmed the liked voice as the narrate script default, with the-work-is-done.mp3 as the exemplar</li>
-    </ul>
-  </div>
-</div>
   <div class="projects-section">
     <div class="projects-header">Projects</div>
-    <div class="projects-subtitle">46 active folders in ~/projects</div>
+    <div class="projects-subtitle">45 active folders in ~/projects</div>
     <div class="project-category">Active Client Work</div>
     <div class="project-item" data-path="/Users/a7-13-2024/projects/adelaide">
       <div class="project-info">
@@ -580,13 +576,6 @@
       </div>
       <a class="proj-continue" href="#">Continue</a>
     </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/therapy">
-      <div class="project-info">
-        <div class="project-name">therapy</div>
-        <div class="project-desc">A private, periodically-updated knowledge base built from Ben's reflection / &quot;therapy&quot; sessions with Claude. Tracks the tools, techniques, concepts, and ideas that surface over time, structured so they're searchable and trackable.</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
     <div class="project-item" data-path="/Users/a7-13-2024/projects/trackpad-return">
       <div class="project-info">
         <div class="project-name">trackpad-return</div>
@@ -643,19 +632,19 @@
 
 <script>
 (function() {
-  var sections = [
-  {
-    id: "therapy-site",
-    title: "Therapy Site: Auth, Read-Aloud & Update Pipeline",
-    text: "Today you got therapy dot ben martel dot com into real shape. You took it live behind a password — just a password, no username — and added a read-aloud footer with an on-off toggle, and both of those are live now. You also built a proper password-protection toggle that gates things at the server and adds a footer button. Then you looked into pulling Markdown straight from a separate claude dot a-i chat, but there's no direct way to do that, so you landed on either a Drive bridge or just pasting content directly for on-demand updates. The auto-updater is installed but sitting dormant until you wire up Drive auth. Your next move is the doc-edit to Claude-incorporate to save-to-Drive flow, though the architecture there is still open."
-  },
-  {
-    id: "narrate-voice-global",
-    title: "The Voice Made Globally Evocable",
-    text: "You made your narration voice something you can call from anywhere. You wrote a spec at voice dot m-d in your Claude config and added the voice and narrate triggers to your global CLAUDE file, then verified that narrate — running OpenAI's shimmer voice — renders from any project you're in. You also locked in the voice you liked as the default for the narrate script, with the work-is-done mp3 as your reference exemplar."
-  }
-];
-  var sessionLookup = {"diy-sensor-aggregation":"/Users/a7-13-2024/projects/explore/raspberry-pi-farm-automation","playwright-cli-vs-mcp":"/Users/a7-13-2024/projects/notebooklm-data-extractor","superwhisper-clipboard":"/Users/a7-13-2024/projects/adelaide","dashboard-resume-button":"/Users/a7-13-2024/projects","orient-and-commit-cleanup":"/Users/a7-13-2024/projects/grow-together","escape-key-fix":"/Users/a7-13-2024/projects","daily-brief-mar20":"/Users/a7-13-2024/projects/daily-brief","daily-brief-page":"/Users/a7-13-2024/projects/daily-brief","usage-strategy-model-tiers":"/Users/a7-13-2024/projects","gove-martel-genealogy-research":"/Users/a7-13-2024/projects/family/ancestry","projects-folder-assessment":"/Users/a7-13-2024/projects","uppercase-renames":"/Users/a7-13-2024/projects","kurt-photo-setup":"/Users/a7-13-2024/projects","blank-bed-map-card":"/Users/a7-13-2024/projects/grow-together","cory-garden-advice":"/Users/a7-13-2024/projects/grow-together","commit-garden-updates":"/Users/a7-13-2024/projects/grow-together","imessage-search-fix":"/Users/a7-13-2024/projects/apple-data/imessage-search","ancestry-census-transcription":"/Users/a7-13-2024/projects/family/ancestry","clawed-spec-library":"/Users/a7-13-2024/projects","therapy-site":"/Users/a7-13-2024/projects/therapy","grow-together-hub-deploy":"/Users/a7-13-2024/projects/grow-together","incoming-queue-integration":"/Users/a7-13-2024/projects/grow-together","voice-pipeline-build":"/Users/a7-13-2024/projects/notebooklm-data-extractor","mapper-drag-fix":"/Users/a7-13-2024/projects","kelley-website-kickoff":"/Users/a7-13-2024/projects/kelley","cli-anything-research":"/Users/a7-13-2024/projects/notebooklm-data-extractor","project-inventory":"/Users/a7-13-2024/projects","field-recorder-app":"/Users/a7-13-2024/projects","cynthia-hajjar-wix":"/Users/a7-13-2024/projects","adelaide-sheets-menus":"/Users/a7-13-2024/projects/adelaide","webflow-mcp-phase-setup":"/Users/a7-13-2024/projects/adelaide","narrate-voice-global":"/Users/a7-13-2024/projects/grow-together","weather-history-app":"/Users/a7-13-2024/projects","adelaide-beverage-build":"/Users/a7-13-2024/projects/adelaide","kelley-content-search":"/Users/a7-13-2024/projects/kelley","trackpad-return-hack":"/Users/a7-13-2024/projects","dna-ancestry-research":"/Users/a7-13-2024/projects/family/ancestry","global-note-two-selves":"/Users/a7-13-2024/projects","daily-brief-interactive":"/Users/a7-13-2024/projects/daily-brief","google-sheets-mcp-research":"/Users/a7-13-2024/projects/adelaide","secbev-exact-build":"/Users/a7-13-2024/projects/indesign-to-web","webflow-mcp-auth-research":"/Users/a7-13-2024/projects/adelaide","cafe-ambient-audio-search":"/Users/a7-13-2024/projects","crop-families-poster":"/Users/a7-13-2024/projects/grow-together","fix-johnnys-images":"/Users/a7-13-2024/projects/grow-together/seeds","farm-email-review":"/Users/a7-13-2024/projects/grow-together","anthony-cory-2026-compile":"/Users/a7-13-2024/projects/grow-together","diy-ag-automation-research":"/Users/a7-13-2024/projects/explore/glucose-monitor-company-tect-explore-for-tobin-ashley","daily-dashboard-refresh":"/Users/a7-13-2024/projects/grow-together"};
+  var sections =   [
+    {
+      id: "orient-and-commit-cleanup",
+      title: "Bird Audio & Compost Poem",
+      text: "While you were in the middle of cleanup work, you took a little detour into something more creative. You played with a spoken poem that pulled together bird-audio analysis and a compost theme, letting the technical and the poetic blur together for a moment."
+    },
+    {
+      id: "poems",
+      title: "The Sacred Part",
+      text: "Right after that, you narrated a poem called The sacred part. It was a meditation on work as something sacred, and on seeing yourself as a shepherd of natural process. A quiet, reflective beat in your day."
+    }
+  ];
+  var sessionLookup = {"diy-sensor-aggregation":"/Users/a7-13-2024/projects/explore/raspberry-pi-farm-automation","playwright-cli-vs-mcp":"/Users/a7-13-2024/projects/notebooklm-data-extractor","superwhisper-clipboard":"/Users/a7-13-2024/projects/adelaide","dashboard-resume-button":"/Users/a7-13-2024/projects","orient-and-commit-cleanup":"/Users/a7-13-2024/projects/grow-together","escape-key-fix":"/Users/a7-13-2024/projects","daily-brief-mar20":"/Users/a7-13-2024/projects/daily-brief","daily-brief-page":"/Users/a7-13-2024/projects/daily-brief","usage-strategy-model-tiers":"/Users/a7-13-2024/projects","gove-martel-genealogy-research":"/Users/a7-13-2024/projects/family/ancestry","projects-folder-assessment":"/Users/a7-13-2024/projects","uppercase-renames":"/Users/a7-13-2024/projects","kurt-photo-setup":"/Users/a7-13-2024/projects","blank-bed-map-card":"/Users/a7-13-2024/projects/grow-together","cory-garden-advice":"/Users/a7-13-2024/projects/grow-together","commit-garden-updates":"/Users/a7-13-2024/projects/grow-together","imessage-search-fix":"/Users/a7-13-2024/projects/apple-data/imessage-search","ancestry-census-transcription":"/Users/a7-13-2024/projects/family/ancestry","clawed-spec-library":"/Users/a7-13-2024/projects","grow-together-hub-deploy":"/Users/a7-13-2024/projects/grow-together","incoming-queue-integration":"/Users/a7-13-2024/projects/grow-together","voice-pipeline-build":"/Users/a7-13-2024/projects/notebooklm-data-extractor","mapper-drag-fix":"/Users/a7-13-2024/projects","kelley-website-kickoff":"/Users/a7-13-2024/projects/kelley","cli-anything-research":"/Users/a7-13-2024/projects/notebooklm-data-extractor","project-inventory":"/Users/a7-13-2024/projects","field-recorder-app":"/Users/a7-13-2024/projects","cynthia-hajjar-wix":"/Users/a7-13-2024/projects","adelaide-sheets-menus":"/Users/a7-13-2024/projects/adelaide","webflow-mcp-phase-setup":"/Users/a7-13-2024/projects/adelaide","weather-history-app":"/Users/a7-13-2024/projects","adelaide-beverage-build":"/Users/a7-13-2024/projects/adelaide","kelley-content-search":"/Users/a7-13-2024/projects/kelley","trackpad-return-hack":"/Users/a7-13-2024/projects","dna-ancestry-research":"/Users/a7-13-2024/projects/family/ancestry","global-note-two-selves":"/Users/a7-13-2024/projects","daily-brief-interactive":"/Users/a7-13-2024/projects/daily-brief","google-sheets-mcp-research":"/Users/a7-13-2024/projects/adelaide","secbev-exact-build":"/Users/a7-13-2024/projects/indesign-to-web","webflow-mcp-auth-research":"/Users/a7-13-2024/projects/adelaide","cafe-ambient-audio-search":"/Users/a7-13-2024/projects","crop-families-poster":"/Users/a7-13-2024/projects/grow-together","fix-johnnys-images":"/Users/a7-13-2024/projects/grow-together/seeds","farm-email-review":"/Users/a7-13-2024/projects/grow-together","anthony-cory-2026-compile":"/Users/a7-13-2024/projects/grow-together","diy-ag-automation-research":"/Users/a7-13-2024/projects/explore/glucose-monitor-company-tect-explore-for-tobin-ashley","daily-dashboard-refresh":"/Users/a7-13-2024/projects/grow-together"};
   var audio = new Audio();
   var state = 'idle';
   var currentSection = -1;
@@ -675,9 +664,9 @@
   var allSessions = document.querySelectorAll('.session');
 
   function getAudioSrc(idx) {
-    if (idx === -1) return 'audio/intro.mp3';
-    if (idx >= sections.length) return 'audio/outro.mp3';
-    return 'audio/section-' + idx + '.mp3';
+    if (idx === -1) return '2026-06-16-audio/intro.mp3';
+    if (idx >= sections.length) return '2026-06-16-audio/outro.mp3';
+    return '2026-06-16-audio/section-' + idx + '.mp3';
   }
 
   function updateProgress() {
@@ -868,7 +857,7 @@
       singleMode = true;
       state = 'playing';
       currentSection = secIdx;
-      audio.src = 'audio/section-' + secIdx + '.mp3';
+      audio.src = '2026-06-16-audio/section-' + secIdx + '.mp3';
       audio.playbackRate = speeds[speedIdx];
       audio.play().catch(function() {});
       pb.classList.add('playing');
