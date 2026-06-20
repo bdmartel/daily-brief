@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Daily Brief - June 20, 2026</title>
+<title>Daily Brief - June 18, 2026</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -240,9 +240,9 @@
 <body>
 <div class="page-wrapper">
   <header class="header">
-    <div class="date-label">Saturday, June 20, 2026</div>
+    <div class="date-label">Thursday, June 18, 2026</div>
     <h1>Daily Brief</h1>
-    <div class="summary-line">1 session across tools</div>
+    <div class="summary-line">2 sessions across farming, client</div>
   </header>
   <div class="listen-bar" id="listenBar">
     <div class="progress-fill" id="progressFill"></div>
@@ -274,27 +274,44 @@
     <div class="ask-response-body" id="askResponseBody"></div>
   </div>
 
-  <div class="session" data-section="daily-brief-narrate-voice">
-    <div class="session-header">
-      <div class="session-icon tools">🔧</div>
-      <div class="session-meta">
-        <div class="session-title">Daily Brief Voice Upgrade</div>
-        <div class="session-time">5:11 PM</div>
-      </div>
-    </div>
-    <div class="session-body">
-      <p><span class="tag blue">tools</span> Started swapping the daily brief's robotic edge-tts Ava voice for the warmer narrate voice, and took inventory of your custom Claude skills.</p>
-      <ul class="detail-list">
-        <li>Catalogued the global custom skills built together: notebooklm, chat-logger, imessage-search, and yt-search</li>
-        <li>Flagged webflow-audit as dormant and noted that deep-research's origin is unknown</li>
-        <li>Began replacing edge-tts Ava with the narrate voice — OpenAI gpt-4o-mini-tts, shimmer: warm, husky, conversational</li>
-        <li>Found two blockers for the 6 AM scheduled run: OPENAI_API_KEY missing from ~/.claude/.env and narrate not on the launchd PATH</li>
-      </ul>
+<div class="session" data-section="tori-progress-log">
+  <div class="session-header">
+    <div class="session-icon farming">🌱</div>
+    <div class="session-meta">
+      <div class="session-title">Tori SPA Progress Log & Sync</div>
+      <div class="session-time">8:52 AM – 1:33 PM</div>
     </div>
   </div>
+  <div class="session-body">
+    <p><span class="tag green">farming</span> Built a per-plant progress log into the Tori app, fixed a data-loss bug, and restored cross-device sync.</p>
+    <ul class="detail-list">
+      <li>Added a progress log (photos, notes, audio) per plant and arrangement using an isolated IndexedDB store, leaving existing data untouched</li>
+      <li>Fixed a data-loss bug where an empty server response was wiping localStorage on every load</li>
+      <li>Traced the broken sync to the SPA reading a deploy-reset static mirror instead of the live Flask API — data was safe server-side all along</li>
+      <li>Moved the progress log server-backed via a new Flask /api/tori-progress endpoint so photos, notes, and voice sync across devices</li>
+      <li>Added a Feed view: one dated, scrollable list of all progress updates across items, deployed and verified live</li>
+    </ul>
+  </div>
+</div>
+<div class="session" data-section="therapy-site">
+  <div class="session-header">
+    <div class="session-icon client">💼</div>
+    <div class="session-meta">
+      <div class="session-title">The Address Site Update</div>
+      <div class="session-time">10:18 AM</div>
+    </div>
+  </div>
+  <div class="session-body">
+    <p><span class="tag amber">client</span> Pushed the rev2 copy live for The Address.</p>
+    <ul class="detail-list">
+      <li>Live site now serves The Address rev2 behind the password "forwardmotion"</li>
+      <li>Edit button and password toggle remain intact</li>
+    </ul>
+  </div>
+</div>
   <div class="projects-section">
     <div class="projects-header">Projects</div>
-    <div class="projects-subtitle">47 active folders in ~/projects</div>
+    <div class="projects-subtitle">46 active folders in ~/projects</div>
     <div class="project-category">Active Client Work</div>
     <div class="project-item" data-path="/Users/a7-13-2024/projects/adelaide">
       <div class="project-info">
@@ -530,13 +547,6 @@
       </div>
       <a class="proj-continue" href="#">Continue</a>
     </div>
-    <div class="project-item" data-path="/Users/a7-13-2024/projects/productivity">
-      <div class="project-info">
-        <div class="project-name">productivity</div>
-        <div class="project-desc">This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.</div>
-      </div>
-      <a class="proj-continue" href="#">Continue</a>
-    </div>
     <div class="project-item" data-path="/Users/a7-13-2024/projects/sandbox">
       <div class="project-info">
         <div class="project-name">sandbox</div>
@@ -634,12 +644,17 @@
 (function() {
   var sections = [
   {
-    id: "daily-brief-narrate-voice",
-    title: "Daily Brief Voice Upgrade",
-    text: "You spent this session giving your daily brief a new voice. You started swapping out the robotic edge-tts Ava voice for the narrate voice — that warm, husky, conversational OpenAI shimmer voice you like. Along the way you took stock of the custom Claude skills you have built together: notebooklm, chat-logger, imessage-search, and yt-search. You flagged webflow-audit as dormant and noted that the origin of deep-research is a bit of a mystery. You also hit two snags that need fixing before the six AM scheduled run will work: your OpenAI API key is missing from the dot-claude env file, and narrate is not on the launchd PATH yet."
+    id: "tori-progress-log",
+    title: "Tori SPA Progress Log & Sync",
+    text: "You spent most of the morning and early afternoon deep in the Tori app. You started by building a progress log into it — photos, notes, and audio for each plant and arrangement — using an isolated IndexedDB store so your existing data stayed untouched. Then you caught a nasty data-loss bug where an empty server response was wiping localStorage on every single load, and you fixed it. The cross-device sync looked broken too, but you tracked it down: the app was reading a deploy-reset static mirror instead of the live Flask API, and your data had been safe on the server the whole time. You moved the progress log to be server-backed with a new Flask endpoint so photos, notes, and voice all sync across devices, and you capped it off with a Feed view — one dated, scrollable list of every progress update, deployed and verified live."
+  },
+  {
+    id: "therapy-site",
+    title: "The Address Site Update",
+    text: "You also pushed the rev2 copy live for The Address. The site now serves the new version behind the password forward-motion, and you confirmed the edit button and password toggle are still working as they should."
   }
 ];
-  var sessionLookup = {"diy-sensor-aggregation":"/Users/a7-13-2024/projects/explore/raspberry-pi-farm-automation","playwright-cli-vs-mcp":"/Users/a7-13-2024/projects/notebooklm-data-extractor","superwhisper-clipboard":"/Users/a7-13-2024/projects/adelaide","dashboard-resume-button":"/Users/a7-13-2024/projects","orient-and-commit-cleanup":"/Users/a7-13-2024/projects/grow-together","escape-key-fix":"/Users/a7-13-2024/projects","daily-brief-mar20":"/Users/a7-13-2024/projects/daily-brief","daily-brief-page":"/Users/a7-13-2024/projects/daily-brief","usage-strategy-model-tiers":"/Users/a7-13-2024/projects","gove-martel-genealogy-research":"/Users/a7-13-2024/projects/family/ancestry","projects-folder-assessment":"/Users/a7-13-2024/projects","uppercase-renames":"/Users/a7-13-2024/projects","kurt-photo-setup":"/Users/a7-13-2024/projects","blank-bed-map-card":"/Users/a7-13-2024/projects/grow-together","cory-garden-advice":"/Users/a7-13-2024/projects/grow-together","commit-garden-updates":"/Users/a7-13-2024/projects/grow-together","imessage-search-fix":"/Users/a7-13-2024/projects/apple-data/imessage-search","ancestry-census-transcription":"/Users/a7-13-2024/projects/family/ancestry","clawed-spec-library":"/Users/a7-13-2024/projects","daily-brief-narrate-voice":"/Users/a7-13-2024/projects/daily-brief","therapy-site":"/Users/a7-13-2024/projects/therapy","grow-together-hub-deploy":"/Users/a7-13-2024/projects/grow-together","incoming-queue-integration":"/Users/a7-13-2024/projects/grow-together","voice-pipeline-build":"/Users/a7-13-2024/projects/notebooklm-data-extractor","mapper-drag-fix":"/Users/a7-13-2024/projects","kelley-website-kickoff":"/Users/a7-13-2024/projects/kelley","cli-anything-research":"/Users/a7-13-2024/projects/notebooklm-data-extractor","project-inventory":"/Users/a7-13-2024/projects","field-recorder-app":"/Users/a7-13-2024/projects","cynthia-hajjar-wix":"/Users/a7-13-2024/projects","adelaide-sheets-menus":"/Users/a7-13-2024/projects/adelaide","webflow-mcp-phase-setup":"/Users/a7-13-2024/projects/adelaide","narrate-voice-global":"/Users/a7-13-2024/projects/grow-together","weather-history-app":"/Users/a7-13-2024/projects","adelaide-beverage-build":"/Users/a7-13-2024/projects/adelaide","kelley-content-search":"/Users/a7-13-2024/projects/kelley","trackpad-return-hack":"/Users/a7-13-2024/projects","dna-ancestry-research":"/Users/a7-13-2024/projects/family/ancestry","global-note-two-selves":"/Users/a7-13-2024/projects","daily-brief-interactive":"/Users/a7-13-2024/projects/daily-brief","google-sheets-mcp-research":"/Users/a7-13-2024/projects/adelaide","secbev-exact-build":"/Users/a7-13-2024/projects/indesign-to-web","webflow-mcp-auth-research":"/Users/a7-13-2024/projects/adelaide","cafe-ambient-audio-search":"/Users/a7-13-2024/projects","crop-families-poster":"/Users/a7-13-2024/projects/grow-together","fix-johnnys-images":"/Users/a7-13-2024/projects/grow-together/seeds","farm-email-review":"/Users/a7-13-2024/projects/grow-together","tori-progress-log":"/Users/a7-13-2024/projects/grow-together","anthony-cory-2026-compile":"/Users/a7-13-2024/projects/grow-together","diy-ag-automation-research":"/Users/a7-13-2024/projects/explore/glucose-monitor-company-tect-explore-for-tobin-ashley","daily-dashboard-refresh":"/Users/a7-13-2024/projects/grow-together"};
+  var sessionLookup = {"diy-sensor-aggregation":"/Users/a7-13-2024/projects/explore/raspberry-pi-farm-automation","playwright-cli-vs-mcp":"/Users/a7-13-2024/projects/notebooklm-data-extractor","superwhisper-clipboard":"/Users/a7-13-2024/projects/adelaide","dashboard-resume-button":"/Users/a7-13-2024/projects","orient-and-commit-cleanup":"/Users/a7-13-2024/projects/grow-together","escape-key-fix":"/Users/a7-13-2024/projects","daily-brief-mar20":"/Users/a7-13-2024/projects/daily-brief","daily-brief-page":"/Users/a7-13-2024/projects/daily-brief","usage-strategy-model-tiers":"/Users/a7-13-2024/projects","gove-martel-genealogy-research":"/Users/a7-13-2024/projects/family/ancestry","projects-folder-assessment":"/Users/a7-13-2024/projects","uppercase-renames":"/Users/a7-13-2024/projects","kurt-photo-setup":"/Users/a7-13-2024/projects","blank-bed-map-card":"/Users/a7-13-2024/projects/grow-together","cory-garden-advice":"/Users/a7-13-2024/projects/grow-together","commit-garden-updates":"/Users/a7-13-2024/projects/grow-together","imessage-search-fix":"/Users/a7-13-2024/projects/apple-data/imessage-search","ancestry-census-transcription":"/Users/a7-13-2024/projects/family/ancestry","clawed-spec-library":"/Users/a7-13-2024/projects","therapy-site":"/Users/a7-13-2024/projects/therapy","grow-together-hub-deploy":"/Users/a7-13-2024/projects/grow-together","incoming-queue-integration":"/Users/a7-13-2024/projects/grow-together","voice-pipeline-build":"/Users/a7-13-2024/projects/notebooklm-data-extractor","mapper-drag-fix":"/Users/a7-13-2024/projects","kelley-website-kickoff":"/Users/a7-13-2024/projects/kelley","cli-anything-research":"/Users/a7-13-2024/projects/notebooklm-data-extractor","project-inventory":"/Users/a7-13-2024/projects","field-recorder-app":"/Users/a7-13-2024/projects","cynthia-hajjar-wix":"/Users/a7-13-2024/projects","adelaide-sheets-menus":"/Users/a7-13-2024/projects/adelaide","webflow-mcp-phase-setup":"/Users/a7-13-2024/projects/adelaide","narrate-voice-global":"/Users/a7-13-2024/projects/grow-together","weather-history-app":"/Users/a7-13-2024/projects","adelaide-beverage-build":"/Users/a7-13-2024/projects/adelaide","kelley-content-search":"/Users/a7-13-2024/projects/kelley","trackpad-return-hack":"/Users/a7-13-2024/projects","dna-ancestry-research":"/Users/a7-13-2024/projects/family/ancestry","global-note-two-selves":"/Users/a7-13-2024/projects","daily-brief-interactive":"/Users/a7-13-2024/projects/daily-brief","google-sheets-mcp-research":"/Users/a7-13-2024/projects/adelaide","secbev-exact-build":"/Users/a7-13-2024/projects/indesign-to-web","webflow-mcp-auth-research":"/Users/a7-13-2024/projects/adelaide","cafe-ambient-audio-search":"/Users/a7-13-2024/projects","crop-families-poster":"/Users/a7-13-2024/projects/grow-together","fix-johnnys-images":"/Users/a7-13-2024/projects/grow-together/seeds","farm-email-review":"/Users/a7-13-2024/projects/grow-together","tori-progress-log":"/Users/a7-13-2024/projects/grow-together","anthony-cory-2026-compile":"/Users/a7-13-2024/projects/grow-together","diy-ag-automation-research":"/Users/a7-13-2024/projects/explore/glucose-monitor-company-tect-explore-for-tobin-ashley","daily-dashboard-refresh":"/Users/a7-13-2024/projects/grow-together"};
   var audio = new Audio();
   var state = 'idle';
   var currentSection = -1;
@@ -659,9 +674,9 @@
   var allSessions = document.querySelectorAll('.session');
 
   function getAudioSrc(idx) {
-    if (idx === -1) return 'audio/intro.mp3';
-    if (idx >= sections.length) return 'audio/outro.mp3';
-    return 'audio/section-' + idx + '.mp3';
+    if (idx === -1) return '2026-06-20-audio/intro.mp3';
+    if (idx >= sections.length) return '2026-06-20-audio/outro.mp3';
+    return '2026-06-20-audio/section-' + idx + '.mp3';
   }
 
   function updateProgress() {
@@ -852,7 +867,7 @@
       singleMode = true;
       state = 'playing';
       currentSection = secIdx;
-      audio.src = 'audio/section-' + secIdx + '.mp3';
+      audio.src = '2026-06-20-audio/section-' + secIdx + '.mp3';
       audio.playbackRate = speeds[speedIdx];
       audio.play().catch(function() {});
       pb.classList.add('playing');
