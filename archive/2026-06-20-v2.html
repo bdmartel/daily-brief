@@ -242,27 +242,8 @@
   <header class="header">
     <div class="date-label">Saturday, June 20, 2026</div>
     <h1>Daily Brief</h1>
-    <div class="summary-line">2 sessions across tools</div>
+    <div class="summary-line">1 session across tools</div>
   </header>
-  <div class="poem-card" style="margin:0 0 24px;padding:22px 24px;border-left:3px solid #d8b25a;background:rgba(216,178,90,0.05);border-radius:10px;">
-    <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted,#9a948a);margin-bottom:12px;display:flex;align-items:center;gap:10px;">
-      <span>Good morning</span>
-      <button id="poemPlayBtn" style="background:none;border:1px solid #d8b25a;color:#d8b25a;border-radius:14px;padding:3px 12px;font-size:11px;cursor:pointer;letter-spacing:0.04em;">&#9654; hear it</button>
-    </div>
-    <div style="font-family:Georgia,'Times New Roman',serif;font-size:17px;line-height:1.78;color:var(--text,#e8e6e1);white-space:pre-line;">The field's gone silver with dew, the ridge still holding the dark.
-Out back, the rows you set are growing on their own.
-Nobody needs you sharp this early — not polished, not sure.
-The light comes slow these mornings, and it comes for you anyway.
-
-You don't have to be ready. You only have to be here.
-What you started is still becoming.
-So — up.</div>
-  </div>
-  <div class="wakeup-control" style="display:flex;align-items:center;gap:12px;margin:0 0 24px;font-size:13px;color:var(--text-muted,#9a948a);flex-wrap:wrap;">
-    <span id="wakeupStatus">Wake-up: on</span>
-    <button id="skipBtn" style="background:none;border:1px solid #33312c;color:var(--text-muted,#9a948a);border-radius:14px;padding:4px 14px;font-size:12px;cursor:pointer;">Skip tomorrow</button>
-    <button id="toggleBtn" style="background:none;border:1px solid #33312c;color:var(--text-muted,#9a948a);border-radius:14px;padding:4px 14px;font-size:12px;cursor:pointer;">Turn off wake-up</button>
-  </div>
   <div class="listen-bar" id="listenBar">
     <div class="progress-fill" id="progressFill"></div>
     <button class="listen-btn" id="listenBtn" aria-label="Listen to brief">
@@ -293,43 +274,24 @@ So — up.</div>
     <div class="ask-response-body" id="askResponseBody"></div>
   </div>
 
-<div class="session" data-section="daily-brief-narrate-voice">
-  <div class="session-header">
-    <div class="session-icon tools">🎙️</div>
-    <div class="session-meta">
-      <div class="session-title">Daily Brief Voice Migration</div>
-      <div class="session-time">5:11 PM – 5:45 PM</div>
+  <div class="session" data-section="daily-brief-narrate-voice">
+    <div class="session-header">
+      <div class="session-icon tools">🔧</div>
+      <div class="session-meta">
+        <div class="session-title">Daily Brief Voice Upgrade</div>
+        <div class="session-time">5:11 PM</div>
+      </div>
+    </div>
+    <div class="session-body">
+      <p><span class="tag blue">tools</span> Started swapping the daily brief's robotic edge-tts Ava voice for the warmer narrate voice, and took inventory of your custom Claude skills.</p>
+      <ul class="detail-list">
+        <li>Catalogued the global custom skills built together: notebooklm, chat-logger, imessage-search, and yt-search</li>
+        <li>Flagged webflow-audit as dormant and noted that deep-research's origin is unknown</li>
+        <li>Began replacing edge-tts Ava with the narrate voice — OpenAI gpt-4o-mini-tts, shimmer: warm, husky, conversational</li>
+        <li>Found two blockers for the 6 AM scheduled run: OPENAI_API_KEY missing from ~/.claude/.env and narrate not on the launchd PATH</li>
+      </ul>
     </div>
   </div>
-  <div class="session-body">
-    <p><span class="tag blue">tools</span> Retired the brief's robotic edge-tts "Ava" voice for the warm "shimmer" narrate voice and stood up a 6 AM wake-up ritual.</p>
-    <ul class="detail-list">
-      <li>Swapped edge-tts "Ava" for the narrate CLI — OpenAI gpt-4o-mini-tts, "shimmer" (warm, husky, conversational)</li>
-      <li>Unblocked the 6 AM run: added OPENAI_API_KEY to ~/.claude/.env and put narrate on the launchd PATH</li>
-      <li>Deployed today's brief in shimmer (commit d518b20); both TTS paths now route through narrate, proven via a simulated launchd env</li>
-      <li>Started a 6 AM wake-up ritual — daily poem plus brief, with a skip-tomorrow / turn-off toggle (default on)</li>
-      <li>Flagged the broken Ask feature to fix next so answers save into the brief and can be narrated</li>
-    </ul>
-  </div>
-</div>
-<div class="session" data-section="productivity-app-build">
-  <div class="session-header">
-    <div class="session-icon tools">✅</div>
-    <div class="session-meta">
-      <div class="session-title">Task App Build & Deploy</div>
-      <div class="session-time">5:18 PM – 5:41 PM</div>
-    </div>
-  </div>
-  <div class="session-body">
-    <p><span class="tag blue">tools</span> Built and shipped a self-hosted PHP + MySQL task manager at tasks.benmartel.com, then hardened it for mobile.</p>
-    <ul class="detail-list">
-      <li>Built + deployed tasks.benmartel.com — PHP + MySQL on a DigitalOcean droplet with its own vhost, DB, and SSL</li>
-      <li>Seeded 5 categories and 22 tasks; initialized git</li>
-      <li>Verified the no-wash guarantee — a re-push kept a checked task done with zero duplicates</li>
-      <li>Mobile: bigger edit/delete targets, long-press drag-to-reorder, and fixed category-header text overflow</li>
-    </ul>
-  </div>
-</div>
   <div class="projects-section">
     <div class="projects-header">Projects</div>
     <div class="projects-subtitle">47 active folders in ~/projects</div>
@@ -673,16 +635,11 @@ So — up.</div>
   var sections = [
   {
     id: "daily-brief-narrate-voice",
-    title: "Daily Brief Voice Migration",
-    text: "You finally retired the robotic edge-tts Ava voice on your daily brief and switched everything over to the narrate voice — that warm, husky shimmer tone. You hit two snags for the 6 AM scheduled run: your OpenAI key was missing from the env file and narrate wasn't on the launchd path. You fixed both, deployed today's brief in shimmer, and proved the 6 AM run with a simulated launchd environment. You also kicked off a 6 AM wake-up ritual — a daily poem in shimmer alongside the brief, with a skip-tomorrow toggle that defaults to on. One loose end you flagged: the Ask feature is broken, and that's next so answers can save into the brief and be read aloud."
-  },
-  {
-    id: "productivity-app-build",
-    title: "Task App Build and Deploy",
-    text: "You built and shipped a brand new task app at tasks dot benmartel dot com — a PHP and MySQL app running on your DigitalOcean droplet with its own vhost, database, and SSL. You seeded it with five categories and twenty-two tasks, then verified the no-wash guarantee: re-pushing left a checked task done with zero duplicates, and git was initialized. After that you turned to mobile — making the edit and delete targets bigger, adding long-press drag-to-reorder, and fixing a category header that was overflowing its text."
+    title: "Daily Brief Voice Upgrade",
+    text: "You spent this session giving your daily brief a new voice. You started swapping out the robotic edge-tts Ava voice for the narrate voice — that warm, husky, conversational OpenAI shimmer voice you like. Along the way you took stock of the custom Claude skills you have built together: notebooklm, chat-logger, imessage-search, and yt-search. You flagged webflow-audit as dormant and noted that the origin of deep-research is a bit of a mystery. You also hit two snags that need fixing before the six AM scheduled run will work: your OpenAI API key is missing from the dot-claude env file, and narrate is not on the launchd PATH yet."
   }
 ];
-  var sessionLookup = {"diy-sensor-aggregation":"/Users/a7-13-2024/projects/explore/raspberry-pi-farm-automation","playwright-cli-vs-mcp":"/Users/a7-13-2024/projects/notebooklm-data-extractor","superwhisper-clipboard":"/Users/a7-13-2024/projects/adelaide","dashboard-resume-button":"/Users/a7-13-2024/projects","orient-and-commit-cleanup":"/Users/a7-13-2024/projects/grow-together","escape-key-fix":"/Users/a7-13-2024/projects","daily-brief-mar20":"/Users/a7-13-2024/projects/daily-brief","daily-brief-page":"/Users/a7-13-2024/projects/daily-brief","usage-strategy-model-tiers":"/Users/a7-13-2024/projects","gove-martel-genealogy-research":"/Users/a7-13-2024/projects/family/ancestry","projects-folder-assessment":"/Users/a7-13-2024/projects","uppercase-renames":"/Users/a7-13-2024/projects","kurt-photo-setup":"/Users/a7-13-2024/projects","productivity-app-build":"/Users/a7-13-2024/projects/productivity","blank-bed-map-card":"/Users/a7-13-2024/projects/grow-together","cory-garden-advice":"/Users/a7-13-2024/projects/grow-together","commit-garden-updates":"/Users/a7-13-2024/projects/grow-together","imessage-search-fix":"/Users/a7-13-2024/projects/apple-data/imessage-search","ancestry-census-transcription":"/Users/a7-13-2024/projects/family/ancestry","clawed-spec-library":"/Users/a7-13-2024/projects","daily-brief-narrate-voice":"/Users/a7-13-2024/projects/daily-brief","therapy-site":"/Users/a7-13-2024/projects/therapy","grow-together-hub-deploy":"/Users/a7-13-2024/projects/grow-together","incoming-queue-integration":"/Users/a7-13-2024/projects/grow-together","voice-pipeline-build":"/Users/a7-13-2024/projects/notebooklm-data-extractor","mapper-drag-fix":"/Users/a7-13-2024/projects","kelley-website-kickoff":"/Users/a7-13-2024/projects/kelley","cli-anything-research":"/Users/a7-13-2024/projects/notebooklm-data-extractor","project-inventory":"/Users/a7-13-2024/projects","field-recorder-app":"/Users/a7-13-2024/projects","cynthia-hajjar-wix":"/Users/a7-13-2024/projects","adelaide-sheets-menus":"/Users/a7-13-2024/projects/adelaide","webflow-mcp-phase-setup":"/Users/a7-13-2024/projects/adelaide","narrate-voice-global":"/Users/a7-13-2024/projects/grow-together","weather-history-app":"/Users/a7-13-2024/projects","adelaide-beverage-build":"/Users/a7-13-2024/projects/adelaide","kelley-content-search":"/Users/a7-13-2024/projects/kelley","trackpad-return-hack":"/Users/a7-13-2024/projects","dna-ancestry-research":"/Users/a7-13-2024/projects/family/ancestry","global-note-two-selves":"/Users/a7-13-2024/projects","daily-brief-interactive":"/Users/a7-13-2024/projects/daily-brief","google-sheets-mcp-research":"/Users/a7-13-2024/projects/adelaide","secbev-exact-build":"/Users/a7-13-2024/projects/indesign-to-web","webflow-mcp-auth-research":"/Users/a7-13-2024/projects/adelaide","cafe-ambient-audio-search":"/Users/a7-13-2024/projects","crop-families-poster":"/Users/a7-13-2024/projects/grow-together","fix-johnnys-images":"/Users/a7-13-2024/projects/grow-together/seeds","farm-email-review":"/Users/a7-13-2024/projects/grow-together","tori-progress-log":"/Users/a7-13-2024/projects/grow-together","anthony-cory-2026-compile":"/Users/a7-13-2024/projects/grow-together","diy-ag-automation-research":"/Users/a7-13-2024/projects/explore/glucose-monitor-company-tect-explore-for-tobin-ashley","daily-dashboard-refresh":"/Users/a7-13-2024/projects/grow-together"};
+  var sessionLookup = {"diy-sensor-aggregation":"/Users/a7-13-2024/projects/explore/raspberry-pi-farm-automation","playwright-cli-vs-mcp":"/Users/a7-13-2024/projects/notebooklm-data-extractor","superwhisper-clipboard":"/Users/a7-13-2024/projects/adelaide","dashboard-resume-button":"/Users/a7-13-2024/projects","orient-and-commit-cleanup":"/Users/a7-13-2024/projects/grow-together","escape-key-fix":"/Users/a7-13-2024/projects","daily-brief-mar20":"/Users/a7-13-2024/projects/daily-brief","daily-brief-page":"/Users/a7-13-2024/projects/daily-brief","usage-strategy-model-tiers":"/Users/a7-13-2024/projects","gove-martel-genealogy-research":"/Users/a7-13-2024/projects/family/ancestry","projects-folder-assessment":"/Users/a7-13-2024/projects","uppercase-renames":"/Users/a7-13-2024/projects","kurt-photo-setup":"/Users/a7-13-2024/projects","blank-bed-map-card":"/Users/a7-13-2024/projects/grow-together","cory-garden-advice":"/Users/a7-13-2024/projects/grow-together","commit-garden-updates":"/Users/a7-13-2024/projects/grow-together","imessage-search-fix":"/Users/a7-13-2024/projects/apple-data/imessage-search","ancestry-census-transcription":"/Users/a7-13-2024/projects/family/ancestry","clawed-spec-library":"/Users/a7-13-2024/projects","daily-brief-narrate-voice":"/Users/a7-13-2024/projects/daily-brief","therapy-site":"/Users/a7-13-2024/projects/therapy","grow-together-hub-deploy":"/Users/a7-13-2024/projects/grow-together","incoming-queue-integration":"/Users/a7-13-2024/projects/grow-together","voice-pipeline-build":"/Users/a7-13-2024/projects/notebooklm-data-extractor","mapper-drag-fix":"/Users/a7-13-2024/projects","kelley-website-kickoff":"/Users/a7-13-2024/projects/kelley","cli-anything-research":"/Users/a7-13-2024/projects/notebooklm-data-extractor","project-inventory":"/Users/a7-13-2024/projects","field-recorder-app":"/Users/a7-13-2024/projects","cynthia-hajjar-wix":"/Users/a7-13-2024/projects","adelaide-sheets-menus":"/Users/a7-13-2024/projects/adelaide","webflow-mcp-phase-setup":"/Users/a7-13-2024/projects/adelaide","narrate-voice-global":"/Users/a7-13-2024/projects/grow-together","weather-history-app":"/Users/a7-13-2024/projects","adelaide-beverage-build":"/Users/a7-13-2024/projects/adelaide","kelley-content-search":"/Users/a7-13-2024/projects/kelley","trackpad-return-hack":"/Users/a7-13-2024/projects","dna-ancestry-research":"/Users/a7-13-2024/projects/family/ancestry","global-note-two-selves":"/Users/a7-13-2024/projects","daily-brief-interactive":"/Users/a7-13-2024/projects/daily-brief","google-sheets-mcp-research":"/Users/a7-13-2024/projects/adelaide","secbev-exact-build":"/Users/a7-13-2024/projects/indesign-to-web","webflow-mcp-auth-research":"/Users/a7-13-2024/projects/adelaide","cafe-ambient-audio-search":"/Users/a7-13-2024/projects","crop-families-poster":"/Users/a7-13-2024/projects/grow-together","fix-johnnys-images":"/Users/a7-13-2024/projects/grow-together/seeds","farm-email-review":"/Users/a7-13-2024/projects/grow-together","tori-progress-log":"/Users/a7-13-2024/projects/grow-together","anthony-cory-2026-compile":"/Users/a7-13-2024/projects/grow-together","diy-ag-automation-research":"/Users/a7-13-2024/projects/explore/glucose-monitor-company-tect-explore-for-tobin-ashley","daily-dashboard-refresh":"/Users/a7-13-2024/projects/grow-together"};
   var audio = new Audio();
   var state = 'idle';
   var currentSection = -1;
@@ -1133,53 +1090,6 @@ So — up.</div>
       askPlayBtn.classList.remove('playing');
     };
   });
-})();
-
-// === Morning poem playback + wake-up toggle ===
-(function(){
-  var BS = 'http://127.0.0.1:7845';
-  var poemBtn = document.getElementById('poemPlayBtn');
-  if (poemBtn) {
-    var poemAudio = null;
-    poemBtn.addEventListener('click', function(){
-      if (poemAudio && !poemAudio.paused) { poemAudio.pause(); poemAudio.currentTime = 0; poemBtn.innerHTML = '&#9654; hear it'; return; }
-      poemAudio = new Audio('audio/poem.mp3');
-      poemBtn.innerHTML = '&#10073;&#10073; stop';
-      poemAudio.onended = function(){ poemBtn.innerHTML = '&#9654; hear it'; };
-      poemAudio.play().catch(function(){ poemBtn.innerHTML = '&#9654; hear it'; });
-    });
-  }
-  var statusEl = document.getElementById('wakeupStatus');
-  var skipBtn = document.getElementById('skipBtn');
-  var toggleBtn = document.getElementById('toggleBtn');
-  if (statusEl && skipBtn && toggleBtn) {
-    var cur = null;
-    function render(s){
-      cur = s;
-      if (!s) { statusEl.textContent = 'Wake-up: (Mac offline)'; skipBtn.style.display = 'none'; toggleBtn.style.display = 'none'; return; }
-      skipBtn.style.display = ''; toggleBtn.style.display = '';
-      if (!s.enabled) {
-        statusEl.textContent = 'Wake-up: OFF';
-        toggleBtn.textContent = 'Turn on wake-up';
-        skipBtn.style.display = 'none';
-      } else if (s.skip_date) {
-        statusEl.textContent = 'Wake-up: on — skipping ' + s.skip_date;
-        toggleBtn.textContent = 'Turn off wake-up';
-        skipBtn.textContent = 'Un-skip';
-      } else {
-        statusEl.textContent = 'Wake-up: on';
-        toggleBtn.textContent = 'Turn off wake-up';
-        skipBtn.textContent = 'Skip tomorrow';
-      }
-    }
-    function act(action){
-      fetch(BS + '/wakeup', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({action: action})})
-        .then(function(r){ return r.json(); }).then(render).catch(function(){ render(null); });
-    }
-    toggleBtn.addEventListener('click', function(){ act(cur && cur.enabled ? 'disable' : 'enable'); });
-    skipBtn.addEventListener('click', function(){ act(cur && cur.skip_date ? 'unskip' : 'skip-tomorrow'); });
-    fetch(BS + '/wakeup').then(function(r){ return r.json(); }).then(render).catch(function(){ render(null); });
-  }
 })();
 </script>
 </body>
