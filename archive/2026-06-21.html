@@ -249,17 +249,17 @@
       <span>Good morning</span>
       <button id="poemPlayBtn" style="background:none;border:1px solid #d8b25a;color:#d8b25a;border-radius:14px;padding:3px 12px;font-size:11px;cursor:pointer;letter-spacing:0.04em;">&#9654; hear it</button>
     </div>
-    <div style="font-family:Georgia,'Times New Roman',serif;font-size:17px;line-height:1.78;color:var(--text,#e8e6e1);white-space:pre-line;">The morning comes in low and green across the grass,
-the kind of light that doesn't ask you what you've made of it.
-There's dew still bent on every blade, holding for a little while,
-and somewhere a screen door wants opening, a kettle wants its flame.
-You traded a city of glass and clocks for this —
-for dirt that keeps no schedule but its own,
-for hands that learn a slower kind of finish.
-The rows you set down yesterday are working in the dark,
-roots reaching past the part of you that doubts.
-Nothing here is rushing. The field will wait,
-the way good ground waits, patient and half-asleep, for the man who tends it.
+    <div style="font-family:Georgia,'Times New Roman',serif;font-size:17px;line-height:1.78;color:var(--text,#e8e6e1);white-space:pre-line;">The light comes early this time of year,
+gray going gold over a field that wasn't always yours.
+Out past the window, the rows you bent to plant
+do their slow work in the dark of the soil —
+not asking whether you slept, or whether you're sure.
+There was a life once that ran on being ready:
+sharp, lit, finished before the sun was up.
+This one keeps a slower clock.
+The grass holds its dew like it has all the time in the world,
+and the whole slow morning is only waiting
+on the sound of your feet finding the floor.
 
 You don't have to be ready. You only have to be here.
 What you started is still becoming.
@@ -301,43 +301,42 @@ So — up.</div>
   </div>
 
 <div class="session" data-section="daily-brief-narrate-voice">
-    <div class="session-header">
-      <div class="session-icon tools">🎙️</div>
-      <div class="session-meta">
-        <div class="session-title">Daily Brief — Narrate Voice & Wake-Up Ritual</div>
-        <div class="session-time">5:11 PM – 11:14 PM</div>
-      </div>
-    </div>
-    <div class="session-body">
-      <p><span class="tag blue">tools</span> Swapped the daily brief's old Ava voice for the warm shimmer narrate voice, then built out a 6 AM wake-up ritual and fixed the broken Ask feature.</p>
-      <ul class="detail-list">
-        <li>Replaced edge-tts Ava with OpenAI gpt-4o-mini-tts shimmer; deployed in commit d518b20 with both TTS paths on the narrate CLI</li>
-        <li>Found and fixed the missing OPENAI_API_KEY in ~/.claude/.env and the launchd PATH so the 6 AM scheduled run works — proven via a simulated launchd env</li>
-        <li>Shipped the wake-up ritual: daily poem plus brief in shimmer, with a skip-tomorrow / turn-off toggle defaulting on</li>
-        <li>Fixed the Ask feature — retired model swapped to claude-sonnet-4-6, data-enabled, and a new /save-ask endpoint so answers save into the brief</li>
-        <li>Cured poem audio clipping its last line, added a gentle 6 AM intro, doubled poem length, and hardened TTS against tail-clipping</li>
-        <li>Inventoried the global custom skills (notebooklm, chat-logger, imessage-search, yt-search); flagged webflow-audit dormant</li>
-      </ul>
+  <div class="session-header">
+    <div class="session-icon tools">🎙️</div>
+    <div class="session-meta">
+      <div class="session-title">Daily Brief — Voice, Wake-Up &amp; Ask</div>
+      <div class="session-time">5:11 PM – 11:14 PM</div>
     </div>
   </div>
-  <div class="session" data-section="productivity-app-build">
-    <div class="session-header">
-      <div class="session-icon tools">✅</div>
-      <div class="session-meta">
-        <div class="session-title">Task App Build & Deploy</div>
-        <div class="session-time">5:18 PM – 5:41 PM</div>
-      </div>
-    </div>
-    <div class="session-body">
-      <p><span class="tag blue">tools</span> Built and deployed tasks.benmartel.com end to end, then tightened up the mobile experience.</p>
-      <ul class="detail-list">
-        <li>Stood up a PHP + MySQL task app on the DO droplet with its own vhost, database, and SSL; seeded 5 categories and 22 tasks</li>
-        <li>Verified the no-wash guarantee: a re-push kept a checked task done with zero dupes; initialized git</li>
-        <li>Mobile polish — bigger edit/delete targets and long-press drag-to-reorder</li>
-        <li>Fixed category-header text overflow on mobile</li>
-      </ul>
+  <div class="session-body">
+    <p><span class="tag blue">tools</span> Rebuilt the daily brief around the warm "shimmer" narration voice and added a 6 AM wake-up ritual with a fixed Ask feature.</p>
+    <ul class="detail-list">
+      <li>Replaced the edge-tts "Ava" voice with the narrate CLI (OpenAI gpt-4o-mini-tts, "shimmer") across both TTS paths</li>
+      <li>Fixed the 6 AM run — added OPENAI_API_KEY to ~/.claude/.env and put narrate on the launchd PATH; deployed today's brief (commit d518b20)</li>
+      <li>Built a 6 AM wake-up ritual: a daily poem in shimmer plus the brief, with a skip-tomorrow / turn-off toggle (default on)</li>
+      <li>Fixed the broken Ask feature — swapped the retired model for claude-sonnet-4-6, enabled data, and added a /save-ask endpoint</li>
+      <li>Hardened poem and intro audio against tail-clipping, roughly doubled poem length, and added a gentle wake-up intro</li>
+    </ul>
+  </div>
+</div>
+<div class="session" data-section="productivity-app-build">
+  <div class="session-header">
+    <div class="session-icon tools">✅</div>
+    <div class="session-meta">
+      <div class="session-title">Task App — tasks.benmartel.com</div>
+      <div class="session-time">5:18 PM – 5:41 PM</div>
     </div>
   </div>
+  <div class="session-body">
+    <p><span class="tag blue">tools</span> Built and deployed a PHP + MySQL task manager on a DigitalOcean droplet, then polished it for mobile.</p>
+    <ul class="detail-list">
+      <li>Stood up tasks.benmartel.com with its own vhost, database, and SSL; seeded 5 categories and 22 tasks</li>
+      <li>Verified a no-wash guarantee — re-pushing left a checked task done with zero duplicates; initialized git</li>
+      <li>Mobile: bigger edit/delete targets and long-press drag-to-reorder</li>
+      <li>Fixed category-header text overflow on mobile</li>
+    </ul>
+  </div>
+</div>
   <div class="projects-section">
     <div class="projects-header">Projects</div>
     <div class="projects-subtitle">46 active folders in ~/projects</div>
@@ -672,17 +671,17 @@ So — up.</div>
 <script>
 (function() {
   var sections = [
-    {
-      id: "daily-brief-narrate-voice",
-      title: "Daily Brief — Narrate Voice & Wake-Up Ritual",
-      text: "You spent the evening rebuilding your daily brief around the new voice. You ripped out the old Ava text-to-speech and dropped in the warm, husky shimmer narrate voice, then deployed it in commit d518b20 with both audio paths running through the narrate CLI. Along the way you caught that your OpenAI API key was missing from your dot-claude env file and that narrate wasn't on the launchd path, so the six A.M. scheduled run would have failed silently — you fixed both and proved it with a simulated launchd environment. Then you shipped the wake-up ritual itself: a daily poem and the brief read aloud in shimmer at six A.M., with a skip-tomorrow and turn-off toggle that defaults to on. You also fixed the broken Ask feature, swapping the retired model for claude-sonnet-4-6, enabling the data, and adding a save-ask endpoint so your answers fold back into the brief. Finally you chased down the poem audio clipping its last line, added a gentle six A.M. intro, made the poems about twice as long, and hardened everything against tail-clipping."
-    },
-    {
-      id: "productivity-app-build",
-      title: "Task App Build & Deploy",
-      text: "You built and shipped your own task app today — tasks dot benmartel dot com. It's a PHP and MySQL app running on your DigitalOcean droplet with its own virtual host, database, and SSL certificate, and you seeded it with five categories and twenty-two tasks. You verified the no-wash guarantee by re-pushing and confirming a checked task stayed done with no duplicates, and you got git initialized. Then you turned to mobile, making the edit and delete targets bigger, adding long-press drag-to-reorder, and fixing the category header text that was overflowing on small screens."
-    }
-  ];
+  {
+    id: "daily-brief-narrate-voice",
+    title: "Daily Brief — Voice, Wake-Up, and Ask",
+    text: "You gave the daily brief a whole new voice today. You pulled out the old edge-tts Ava narration and switched everything over to the narrate CLI — the warm, husky shimmer voice — across both text-to-speech paths. To make the six A.M. run actually work, you added your OpenAI key to the env file and got narrate onto the launchd path, then deployed today's brief in the new voice. From there you built a six A.M. wake-up ritual: a fresh poem read in shimmer alongside the brief, with a skip-tomorrow and a turn-it-off toggle that defaults to on. You also fixed the broken Ask feature — swapped out the retired model for Sonnet, enabled data, and added a save-ask endpoint so answers fold right into the brief. And you hardened the audio so poems and intros stop clipping their last line, then roughly doubled the poem length and added a gentle wake-up intro."
+  },
+  {
+    id: "productivity-app-build",
+    title: "Task App at tasks dot benmartel dot com",
+    text: "You also built and shipped a task app today. You stood up tasks dot benmartel dot com on your DigitalOcean droplet — PHP and MySQL, with its own virtual host, database, and SSL — and seeded it with five categories and twenty-two tasks. You proved out a no-wash guarantee: re-pushing left a checked-off task still done, with zero duplicates, and you initialized git on it. Then you tightened up mobile — bigger edit and delete targets, long-press drag to reorder, and a fix for category headers overflowing on small screens."
+  }
+];
   var sessionLookup = {"diy-sensor-aggregation":"/Users/a7-13-2024/projects/explore/raspberry-pi-farm-automation","playwright-cli-vs-mcp":"/Users/a7-13-2024/projects/notebooklm-data-extractor","superwhisper-clipboard":"/Users/a7-13-2024/projects/adelaide","dashboard-resume-button":"/Users/a7-13-2024/projects","orient-and-commit-cleanup":"/Users/a7-13-2024/projects/grow-together","escape-key-fix":"/Users/a7-13-2024/projects","daily-brief-mar20":"/Users/a7-13-2024/projects/daily-brief","daily-brief-page":"/Users/a7-13-2024/projects/daily-brief","usage-strategy-model-tiers":"/Users/a7-13-2024/projects","gove-martel-genealogy-research":"/Users/a7-13-2024/projects/family/ancestry","projects-folder-assessment":"/Users/a7-13-2024/projects","uppercase-renames":"/Users/a7-13-2024/projects","kurt-photo-setup":"/Users/a7-13-2024/projects","productivity-app-build":"/Users/a7-13-2024/projects/productivity","blank-bed-map-card":"/Users/a7-13-2024/projects/grow-together","cory-garden-advice":"/Users/a7-13-2024/projects/grow-together","commit-garden-updates":"/Users/a7-13-2024/projects/grow-together","imessage-search-fix":"/Users/a7-13-2024/projects/apple-data/imessage-search","ancestry-census-transcription":"/Users/a7-13-2024/projects/family/ancestry","clawed-spec-library":"/Users/a7-13-2024/projects","daily-brief-narrate-voice":"/Users/a7-13-2024/projects/daily-brief","therapy-site":"/Users/a7-13-2024/projects/therapy","grow-together-hub-deploy":"/Users/a7-13-2024/projects/grow-together","incoming-queue-integration":"/Users/a7-13-2024/projects/grow-together","voice-pipeline-build":"/Users/a7-13-2024/projects/notebooklm-data-extractor","mapper-drag-fix":"/Users/a7-13-2024/projects","kelley-website-kickoff":"/Users/a7-13-2024/projects/kelley","cli-anything-research":"/Users/a7-13-2024/projects/notebooklm-data-extractor","project-inventory":"/Users/a7-13-2024/projects","field-recorder-app":"/Users/a7-13-2024/projects","cynthia-hajjar-wix":"/Users/a7-13-2024/projects","adelaide-sheets-menus":"/Users/a7-13-2024/projects/adelaide","webflow-mcp-phase-setup":"/Users/a7-13-2024/projects/adelaide","narrate-voice-global":"/Users/a7-13-2024/projects/grow-together","weather-history-app":"/Users/a7-13-2024/projects","adelaide-beverage-build":"/Users/a7-13-2024/projects/adelaide","kelley-content-search":"/Users/a7-13-2024/projects/kelley","trackpad-return-hack":"/Users/a7-13-2024/projects","dna-ancestry-research":"/Users/a7-13-2024/projects/family/ancestry","global-note-two-selves":"/Users/a7-13-2024/projects","daily-brief-interactive":"/Users/a7-13-2024/projects/daily-brief","google-sheets-mcp-research":"/Users/a7-13-2024/projects/adelaide","secbev-exact-build":"/Users/a7-13-2024/projects/indesign-to-web","webflow-mcp-auth-research":"/Users/a7-13-2024/projects/adelaide","cafe-ambient-audio-search":"/Users/a7-13-2024/projects","crop-families-poster":"/Users/a7-13-2024/projects/grow-together","fix-johnnys-images":"/Users/a7-13-2024/projects/grow-together/seeds","farm-email-review":"/Users/a7-13-2024/projects/grow-together","tori-progress-log":"/Users/a7-13-2024/projects/grow-together","anthony-cory-2026-compile":"/Users/a7-13-2024/projects/grow-together","diy-ag-automation-research":"/Users/a7-13-2024/projects/explore/glucose-monitor-company-tect-explore-for-tobin-ashley","daily-dashboard-refresh":"/Users/a7-13-2024/projects/grow-together"};
   var audio = new Audio();
   var state = 'idle';
@@ -703,9 +702,9 @@ So — up.</div>
   var allSessions = document.querySelectorAll('.session');
 
   function getAudioSrc(idx) {
-    if (idx === -1) return 'audio/intro.mp3';
-    if (idx >= sections.length) return 'audio/outro.mp3';
-    return 'audio/section-' + idx + '.mp3';
+    if (idx === -1) return '2026-06-21-audio/intro.mp3';
+    if (idx >= sections.length) return '2026-06-21-audio/outro.mp3';
+    return '2026-06-21-audio/section-' + idx + '.mp3';
   }
 
   function updateProgress() {
@@ -896,7 +895,7 @@ So — up.</div>
       singleMode = true;
       state = 'playing';
       currentSection = secIdx;
-      audio.src = 'audio/section-' + secIdx + '.mp3';
+      audio.src = '2026-06-21-audio/section-' + secIdx + '.mp3';
       audio.playbackRate = speeds[speedIdx];
       audio.play().catch(function() {});
       pb.classList.add('playing');
@@ -1144,7 +1143,7 @@ So — up.</div>
     var poemAudio = null;
     poemBtn.addEventListener('click', function(){
       if (poemAudio && !poemAudio.paused) { poemAudio.pause(); poemAudio.currentTime = 0; poemBtn.innerHTML = '&#9654; hear it'; return; }
-      poemAudio = new Audio('audio/poem.mp3');
+      poemAudio = new Audio('2026-06-21-audio/poem.mp3');
       poemBtn.innerHTML = '&#10073;&#10073; stop';
       poemAudio.onended = function(){ poemBtn.innerHTML = '&#9654; hear it'; };
       poemAudio.play().catch(function(){ poemBtn.innerHTML = '&#9654; hear it'; });
