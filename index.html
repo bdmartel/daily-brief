@@ -58,6 +58,34 @@
     border-radius: 6px; padding: 0.25rem 0.5rem; cursor: pointer; transition: background 0.15s;
   }
   .speed-btn:hover { background: rgba(74, 158, 255, 0.2); }
+  .skip-btn {
+    display: flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 50%; border: none;
+    background: var(--accent-dim); color: var(--accent); cursor: pointer; flex-shrink: 0;
+    transition: transform 0.15s, background 0.15s;
+  }
+  .skip-btn:active { transform: scale(0.9); }
+  .skip-btn svg { width: 16px; height: 16px; }
+  .wu-transport {
+    display: none; position: fixed; bottom: 1.5rem; right: 5.25rem;
+    align-items: center; gap: 0.35rem; z-index: 150;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 26px; padding: 0.4rem 0.75rem 0.4rem 0.5rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  }
+  .wu-transport.visible { display: flex; }
+  .wu-transport button {
+    display: flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; border-radius: 50%; border: none;
+    background: none; color: var(--text); cursor: pointer;
+  }
+  .wu-transport button:active { transform: scale(0.9); }
+  .wu-transport button svg { width: 18px; height: 18px; }
+  .wu-transport .wu-name {
+    font-size: 0.75rem; color: var(--text-muted); max-width: 90px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  @media (max-width: 480px) { .wu-transport { right: 4.9rem; } .wu-transport .wu-name { max-width: 64px; } }
   .session {
     background: var(--surface); border: 1px solid var(--border);
     border-radius: 12px; padding: 1.25rem; margin-bottom: 1rem; transition: border-color 0.2s;
@@ -276,9 +304,15 @@ So — up.</div>
   </div>
   <div class="listen-bar" id="listenBar">
     <div class="progress-fill" id="progressFill"></div>
+    <button class="skip-btn" id="prevBtn" aria-label="Previous section" title="Previous section">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+    </button>
     <button class="listen-btn" id="listenBtn" aria-label="Listen to brief">
       <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
       <svg id="pauseIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    </button>
+    <button class="skip-btn" id="nextBtn" aria-label="Next section" title="Next section">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
     </button>
     <div class="listen-label">
       <span id="listenText">Listen to today's brief</span>
@@ -741,6 +775,19 @@ So — up.</div>
   </div>
 </div>
 
+<div class="wu-transport" id="wuTransport">
+  <button id="wuPrev" aria-label="Previous part" title="Previous part">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+  </button>
+  <button id="wuToggle" aria-label="Play or pause" title="Play/pause">
+    <svg id="wuTogIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  </button>
+  <button id="wuNext" aria-label="Next part" title="Next part">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+  </button>
+  <span class="wu-name" id="wuName"></span>
+</div>
+
 <button class="fab" id="fab" aria-label="Listen">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
 </button>
@@ -909,21 +956,91 @@ So — up.</div>
 
   btn.addEventListener('click', toggle);
 
-  // Lower-right FAB plays the WHOLE wake-up (intro -> poem -> tasks -> affirmations) in succession
-  var wuAudio = new Audio('audio/wakeup-complete.mp3?t=' + Date.now());
-  var FAB_PLAY = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
-  var FAB_PAUSE = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+  // Lower-right FAB plays the wake-up as a section playlist (wake-up -> poem -> your day ->
+  // in touch -> at the mirror) with a slide-out transport: prev / play-pause / next.
+  var wuTracks = [
+    { src: 'audio/wakeup-intro.mp3', name: 'Wake-up' },
+    { src: 'audio/poem.mp3', name: 'Poem' },
+    { src: 'audio/tasks.mp3', name: 'Your day' },
+    { src: 'audio/comms.mp3', name: 'In touch' },
+    { src: 'audio/affirmations.mp3', name: 'At the mirror' }
+  ];
+  var wuAudio = new Audio();
+  var wuIdx = -1;   // -1 = not started
+  var wuDir = 1;    // last direction of travel, used to hop over missing segments
+  var wuT = Date.now();
+  var wuTransport = document.getElementById('wuTransport');
+  var wuName = document.getElementById('wuName');
+  var wuTogIcon = document.getElementById('wuTogIcon');
+  var PATH_PLAY = 'M8 5v14l11-7z';
+  var PATH_PAUSE = 'M6 19h4V5H6v14zm8-14v14h4V5h-4z';
+  var FAB_PLAY = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="' + PATH_PLAY + '"/></svg>';
+  var FAB_PAUSE = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="' + PATH_PAUSE + '"/></svg>';
   fab.innerHTML = FAB_PLAY;
   fab.style.display = 'flex';
   fab.setAttribute('aria-label', 'Play the whole wake-up');
-  fab.addEventListener('click', function() {
-    try { if (typeof audio !== 'undefined' && audio && !audio.paused) audio.pause(); } catch (e) {}
+
+  function wuSetIcons() {
+    var playing = !wuAudio.paused && wuIdx >= 0;
+    fab.innerHTML = playing ? FAB_PAUSE : FAB_PLAY;
+    wuTogIcon.querySelector('path').setAttribute('d', playing ? PATH_PAUSE : PATH_PLAY);
+  }
+  function wuStop() {
+    wuAudio.pause();
+    wuAudio.removeAttribute('src');
+    wuIdx = -1;
+    wuTransport.classList.remove('visible');
+    wuSetIcons();
+  }
+  function wuLoad(i, dir) {
+    if (i < 0 || i >= wuTracks.length) { wuStop(); return; }
+    wuIdx = i; wuDir = dir || 1;
+    wuName.textContent = wuTracks[i].name;
+    wuTransport.classList.add('visible');
+    try { if (state === 'playing') pause(); } catch (e) {}
+    wuAudio.src = wuTracks[i].src + '?t=' + wuT;
+    wuAudio.play().catch(function () {});
+  }
+  function wuToggle() {
+    if (wuIdx < 0) { wuLoad(0, 1); return; }
     if (wuAudio.paused) { wuAudio.play().catch(function () {}); } else { wuAudio.pause(); }
+  }
+  fab.addEventListener('click', wuToggle);
+  document.getElementById('wuToggle').addEventListener('click', wuToggle);
+  document.getElementById('wuPrev').addEventListener('click', function() {
+    if (wuIdx < 0) { wuLoad(0, 1); return; }
+    // Like a real player: first tap restarts the current part; another within 3s goes back
+    if (wuAudio.currentTime > 3 || wuIdx === 0) { wuAudio.currentTime = 0; return; }
+    wuLoad(wuIdx - 1, -1);
+  });
+  document.getElementById('wuNext').addEventListener('click', function() {
+    if (wuIdx < 0) { wuLoad(0, 1); return; }
+    wuLoad(wuIdx + 1, 1);
+  });
+  wuAudio.addEventListener('play', wuSetIcons);
+  wuAudio.addEventListener('pause', wuSetIcons);
+  wuAudio.addEventListener('ended', function() { wuLoad(wuIdx + 1, 1); });
+  wuAudio.addEventListener('error', function() {
+    // Missing segment (e.g. no In-touch some days): hop over it in the direction of travel
+    if (wuIdx < 0) return;
+    var n = wuIdx + wuDir;
+    if (n >= 0 && n < wuTracks.length) { wuLoad(n, wuDir); } else { wuStop(); }
   });
   btn.addEventListener('click', function() { try { if (!wuAudio.paused) wuAudio.pause(); } catch (e) {} });
-  wuAudio.addEventListener('play', function() { fab.innerHTML = FAB_PAUSE; });
-  wuAudio.addEventListener('pause', function() { fab.innerHTML = FAB_PLAY; });
-  wuAudio.addEventListener('ended', function() { fab.innerHTML = FAB_PLAY; });
+
+  // Prev/next section for the summary player up top
+  var prevBtn = document.getElementById('prevBtn');
+  var nextBtn = document.getElementById('nextBtn');
+  function skipTo(idx) {
+    if (idx < -1) idx = -1;
+    if (idx > sections.length) idx = sections.length;
+    try { if (!wuAudio.paused) wuAudio.pause(); } catch (e) {}
+    singleMode = false;
+    state = 'playing';
+    playSection(idx);
+  }
+  prevBtn.addEventListener('click', function() { skipTo(state === 'idle' ? -1 : currentSection - 1); });
+  nextBtn.addEventListener('click', function() { skipTo(state === 'idle' ? -1 : currentSection + 1); });
 
   speedBtn.addEventListener('click', function(e) {
     e.stopPropagation();
