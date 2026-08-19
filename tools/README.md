@@ -21,11 +21,12 @@ Deterministic: same seed → same take (mulberry32 PRNG replaces Math.random).
 npm install node-web-audio-api        # one-time, anywhere
 node tools/ethgarden-render.mjs 390 20260818 /tmp/ethgarden-390s.wav
 
-# Wake-up envelope: +5dB trim (solo ≈ −29 LUFS), 45s fade-in,
-# −8dB self-duck at 3:00 (voice comes in there), fade-out 6:10–6:30.
-ffmpeg -y -i /tmp/ethgarden-390s.wav -af "volume=5dB,afade=t=in:st=0:d=45:curve=tri,volume='if(lt(t,180),1,if(lt(t,186),pow(10,-8/20*(t-180)/6),pow(10,-8/20)))':eval=frame,afade=t=out:st=370:d=20" -c:a libmp3lame -b:a 128k -ar 44100 audio/garden-ambience.mp3
+# Wake-up envelope: +5dB trim (≈ −29 LUFS throughout), 45s fade-in,
+# fade-out 6:10–6:30. No duck: the voice (≈ −21 LUFS) rides ~8 dB above
+# the bed, which Ben tuned by ear on 2026-08-18 (an −8 dB duck buried it).
+ffmpeg -y -i /tmp/ethgarden-390s.wav -af "volume=5dB,afade=t=in:st=0:d=45:curve=tri,afade=t=out:st=370:d=20" -c:a libmp3lame -b:a 128k -ar 44100 audio/garden-ambience.mp3
 ```
 
-Change the seed for a different "performance" of the same garden. The 180s
-solo window is mirrored by a `sleep 180` in the alarm block of
-`~/.claude/scripts/daily-dashboard.sh` — keep them in sync if retimed.
+Change the seed for a different "performance" of the same garden. The voice
+enters after the `sleep 180` in the alarm block of
+`~/.claude/scripts/daily-dashboard.sh`; the file just holds its level there.
