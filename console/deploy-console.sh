@@ -15,10 +15,18 @@ set -a; . "$HOME/.claude/.env"; set +a
 echo "==> console php -> $HOST:$DOCROOT/morning/"
 rsync -az --exclude='deploy-console.sh' --exclude='.DS_Store' ./ "$HOST:$DOCROOT/morning/"
 
-echo "==> private config + state perms"
-ssh "$HOST" "mkdir -p $PRIVDIR \
-  && printf '<?php define(%s, %s);\n' \"'MORNING_TOKEN'\" \"'$BRIEF_CONSOLE_TOKEN'\" > $PRIVDIR/morning-config.php \
-  && touch $PRIVDIR/morning-state.json \
+echo "==> private config (token + preview keys) + state perms"
+CFG=$(mktemp)
+cat > "$CFG" << EOF
+<?php
+define('MORNING_TOKEN', '$BRIEF_CONSOLE_TOKEN');
+define('MORNING_ANTHROPIC_KEY', '${ANTHROPIC_API_KEY:-}');
+define('MORNING_OPENAI_KEY', '${OPENAI_API_KEY:-}');
+EOF
+ssh "$HOST" "mkdir -p $PRIVDIR"
+rsync -az "$CFG" "$HOST:$PRIVDIR/morning-config.php"
+rm -f "$CFG"
+ssh "$HOST" "touch $PRIVDIR/morning-state.json $PRIVDIR/morning-versions.json \
   && chown -R www-data:www-data $PRIVDIR $DOCROOT/morning \
-  && chmod 640 $PRIVDIR/morning-config.php $PRIVDIR/morning-state.json"
+  && chmod 640 $PRIVDIR/morning-config.php $PRIVDIR/morning-state.json $PRIVDIR/morning-versions.json"
 echo "==> done: https://tasks.benmartel.com/morning/"
