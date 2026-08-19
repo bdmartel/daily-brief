@@ -24,8 +24,11 @@ node tools/ethgarden-render.mjs 390 20260818 /tmp/ethgarden-390s.wav
 # Wake-up envelope: +5dB trim (≈ −29 LUFS throughout), 45s fade-in,
 # fade-out 6:10–6:30. No duck: the voice (≈ −21 LUFS) rides ~8 dB above
 # the bed, which Ben tuned by ear on 2026-08-18 (an −8 dB duck buried it).
-ffmpeg -y -i /tmp/ethgarden-390s.wav -af "volume=5dB,afade=t=in:st=0:d=45:curve=tri,afade=t=out:st=370:d=20" -c:a libmp3lame -b:a 128k -ar 44100 audio/garden-ambience.mp3
+ffmpeg -y -i /tmp/ethgarden-390s.wav -af "volume=5dB,afade=t=in:st=0:d=45:curve=tri,afade=t=out:st=370:d=20" -c:a libmp3lame -b:a 128k -ar 44100 assets/garden-ambience.mp3
 ```
+
+Output goes to `assets/` (NOT `audio/`): the daily rebuild `rm -rf`'s `audio/`
+and deleted the first copy (2026-08-18).
 
 Change the seed for a different "performance" of the same garden. The voice
 enters after the `sleep 180` in the alarm block of
