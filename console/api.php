@@ -41,7 +41,7 @@ function next_morning(): string {
 const DEFAULTS = [
   'alarm_enabled' => true,
   'skip_date' => '',
-  'wake_hour' => null, 'wake_date' => '',
+  'wake_hour' => null, 'wake_minute' => 0, 'wake_date' => '',
   'alarm_volume' => 70,
   'garden_enabled' => true,
   'garden_solo_seconds' => 180,
@@ -75,6 +75,7 @@ function clamp_state(array $s): array {
   $s['alarm_volume'] = max(30, min(100, (int)$s['alarm_volume']));
   $s['garden_solo_seconds'] = max(0, min(300, (int)$s['garden_solo_seconds']));
   if ($s['wake_hour'] !== null && $s['wake_hour'] !== '') $s['wake_hour'] = max(5, min(11, (int)$s['wake_hour']));
+  $s['wake_minute'] = max(0, min(59, (int)($s['wake_minute'] ?? 0)));
   return $s;
 }
 
@@ -102,7 +103,7 @@ if ($fn === 'save') {
   if (!empty($s['hold']) && empty($body['_unhold'])) fail('held', 423);
   if (!empty($body['_unhold'])) $s['hold'] = false;
   if (!empty($body['_hold']))   $s['hold'] = true;
-  $editable = array_merge(VERSION_KEYS, ['skip_date','wake_hour','wake_date','whisper','whisper_date','doorway','doorway_date']);
+  $editable = array_merge(VERSION_KEYS, ['skip_date','wake_hour','wake_minute','wake_date','whisper','whisper_date','doorway','doorway_date']);
   foreach ($editable as $k) if (array_key_exists($k, $body)) $s[$k] = $body[$k];
   if (!empty($body['_stamp_whisper'])) $s['whisper_date'] = $s['whisper'] !== '' ? next_morning() : '';
   if (!empty($body['_stamp_doorway'])) $s['doorway_date'] = $s['doorway'] !== '' ? next_morning() : '';

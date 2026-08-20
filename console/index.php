@@ -168,12 +168,11 @@ document.getElementById('pw').addEventListener('keydown',e=>{if(e.key==='Enter')
       <button class="btn warn" id="skipbtn"></button>
     </div>
     <div class="row">
-      <div><label class="big">Wake hour <span class="hint" style="display:inline">(<span id="wakemorning">next morning</span> only)</span></label><div class="hint">One-time. The guard fires at this hour instead of 6, then forgets.</div></div>
-      <select id="wake_hour">
-        <option value="">6:00 (usual)</option>
-        <option value="7">7:00</option><option value="8">8:00</option>
-        <option value="9">9:00</option><option value="10">10:00</option>
-      </select>
+      <div><label class="big">Wake time <span class="hint" style="display:inline">(<span id="wakemorning">next morning</span> only)</span></label><div class="hint">Set it like an alarm — any time, one morning only, then back to 6:00. Leave at 6:00 for the usual. Times before ~6:00 need the Mac awake (it self-wakes at 5:58).</div></div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <input type="time" id="wake_time" min="05:00" max="11:59" step="60" style="width:auto;font-size:15px">
+        <button class="btn small" id="wake_clear" title="back to 6:00">↺</button>
+      </div>
     </div>
     <div class="row">
       <div><label class="big">Loudness</label><div class="hint">Bedroom speaker volume when the morning begins.</div></div>
@@ -267,8 +266,9 @@ document.getElementById('pw').addEventListener('keydown',e=>{if(e.key==='Enter')
 <div id="toast"></div>
 
 <script>
-const F = ['alarm_enabled','wake_hour','alarm_volume','garden_enabled','garden_solo_seconds','voice_weather',
+const F = ['alarm_enabled','wake_time','alarm_volume','garden_enabled','garden_solo_seconds','voice_weather',
            'whisper','doorway','tasks_enabled','comms_enabled','mirror_enabled','refrain_text','intro_override','affirmations_text'];
+const pad2 = n => String(n).padStart(2,'0');
 let S = null, V = [], saveTimer = null;
 const $ = id => document.getElementById(id);
 
@@ -321,9 +321,10 @@ const SUGS = [
 {c:'clock', t:'Stealth morning', b:'Volume 40 — enough to surface you, not the whole house.', p:{alarm_volume:40}},
 {c:'clock', t:'Full send', b:'Volume 85. You will not sleep through this.', p:{alarm_volume:85}},
 {c:'clock', t:'Quick garden breath', b:'Just one minute of garden, then the day.', p:{garden_enabled:true, garden_solo_seconds:60}},
-{c:'clock', t:'Sleep in — 7', b:'One-time: tomorrow fires at 7 instead of 6.', p:{wake_hour:7, _stamp_wake:true}},
-{c:'clock', t:'Sleep in — 8', b:'One-time: tomorrow fires at 8.', p:{wake_hour:8, _stamp_wake:true}},
-{c:'clock', t:'Back to 6', b:'Clear any one-time wake hour.', p:{wake_hour:null, _stamp_wake:true}},
+{c:'clock', t:'Sleep in — 7', b:'One-time: tomorrow fires at 7 instead of 6.', p:{wake_hour:7, wake_minute:0, _stamp_wake:true}},
+{c:'clock', t:'Sleep in — 8', b:'One-time: tomorrow fires at 8.', p:{wake_hour:8, wake_minute:0, _stamp_wake:true}},
+{c:'clock', t:'Gentle 6:30', b:'One-time: half an hour more, tomorrow only.', p:{wake_hour:6, wake_minute:30, _stamp_wake:true}},
+{c:'clock', t:'Back to 6', b:'Clear any one-time wake time.', p:{wake_hour:null, wake_minute:0, _stamp_wake:true}},
 {c:'clock', t:'Just the poem', b:'Garden + intro + poem, then silence. Tasks, texts and mirror stay off.', p:{tasks_enabled:false, comms_enabled:false, mirror_enabled:false}},
 {c:'clock', t:'No-guilt morning', b:'Skip the task walk-through entirely — the list will keep.', p:{tasks_enabled:false}},
 {c:'clock', t:'Hermit day', b:'No in-touch recap — yesterday\'s people can stay in yesterday.', p:{comms_enabled:false}},
@@ -380,7 +381,7 @@ const PV_SECTIONS = [
 let pvAudio = null;
 
 function renderTimeline(){
-  const wk = (S.wake_date===S.next_morning && S.wake_hour) ? S.wake_hour + ':00' : '6:00';
+  const wk = (S.wake_date===S.next_morning && S.wake_hour) ? S.wake_hour + ':' + pad2(S.wake_minute||0) : '6:00';
   const skip = S.skip_date && S.skip_date >= S.next_morning;
   const solo = S.garden_solo_seconds;
   const mins = Math.floor(solo/60), secs = solo%60;
@@ -492,7 +493,8 @@ function renderSync(){
 
 function render(){
   for (const k of ['alarm_enabled','garden_enabled','tasks_enabled','comms_enabled','mirror_enabled']) $(k).checked = !!S[k];
-  $('wake_hour').value = S.wake_date === S.next_morning && S.wake_hour ? String(S.wake_hour) : '';
+  $('wake_time').value = (S.wake_date === S.next_morning && S.wake_hour)
+    ? pad2(S.wake_hour) + ':' + pad2(S.wake_minute || 0) : '06:00';
   $('alarm_volume').value = S.alarm_volume; $('vol_v').textContent = S.alarm_volume;
   $('garden_solo_seconds').value = S.garden_solo_seconds;
   $('solo_v').textContent = (S.garden_solo_seconds/60).toFixed(1).replace('.0','') + ' min';
@@ -519,7 +521,10 @@ function collect(){
   b.voice_weather = $('voice_weather').value.trim();
   b.whisper = $('whisper').value.trim(); b._stamp_whisper = true;
   b.doorway = $('doorway').value; b._stamp_doorway = true;
-  b.wake_hour = $('wake_hour').value ? +$('wake_hour').value : null; b._stamp_wake = true;
+  const wt = $('wake_time').value;
+  if (!wt || wt === '06:00') { b.wake_hour = null; b.wake_minute = 0; }
+  else { const [h, m] = wt.split(':').map(Number); b.wake_hour = h; b.wake_minute = m; }
+  b._stamp_wake = true;
   for (const k of ['refrain_text','intro_override','affirmations_text']) b[k] = $(k).value;
   return b;
 }
@@ -546,6 +551,7 @@ async function boot(){
     queueSave();
   }); }
   $('skipbtn').addEventListener('click', () => save(S.skip_date && S.skip_date >= S.next_morning ? {_unskip:true} : {_skip_next:true}, true));
+  $('wake_clear').addEventListener('click', () => { $('wake_time').value = '06:00'; queueSave(); });
   $('holdbtn').addEventListener('click', toggleHold);
   $('vsave').addEventListener('click', saveVersion);
   setInterval(async () => { const r2 = await fetch('api.php?fn=state'); if (r2.ok) { const fresh = await r2.json();
