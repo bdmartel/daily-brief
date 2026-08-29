@@ -56,6 +56,13 @@ The bedroom speaker (B06 Pro) is normally owned by Ben's **Echo Dot** — one Bl
 - Console knobs in Echo mode: garden on/off + solo minutes shape the mix; **alarm-off / skip-today swap the feed to `assets/alexa-silence.mp3`** (Echo wakes no one); volume = the Echo's own (set it in the routine); a one-time wake-hour override moves the build, but the **Alexa routine time must be moved by hand** in the app
 - Caveats: flash-briefing items cap at 10 min (script shrinks the garden solo to keep total ≤ 9:30); pmset wake is still 5:58 — a Mac asleep at 5:40 runs at 5:58 and 6:00 gets yesterday's brief (fix: `sudo pmset repeat wakeorpoweron MTWRFSU 05:38:00`)
 
+### "Daily Garden" — zero-speech custom skill (the preferred 6 AM player)
+Flash briefings always speak ("Here's your flash briefing" + a required In/From preamble). The **Daily Garden** custom skill (ID `amzn1.ask.skill.2400c000-1fef-4296-97fc-c4fb8e2c7fb4`, In Dev, private) plays the same audio with **zero speech**: its endpoint answers `LaunchRequest` with only an `AudioPlayer.Play` directive (no `outputSpeech`), so playback starts cold on the garden fade-in.
+- **Endpoint:** `console/alexa-garden.php` in this repo, deployed to the tasks droplet at `/var/www/morning/alexa-garden.php` (= https://tasks.benmartel.com/morning/alexa-garden.php; `console/deploy-console.sh` rsyncs the whole folder, so console deploys keep it live). It reads `alexa-feed.json` for the morning's stream URL — so skip/off mornings automatically play the silence file. Pause/Stop → `AudioPlayer.Stop`; Resume/`PlayGardenIntent` → replay. Dev-only skill ⇒ no request-signature verification.
+- **Trigger:** Alexa routine custom action **"open daily garden"** (or say it). Invocation name: `daily garden`.
+- **Built via SMAPI**, not the console UI (the create-skill wizard rendered an empty shell under scripted control): `ask-cli` is installed globally; fresh tokens via `ask util generate-lwa-tokens` (needs `~/.ask/cli_config` to exist; consent auto-approves after first grant). Simulation-verified: spoken response `[]`, Play directive present.
+- The flash-briefing skill stays configured as **fallback** — if Alexa+ ever breaks routine→custom-skill audio, switch the routine action back to News → Flash Briefing.
+
 ## Manual Run
 ```bash
 ~/.claude/scripts/daily-dashboard.sh          # full run, opens browser
