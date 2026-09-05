@@ -1,8 +1,8 @@
 {
-  "uid": "urn:uuid:63ac5ac0-a325-4dcb-8d14-ce90d76f7391",
-  "updateDate": "2026-09-04T09:43:23.0Z",
-  "titleText": "Daily brief for Friday, September 4",
+  "uid": "urn:uuid:53edc070-e914-49d7-84a3-03ce77aa6ca9",
+  "updateDate": "2026-09-05T09:42:39.0Z",
+  "titleText": "Daily brief for Saturday, September 5",
   "mainText": "",
-  "streamUrl": "https://bdmartel.github.io/daily-brief/audio/wakeup-echo.mp3?v=20260904054323",
+  "streamUrl": "https://bdmartel.github.io/daily-brief/audio/wakeup-echo.mp3?v=20260905054239",
   "redirectionUrl": "https://bdmartel.github.io/daily-brief/"
 }
