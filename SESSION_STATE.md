@@ -1,25 +1,23 @@
 # Session State
-**Updated:** 2026-08-29 11:50
-**Chat:** daily-brief-remote-status
+**Updated:** 2026-09-13 21:05
+**Chat:** daily-brief-repeated-line
 
 ## Currently Working On
-Zero-speech wake-up BUILT and verified. Ben's one remaining step: edit the 6:00 routine — replace the News action with custom action "open daily garden" — then ▶ test. Echo mode already ON (tomorrow: build 5:40 silent, routine plays at 6:00).
+Done. Ben's "same line every day" purge is built, test-built twice (commits 0d621f9, 03b6e30), and verified. Tomorrow's 5:40 build is the first live morning; re-run the repetition audit after 3–4 mornings (see memory `brief_repetition_audit`).
 
 ## Done This Session
-- Echo mode live: flash-briefing chain worked end-to-end (routine ▶ played brief through bedroom speaker); flag on; preamble minimized to "From the garden"
-- Zero-speech upgrade: "Daily Garden" custom skill (amzn1.ask.skill.2400c000-1fef-4296-97fc-c4fb8e2c7fb4, In Dev) — endpoint console/alexa-garden.php (deployed to droplet /var/www/morning/, reads alexa-feed.json → skip mornings auto-silence), responds AudioPlayer.Play with NO outputSpeech
-- Built via SMAPI (console wizard rendered empty under scripted Chrome): ask-cli installed, tokens via `ask util generate-lwa-tokens` (Ben clicked Allow), skill+model+enablement by API
-- Simulation proof: "open daily garden" → Play directive, spoken response []
-- Docs: CLAUDE.md "Daily Garden" section; memory updated; token files deleted
+- Audit: two weeks of archive HTML + whisper-1 transcripts of a week of wake-up/preface audio. Found: daily "board/thermometer waited N days" joke in the intro (task hook fed lingering items), doubled "So — up." (5 of 6 mornings), preface's same steal-tip daily, "Good morning, Ben" ×3 per brief, tasks closer formula.
+- Script (`~/.claude/scripts/daily-dashboard.sh`): intro hook = TODAY section only + day-count ban + yesterday-intro anti-repeat; lingering tasks = rotating 3, no ages, no nudge ("STILL OPEN"); tasks/comms no greeting; tasks closer anti-repeated; `strip_closer()` on the motivator; closer "So — up!"; preface = 12-technique rotation + yesterday shown + banned phrasings; tasks prompt gets the date (it had guessed "Tuesday"); intro handoff must not characterize the poem.
+- Poem audio = reading (verse+motivator) + 1.5 s + same reading + standalone "So — up!" clip. Measured: gpt-4o-mini-tts drops a 2-word final line inside a long render 6/8 times; standalone render always speaks it.
+- `wakeup-refrain.txt` closer → "So — up!"; console `CANON_REFRAIN` same, console redeployed (SSH reset on first try, retry OK).
+- Memory updated: poem_variety_fix, tasks_narration_freshness, new brief_repetition_audit; MEMORY.md index.
 
 ## Next Steps
-- Ben: routine action → custom "open daily garden" (keep/adjust volume action), ▶ test, confirm cold garden start
-- If Alexa+ ever breaks custom-action audio: revert routine to News → Flash Briefing (fallback kept configured)
-- Commit repo (console/alexa-garden.php + CLAUDE.md + SESSION_STATE.md)
-- Watch tomorrow's first fully-automatic morning (guard fires 5:40, silent)
-- Optional: sudo pmset repeat wakeorpoweron MTWRFSU 05:38:00
+- Listen tomorrow: intro (no day counts), preface lesson = "repetition with a difference" (day 257), poem twice + closer, tasks tone.
+- Optional: fresh second take instead of the same take repeated (one-line change in the poem narration block).
+- Ben to decide: comms recap narrates personal exchanges (e.g. photos talk with Mom) on the public page.
 
 ## Key Decisions / Context
-- Zero speech impossible in flash-briefing land (boilerplate + required In/From preamble) → custom skill is the only true-silent path
-- Endpoint lives in console/ so deploy-console.sh keeps it on the droplet; dev-only skill ⇒ no signature verification
-- ask-cli tokens: needs ~/.ask/cli_config to exist; pipe Y to its confirm prompt; consent auto-approves after first grant
+- Archive naming: `archive/DATE.html` = brief live before DATE's run; `-v2/-v3` today are the test builds.
+- Anti-repeat files in `~/.claude/`: last-poem, -motivator, -preface, -intro, -tasks-open, -tasks-close.
+- Whisper-1 and gpt-4o-transcribe both tend to miss a short trailing phrase; verify audio endings with `silencedetect`.

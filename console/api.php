@@ -200,7 +200,7 @@ const POEM_ENTRIES = [
 
 // The refrain + pool as they live on the Mac today (fallbacks for preview when
 // the console's editors are blank, i.e. "leave the Mac's files alone").
-const CANON_REFRAIN = "You don't have to be ready. You only have to be here.\nWhat you started is still becoming.\nSo — up.";
+const CANON_REFRAIN = "You don't have to be ready. You only have to be here.\nWhat you started is still becoming.\nSo — up!";
 const CANON_POOL = [
   'I become the thoughts I repeat — so I choose them on purpose.',
   'My emotions are messengers, not commands; I listen, then I lead.',
