@@ -1,8 +1,8 @@
 {
-  "uid": "urn:uuid:b99cffef-8677-4fa6-a2e4-b6ab607622af",
-  "updateDate": "2026-09-17T09:43:26.0Z",
-  "titleText": "Daily brief for Thursday, September 17",
+  "uid": "urn:uuid:d1782c9b-e4a8-4b0a-baa2-aa408aa69a91",
+  "updateDate": "2026-09-18T08:12:32.0Z",
+  "titleText": "Daily brief (paused through 2026-09-19)",
   "mainText": "",
-  "streamUrl": "https://bdmartel.github.io/daily-brief/audio/wakeup-echo.mp3?v=20260917054325",
+  "streamUrl": "https://bdmartel.github.io/daily-brief/assets/alexa-silence.mp3",
   "redirectionUrl": "https://bdmartel.github.io/daily-brief/"
 }
