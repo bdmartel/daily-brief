@@ -1,25 +1,22 @@
 # Session State
-**Updated:** 2026-09-18 04:20
+**Updated:** 2026-09-22 10:10
 **Chat:** daily-brief-repeated-line
 
 ## Currently Working On
-Wake-up audio PAUSED for Sep 18 and Sep 19 (`~/.claude/daily-brief-pause-until` = 2026-09-19; live feed already silent). Resumes Sunday Sep 20 automatically. Earlier: the "same line every day" purge plus the plain-teacher preface are built, test-built three times (commits 0d621f9, 03b6e30, 4d9e264), and verified from the audio. Tomorrow's 5:40 build is the first live morning; re-run the repetition audit after 3–4 mornings (see memory `brief_repetition_audit`).
+Verifying the test build of the rebuilt wake-up (Ben, 2026-09-22): only the poetry lesson + poem are spoken, and the bed under/before the voice is a different procedurally generated soundscape every morning. After the build: commit tools/ (soundscape.py, package.json, package-lock.json, README), .gitignore, CLAUDE.md, SESSION_STATE.md; report to Ben.
 
 ## Done This Session
-- Audit: two weeks of archive HTML + whisper-1 transcripts of a week of wake-up/preface audio. Found: daily "board/thermometer waited N days" joke in the intro (task hook fed lingering items), doubled "So — up." (5 of 6 mornings), preface's same steal-tip daily, "Good morning, Ben" ×3 per brief, tasks closer formula.
-- Script (`~/.claude/scripts/daily-dashboard.sh`): intro hook = TODAY section only + day-count ban + yesterday-intro anti-repeat; lingering tasks = rotating 3, no ages, no nudge ("STILL OPEN"); tasks/comms no greeting; tasks closer anti-repeated; `strip_closer()` on the motivator; closer "So — up!"; preface = 12-technique rotation + yesterday shown + banned phrasings; tasks prompt gets the date (it had guessed "Tuesday"); intro handoff must not characterize the poem.
-- Poem audio = reading (verse+motivator) + 1.5 s + same reading + standalone "So — up!" clip. Measured: gpt-4o-mini-tts drops a 2-word final line inside a long render 6/8 times; standalone render always speaks it.
-- `wakeup-refrain.txt` closer → "So — up!"; console `CANON_REFRAIN` same, console redeployed (SSH reset on first try, retry OK).
-- Memory updated: poem_variety_fix, tasks_narration_freshness, new brief_repetition_audit; MEMORY.md index.
-- 22:00 Ben: preface "too poetic to understand, breaking down a poem with another poem" → preface prompt rewritten as a plain workshop note (literal language, quotes the poem, mechanical why, 'Try this:', one plain listen-for sentence); wake-up handoff now says a note comes first, then the poem (tested 2× each on the deployed prompt text).
+- (Sep 13) Repeat purge + plain-teacher preface, verified live. (Sep 18–19) audio pause via self-expiring `~/.claude/daily-brief-pause-until`. (Sep 20) OpenAI cost traced: brief speech ≈ $0.11/day; page narration was audio Ben never heard.
+- (Sep 22) Script: `SPOKEN_SEGMENTS="poem-preface poem"` (+ override file `~/.claude/daily-brief-spoken.txt`), `PAGE_NARRATION=false` (+ `~/.claude/daily-brief-page-narration`); intro/tasks/comms/mirror generate text only; wakeup-complete concat follows the spoken list; page hides the top Listen bar + per-card buttons when narration is off; wake-up player = spoken segments + "This morning's sound".
+- New `tools/soundscape.py`: 14 randomized scenes (rain, wind, stream, ocean, chimes, bowl, crickets, fire, kalimba, bells, birds, pad, cave, garden-via-node). Picked early (7-day avoid list in `~/.claude/daily-brief-bed-history.txt`) so the poem card captions it; `build_bed()` renders `audio/wakeup-bed.mp3` (−29 LUFS, 45 s in, 20 s out) + `audio/bed.txt`; Echo mix = bed + voice after the solo; fixed garden asset = fallback. `tools/node_modules` installed (node-web-audio-api) and git-ignored.
+- Docs: CLAUDE.md "What Is Spoken" + "Soundscape of the Day"; tools/README; memory `wakeup_soundscapes.md`.
 
 ## Next Steps
-- Sep 20 morning: confirm the Echo played the brief again and the pause file is gone.
-- Listen tomorrow: intro opener = "an animal or a bird already doing something" (day 257), preface lesson = "repetition with a difference", poem twice + closer, tasks tone, preface register (plain, not lyrical).
-- Optional: fresh second take instead of the same take repeated (one-line change in the poem narration block).
-- Ben to decide: comms recap narrates personal exchanges (e.g. photos talk with Mom) on the public page.
+- Confirm the test build's audio dir (poem-preface, poem, wakeup-bed, wakeup-complete, wakeup-echo, bed.txt), mix levels (bed ≈ −29 LUFS solo, voice ≈ 8 dB above), page caption + players, feed. Commit + push the tooling/docs.
+- Tomorrow 5:40: first live morning — listen for the new bed, lesson, poem; check `audio/bed.txt` and the history file.
+- Ben may want scenes removed/added after a week; each is one function in soundscape.py.
 
 ## Key Decisions / Context
-- Archive naming: `archive/DATE.html` = brief live before DATE's run; `-v2/-v3` today are the test builds.
-- Anti-repeat files in `~/.claude/`: last-poem, -motivator, -preface, -intro, -tasks-open, -tasks-close.
-- Whisper-1 and gpt-4o-transcribe both tend to miss a short trailing phrase; verify audio endings with `silencedetect`.
+- Scene choice happens before the HTML is written (so the page can name it); rendering happens after the voice exists (bed length = solo + voice + 20 s).
+- Generator output is RMS −20 dBFS + tanh soft clip; ffmpeg then measures ebur128 and gains to −29 LUFS with a limiter — spiky scenes (fire, drips) would clip otherwise.
+- Standing: comms recap narrates personal exchanges as page text (audio now off, text remains public).

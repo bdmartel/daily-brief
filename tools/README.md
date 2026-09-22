@@ -33,3 +33,15 @@ and deleted the first copy (2026-08-18).
 Change the seed for a different "performance" of the same garden. The voice
 enters after the `sleep 180` in the alarm block of
 `~/.claude/scripts/daily-dashboard.sh`; the file just holds its level there.
+
+## soundscape.py — a different wake-up sound every morning (2026-09-22)
+
+`python3 tools/soundscape.py --list` prints the 14 scenes. `--pick [--avoid a,b]` chooses one and
+prints `scene|description|seed`; `--scene NAME|random --seconds S --out bed.wav [--seed N]`
+renders it (44.1 kHz stereo WAV, RMS −20 dBFS, soft-clipped). Every render is randomized (scale,
+root note, rates, densities, panning), so the same scene never repeats exactly. The `garden` scene
+calls `ethgarden-render.mjs` with a fresh seed and needs `node-web-audio-api` resolvable from `tools/`
+(a one-time `npm install node-web-audio-api` anywhere under your home works; on the Mac mini it lives in
+`~/node_modules`). Needs python3 with numpy, scipy, soundfile (all present on
+the Mac mini). `daily-dashboard.sh` applies loudness (−29 LUFS) and the fade envelope with ffmpeg.
+
