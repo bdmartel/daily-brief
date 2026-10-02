@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""soundscape.py — a different wake-up sound every morning (Ben, 2026-09-22).
+"""RETIRED 2026-10-02: the wake-up bed is now a real field recording (tools/fieldbed.py);
+Ben found these synthesized scenes artificial. Kept for reference, not called by the brief.
+
+soundscape.py — a different wake-up sound every morning (Ben, 2026-09-22).
 
 Fourteen procedurally generated scenes, each randomized every time it is rendered, so no two
 mornings sound the same. Everything is synthesized offline with numpy/scipy (no samples, no

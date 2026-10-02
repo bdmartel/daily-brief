@@ -1,0 +1,411 @@
+{
+ "about": "Real field recordings for the wake-up bed (tools/fieldbed.py). CC0 / CC BY only: the mixed audio is published on GitHub Pages, and the page credits each recording (CC BY requires it). audio = Freesound HQ preview; bytes = Range request size (the catalog only uses the first `end` s); hp = high-pass Hz; months = in season (absent = all year); optional: start, gain_db, tame (dB over the body before events are softened, default 8, 0 = off). Chosen 2026-10-02 from ~1,600 search results, measured for spikes, rumble, clipping and speech-band energy.",
+ "recordings": [
+  {
+   "id": "sri-lanka-rain",
+   "caption": "a rainy morning at the edge of the jungle in Sri Lanka",
+   "by": "florianreichelt",
+   "license": "CC0",
+   "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "source": "https://freesound.org/people/florianreichelt/sounds/422052/",
+   "audio": "https://cdn.freesound.org/previews/422/422052_6253486-hq.ogg",
+   "end": 499,
+   "hp": 80
+  },
+  {
+   "id": "bailey-island-rain",
+   "caption": "early-morning rain on a cabin roof on Bailey Island, Maine, crows calling",
+   "by": "be-steele",
+   "license": "CC0",
+   "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "source": "https://freesound.org/people/be-steele/sounds/362415/",
+   "audio": "https://cdn.freesound.org/previews/362/362415_589889-hq.ogg",
+   "bytes": 15500000,
+   "end": 640,
+   "hp": 80
+  },
+  {
+   "id": "french-barn-rain",
+   "caption": "spring rain under an open barn in the French countryside, cows far off",
+   "by": "bruno.auzet",
+   "license": "CC0",
+   "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "source": "https://freesound.org/people/bruno.auzet/sounds/736854/",
+   "audio": "https://cdn.freesound.org/previews/736/736854_11519060-hq.ogg",
+   "end": 530,
+   "hp": 60,
+   "months": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  {
+   "id": "shiga-rainstorm",
+   "caption": "a summer rainstorm with cicadas at the edge of a town in Shiga, Japan",
+   "by": "OnlyTheGhosts",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "source": "https://freesound.org/people/OnlyTheGhosts/sounds/398621/",
+   "audio": "https://cdn.freesound.org/previews/398/398621_3971441-hq.ogg",
+   "bytes": 15500000,
+   "end": 560,
+   "hp": 80,
+   "months": [
+    6,
+    7,
+    8,
+    9
+   ]
+  },
+  {
+   "id": "jadwizanka-stream",
+   "caption": "the Jadwiżanka stream at Lądek-Zdrój, Poland",
+   "by": "GirlWithSoundRecorder",
+   "license": "CC0",
+   "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "source": "https://freesound.org/people/GirlWithSoundRecorder/sounds/588403/",
+   "audio": "https://cdn.freesound.org/previews/588/588403_7834424-hq.ogg",
+   "bytes": 15500000,
+   "end": 740,
+   "hp": 60
+  },
+  {
+   "id": "transylvania-snowmelt",
+   "caption": "a mountain stream running high with snowmelt in Transylvania",
+   "by": "klau78",
+   "license": "CC0",
+   "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "source": "https://freesound.org/people/klau78/sounds/556807/",
+   "audio": "https://cdn.freesound.org/previews/556/556807_12184473-hq.ogg",
+   "end": 393,
+   "hp": 60,
+   "months": [
+    3,
+    4,
+    5,
+    6
+   ]
+  },
+  {
+   "id": "transylvania-frozen",
+   "caption": "a half-frozen stream just before it reaches a lake in Transylvania",
+   "by": "klau78",
+   "license": "CC0",
+   "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "source": "https://freesound.org/people/klau78/sounds/547136/",
+   "audio": "https://cdn.freesound.org/previews/547/547136_12184473-hq.ogg",
+   "end": 634,
+   "hp": 60,
+   "months": [
+    11,
+    12,
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "winter-waterfall",
+   "caption": "a small waterfall on a winter day",
+   "by": "pippone59",
+   "license": "CC0",
+   "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "source": "https://freesound.org/people/pippone59/sounds/788715/",
+   "audio": "https://cdn.freesound.org/previews/788/788715_8407112-hq.ogg",
+   "end": 348,
+   "hp": 70,
+   "months": [
+    11,
+    12,
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "leipzig-lake",
+   "caption": "small waves on a lake near Leipzig, Germany",
+   "by": "Garuda1982",
+   "license": "CC0",
+   "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "source": "https://freesound.org/people/Garuda1982/sounds/757960/",
+   "audio": "https://cdn.freesound.org/previews/757/757960_2061858-hq.ogg",
+   "end": 450,
+   "hp": 80,
+   "months": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ]
+  },
+  {
+   "id": "borax-lake",
+   "caption": "wind-driven ripples on the shore of Borax Lake in the Oregon desert",
+   "by": "tim.kahn",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "source": "https://freesound.org/people/tim.kahn/sounds/690607/",
+   "audio": "https://cdn.freesound.org/previews/690/690607_7037-hq.ogg",
+   "bytes": 15500000,
+   "end": 520,
+   "hp": 70
+  },
+  {
+   "id": "hallsands",
+   "caption": "waves on shingle and rock at Hallsands, the Devon village the sea took in 1917",
+   "by": "leesparey",
+   "license": "CC0",
+   "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "source": "https://freesound.org/people/leesparey/sounds/653395/",
+   "audio": "https://cdn.freesound.org/previews/653/653395_4893432-hq.ogg",
+   "bytes": 15500000,
+   "end": 700,
+   "hp": 50
+  },
+  {
+   "id": "sooke-beach",
+   "caption": "the tide coming in on a pebble and driftwood beach at Sooke, British Columbia",
+   "by": "lonemonk",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "source": "https://freesound.org/people/lonemonk/sounds/234938/",
+   "audio": "https://cdn.freesound.org/previews/234/234938_230160-hq.ogg",
+   "bytes": 15500000,
+   "end": 735,
+   "hp": 50
+  },
+  {
+   "id": "enkoji-suikinkutsu",
+   "caption": "the suikinkutsu, a buried jar that rings as water drips into it, in the Zen garden of Enkō-ji, Kyoto",
+   "by": "SDLx",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0/",
+   "source": "https://freesound.org/people/SDLx/sounds/259990/",
+   "audio": "https://cdn.freesound.org/previews/259/259990_788333-hq.ogg",
+   "end": 577,
+   "hp": 60
+  },
+  {
+   "id": "horned-owls",
+   "caption": "two great horned owls calling back and forth over crickets",
+   "by": "CHallSmith",
+   "license": "CC0",
+   "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "source": "https://freesound.org/people/CHallSmith/sounds/870593/",
+   "audio": "https://cdn.freesound.org/previews/870/870593_18412227-hq.ogg",
+   "bytes": 15500000,
+   "end": 600,
+   "hp": 80,
+   "months": [
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  {
+   "id": "alentejo-menhir",
+   "caption": "dusk at the largest menhir in Iberia, Alentejo, Portugal: crickets, frogs, far-off sheep bells",
+   "by": "dobroide",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "source": "https://freesound.org/people/dobroide/sounds/185506/",
+   "audio": "https://cdn.freesound.org/previews/185/185506_8043-hq.ogg",
+   "bytes": 15500000,
+   "end": 625,
+   "hp": 60,
+   "months": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  {
+   "id": "alambari-frogs",
+   "caption": "a night chorus of frogs and crickets in the Serrinha do Alambari, Brazil",
+   "by": "MeliaRoger",
+   "license": "CC0",
+   "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "source": "https://freesound.org/people/MeliaRoger/sounds/645706/",
+   "audio": "https://cdn.freesound.org/previews/645/645706_13222620-hq.ogg",
+   "end": 527,
+   "hp": 60
+  },
+  {
+   "id": "french-beehive",
+   "caption": "the mouth of a beehive in France in June",
+   "by": "bruno.auzet",
+   "license": "CC0",
+   "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "source": "https://freesound.org/people/bruno.auzet/sounds/692837/",
+   "audio": "https://cdn.freesound.org/previews/692/692837_11519060-hq.ogg",
+   "end": 228,
+   "hp": 60,
+   "months": [
+    5,
+    6,
+    7,
+    8,
+    9
+   ]
+  },
+  {
+   "id": "tin-roof-dawn",
+   "caption": "light rain on a tin roof at dawn",
+   "by": "tonant",
+   "license": "CC0",
+   "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "source": "https://freesound.org/people/tonant/sounds/203247/",
+   "audio": "https://cdn.freesound.org/previews/203/203247_3739892-hq.ogg",
+   "bytes": 15500000,
+   "end": 640,
+   "hp": 60
+  },
+  {
+   "id": "st-marks-frogs",
+   "caption": "pig frogs and tree frogs in a soft night rain near St. Marks, Florida",
+   "by": "KevinSonger",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "source": "https://freesound.org/people/KevinSonger/sounds/689487/",
+   "audio": "https://cdn.freesound.org/previews/689/689487_13113654-hq.ogg",
+   "bytes": 15500000,
+   "end": 590,
+   "hp": 60,
+   "months": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  {
+   "id": "swiss-cows",
+   "caption": "cows with bells grazing a Swiss hillside",
+   "by": "joewrightmusic",
+   "license": "CC0",
+   "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "source": "https://freesound.org/people/joewrightmusic/sounds/434630/",
+   "audio": "https://cdn.freesound.org/previews/434/434630_3167151-hq.ogg",
+   "end": 438,
+   "hp": 60,
+   "months": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  {
+   "id": "neches-owls",
+   "caption": "barred owls, a far-off cow and fall crickets in the Neches River bottomland, Texas, after midnight",
+   "by": "naturenutt",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "source": "https://freesound.org/people/naturenutt/sounds/216135/",
+   "audio": "https://cdn.freesound.org/previews/216/216135_1469809-hq.ogg",
+   "end": 277,
+   "hp": 60,
+   "months": [
+    9,
+    10,
+    11
+   ]
+  },
+  {
+   "id": "snowmelt-woods",
+   "caption": "snowmelt trickling through a forest, wind rushing in the treetops",
+   "by": "morosopher",
+   "license": "CC0",
+   "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "source": "https://freesound.org/people/morosopher/sounds/185987/",
+   "audio": "https://cdn.freesound.org/previews/185/185987_3226149-hq.ogg",
+   "bytes": 15500000,
+   "end": 470,
+   "hp": 100,
+   "months": [
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "gatineau-brook",
+   "caption": "a brook running under the snow near Gatineau Park, Quebec, in January",
+   "by": "gregwht",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "source": "https://freesound.org/people/gregwht/sounds/833140/",
+   "audio": "https://cdn.freesound.org/previews/833/833140_18055588-hq.ogg",
+   "end": 389,
+   "hp": 60,
+   "months": [
+    12,
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "iceland-river",
+   "caption": "a small river in east Iceland",
+   "by": "askeseverin",
+   "license": "CC0",
+   "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "source": "https://freesound.org/people/askeseverin/sounds/376202/",
+   "audio": "https://cdn.freesound.org/previews/376/376202_5410147-hq.ogg",
+   "end": 354,
+   "hp": 60
+  },
+  {
+   "id": "fireplace",
+   "caption": "a fire burning in the fireplace",
+   "by": "petebuchwald",
+   "license": "CC0",
+   "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "source": "https://freesound.org/people/petebuchwald/sounds/496130/",
+   "audio": "https://cdn.freesound.org/previews/496/496130_2367139-hq.ogg",
+   "end": 368,
+   "hp": 70,
+   "months": [
+    10,
+    11,
+    12,
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "saas-fee-glacier",
+   "caption": "glacier meltwater pouring past a watermill at Saas-Fee, 1,800 m up in the Swiss Alps",
+   "by": "LG",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0/",
+   "source": "https://freesound.org/people/LG/sounds/102092/",
+   "audio": "https://cdn.freesound.org/previews/102/102092_36188-hq.ogg",
+   "end": 356,
+   "hp": 60
+  }
+ ]
+}

@@ -34,7 +34,7 @@ Change the seed for a different "performance" of the same garden. The voice
 enters after the `sleep 180` in the alarm block of
 `~/.claude/scripts/daily-dashboard.sh`; the file just holds its level there.
 
-## soundscape.py — a different wake-up sound every morning (2026-09-22)
+## soundscape.py — RETIRED 2026-10-02 (synthesized scenes; replaced by fieldbed.py, kept for reference)
 
 `python3 tools/soundscape.py --list` prints the 14 scenes. `--pick [--avoid a,b]` chooses one and
 prints `scene|description|seed`; `--scene NAME|random --seconds S --out bed.wav [--seed N]`
@@ -44,4 +44,24 @@ calls `ethgarden-render.mjs` with a fresh seed and needs `node-web-audio-api` re
 (a one-time `npm install node-web-audio-api` anywhere under your home works; on the Mac mini it lives in
 `~/node_modules`). Needs python3 with numpy, scipy, soundfile (all present on
 the Mac mini). `daily-dashboard.sh` applies loudness (−29 LUFS) and the fade envelope with ffmpeg.
+
+## fieldbed.py — the wake-up bed from real field recordings (2026-10-02)
+
+Ben found the synthesized scenes artificial and said the brook "was competing with the voice", so the
+bed is now a real recording each morning. `fieldbeds.json` is the catalog: 26 CC0 / CC BY recordings
+(mostly Freesound HQ previews) with caption, recordist, license, source page, `end` (seconds used),
+high-pass and optional `months`. The audio is cached in `assets/field/` (gitignored).
+
+```bash
+python3 tools/fieldbed.py --list                    # catalog + cached seconds + seasons
+python3 tools/fieldbed.py --fetch                   # download anything missing (slow CDN: ~80 KB/s per connection)
+python3 tools/fieldbed.py --pick --avoid a,b        # -> id|caption|seed|credit|source (cached recordings only)
+python3 tools/fieldbed.py --render hallsands --seconds 90 --voice 40:80 --out /tmp/x.wav
+```
+
+A render takes a seeded random stretch of the recording (loops with an 8 s crossfade if short),
+high-passes it, softens events more than 8 dB over the body (3:1), sets -29 LUFS, holds clicks under
+-12 dBFS, carves 6 dB out of 1-4 kHz while the voice plays (`--carve`, `--duck` 0 by default), and
+fades 45 s in / 20 s out. `daily-dashboard.sh` limits and encodes it to `audio/wakeup-bed.mp3`.
+To add a recording: append an entry (CC0 or CC BY only, the page shows the credit) and run `--fetch`.
 
