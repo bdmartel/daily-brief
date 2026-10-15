@@ -98,4 +98,6 @@ launchctl kickstart gui/501/com.claude.daily-dashboard   # force a tick now (gua
 To force a re-run today: delete `~/.claude/daily-brief-lastrun`, then kickstart (or wait ≤2 min).
 
 ## Archive
-Previous briefs stored in `archive/YYYY-MM-DD.html` with audio in `archive/YYYY-MM-DD-audio/`.
+Previous briefs stored in `archive/YYYY-MM-DD.html` with audio in `archive/YYYY-MM-DD-audio/` (every morning's audio is kept and online). **Folder dates are the day the brief was archived, i.e. the morning AFTER that audio played**: the archive step reads the old page title with `grep -oP`, which macOS grep lacks under launchd, so it falls back to today's date. Don't "fix" that without migrating the names: the first fixed run would find its folder already taken and skip archiving the audio.
+
+**Last five mornings** (Ben, 2026-10-15: "keep the last 5 online instead of one (the audio bits)"): a card under the poem lists this morning plus the four before it, each with the 6 AM wake-up as the Echo played it, the lesson, the poem and the sound (captioned). `tools/recent_mornings.py` fills the `<!--LAST_FIVE_MORNINGS-->` marker just before the commit (only files that exist get a button; a folder's morning = its archived page title + 1 day). Buttons hand that morning's tracks to the lower-right wake-up player; starting the player fresh goes back to today. The archive step also rewrites the card's `"audio/` and `"archive/` paths so archived pages still play.

@@ -65,3 +65,14 @@ high-passes it, softens events more than 8 dB over the body (3:1), sets -29 LUFS
 fades 45 s in / 20 s out. `daily-dashboard.sh` limits and encodes it to `audio/wakeup-bed.mp3`.
 To add a recording: append an entry (CC0 or CC BY only, the page shows the credit) and run `--fetch`.
 
+## recent_mornings.py — the "Last five mornings" card (2026-10-15)
+
+Lists this morning plus the four before it on the brief page (6 AM Echo mix, lesson, poem, sound),
+from `audio/` and the newest `archive/*-audio/` folders. Archive folders are named for the day after
+their audio played, so each folder's morning comes from its archived page title + 1 day.
+`daily-dashboard.sh` runs it right before the commit; `--print` previews the card:
+
+```bash
+python3 tools/recent_mornings.py --today 2026-10-15 --print
+```
+
