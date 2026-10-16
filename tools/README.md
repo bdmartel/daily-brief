@@ -76,3 +76,19 @@ their audio played, so each folder's morning comes from its archived page title 
 python3 tools/recent_mornings.py --today 2026-10-15 --print
 ```
 
+Each row also gets **▶ poem · lesson · poem** when the folder has `poem-first.mp3`, `poem-preface.mp3`
+and `poem-again.mp3` (Ben: "POEM, LESSON, POEM as a way to digest it").
+
+## poem_split.py — the poem's two readings, apart (2026-10-15)
+
+`poem.mp3` is one take read twice (reading, 1.5 s of silence, the same reading, "So — up!"). This
+cuts it into `poem-first.mp3` (the first reading alone) and `poem-again.mp3` (the second reading and
+the closer) for the button above. The morning script writes those itself, so this is for older
+mornings: it finds the lag where the file matches itself (0.90–0.98 on all 32 doubled mornings, under
+0.07 on single readings) and checks that the pause between is digital silence.
+
+```bash
+python3 tools/poem_split.py archive/2026-10-14-audio --check   # report only
+python3 tools/poem_split.py archive/2026-10-14-audio           # write the two files
+```
+

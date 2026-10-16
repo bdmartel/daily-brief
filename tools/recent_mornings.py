@@ -5,11 +5,14 @@ Ben, 2026-10-15: "keep the last 5 online instead of one (the audio bits)". Every
 always been archived (archive/<date>-audio/, on GitHub Pages), but the page only linked today's. This
 card lists this morning plus the four before it, each with the 6 AM wake-up as it played (the Echo
 mix), the lesson, the poem and the sound. The buttons hand the tracks to the page's wake-up player.
+Ben, 2026-10-15, on the lesson: "give an option where it's POEM, LESSON, POEM as a way to digest it".
+So each morning also gets "poem · lesson · poem": the first reading alone, the lesson, then the second
+reading with "So — up!" (poem-first.mp3 / poem-again.mp3, cut by the morning script or poem_split.py).
 
   recent_mornings.py --repo ~/projects/daily-brief --today 2026-10-15 [--count 5] [--print]
 
-Replaces the <!--LAST_FIVE_MORNINGS--> marker in index.html (run after the day's audio exists, so
-only files that are really there get a button). --print shows the card instead of writing it.
+Replaces the <!--LAST_FIVE_MORNINGS--> marker in index.html, or a card already there (run after the
+day's audio exists, so only files that are really there get a button). --print shows the card instead.
 
 Dates: archive folders are named for the day they were archived, which is the morning AFTER that audio
 played (daily-dashboard.sh reads the old title with `grep -P`, which macOS grep lacks, and falls back
@@ -19,8 +22,10 @@ day the brief summarized, and it played the next morning.
 import argparse, datetime, html, json, os, re
 
 MARK = '<!--LAST_FIVE_MORNINGS-->'
+BEGIN, END = '<!--last-five-mornings-->', '<!--/last-five-mornings-->'
 PARTS = [('poem-preface.mp3', 'About the poem', 'lesson'), ('poem.mp3', 'Poem', 'poem'),
          ('wakeup-bed.mp3', 'Sound', 'sound')]
+DIGEST = [('poem-first.mp3', 'Poem'), ('poem-preface.mp3', 'About the poem'), ('poem-again.mp3', 'Poem, again')]
 
 
 def caption(audio_dir):
@@ -74,12 +79,15 @@ def build(repo, today, count):
         cap = caption(folder)
         parts = [{'src': prefix + f, 'name': f'{short} · ' + (f'Sound: {cap}' if f == 'wakeup-bed.mp3' and cap else n)}
                  for f, n, _ in PARTS if os.path.exists(os.path.join(folder, f))]
+        digest = [{'src': prefix + f, 'name': f'{short} · {n}'} for f, n in DIGEST] \
+            if all(os.path.exists(os.path.join(folder, f)) for f, _ in DIGEST) else []
         if not wake and not parts:
             continue
-        data.append({'wake': wake, 'parts': parts})
+        data.append({'wake': wake, 'digest': digest, 'parts': parts})
         k = len(data) - 1
         btn = '<button class="morning-play" data-day="{k}" data-list="{lst}" data-track="{t}">{txt}</button>'
         btns = [btn.format(k=k, lst='wake', t=0, txt='&#9654; 6 AM wake-up')] if wake else []
+        btns += [btn.format(k=k, lst='digest', t=0, txt='&#9654; poem · lesson · poem')] if digest else []
         btns += [btn.format(k=k, lst='parts', t=j, txt=next(s for f, _, s in PARTS if p['src'].endswith(f)))
                  for j, p in enumerate(parts)]
         rows.append(
@@ -92,7 +100,8 @@ def build(repo, today, count):
     if not rows:
         return ''
     js = json.dumps(data, ensure_ascii=False).replace('</', '<\\/')
-    return ('  <div class="mornings-card" style="margin:0 0 24px;padding:16px 24px 10px;border-left:3px solid #d8b25a;'
+    return (f'  {BEGIN}\n'
+            '  <div class="mornings-card" style="margin:0 0 24px;padding:16px 24px 10px;border-left:3px solid #d8b25a;'
             'background:rgba(216,178,90,0.05);border-radius:10px;">\n'
             '    <style>.mornings-card .morning-play{background:none;border:1px solid #d8b25a;color:#d8b25a;border-radius:14px;'
             'padding:3px 11px;font-size:11px;cursor:pointer;letter-spacing:0.04em;}</style>\n'
@@ -100,7 +109,7 @@ def build(repo, today, count):
             f'margin-bottom:4px;">Last {len(rows)} mornings</div>\n'
             + '\n'.join(rows) + '\n'
             f'    <script>var pastMornings = {js};</script>\n'
-            '  </div>')
+            f'  </div>\n  {END}')
 
 
 def main():
@@ -117,9 +126,15 @@ def main():
     page = os.path.join(a.repo, 'index.html')
     with open(page, encoding='utf-8') as f:
         s = f.read()
+    i, j = s.find(BEGIN), s.find(END)
     if MARK in s:
-        with open(page, 'w', encoding='utf-8') as f:
-            f.write(s.replace(MARK, card, 1))
+        s = s.replace(MARK, card.strip(), 1)
+    elif 0 <= i < j:                       # a card already there (a re-run): replace it
+        s = s[:i] + card.strip() + s[j + len(END):]
+    else:
+        return
+    with open(page, 'w', encoding='utf-8') as f:
+        f.write(s)
 
 
 if __name__ == '__main__':
