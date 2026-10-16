@@ -4,3 +4,14 @@ tools/node_modules/
 assets/field/
 poetry/site/
 poetry/last-reply.json
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
+sounds/
+# The brief's sounds live on Cloudflare since 2026-10-16 (tools/sounds.py); the originals stay on the Mac
+audio/*.mp3
+archive/*-audio/*.mp3

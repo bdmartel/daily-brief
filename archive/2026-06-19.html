@@ -675,9 +675,9 @@
   var allSessions = document.querySelectorAll('.session');
 
   function getAudioSrc(idx) {
-    if (idx === -1) return '2026-06-19-audio/intro.mp3';
-    if (idx >= sections.length) return '2026-06-19-audio/outro.mp3';
-    return '2026-06-19-audio/section-' + idx + '.mp3';
+    if (idx === -1) return 'https://brief-sounds.bdmartel.workers.dev/a/2026-06-19/intro.mp3';
+    if (idx >= sections.length) return 'https://brief-sounds.bdmartel.workers.dev/a/2026-06-19/outro.mp3';
+    return 'https://brief-sounds.bdmartel.workers.dev/a/2026-06-19/section-' + idx + '.mp3';
   }
 
   function updateProgress() {
@@ -868,7 +868,7 @@
       singleMode = true;
       state = 'playing';
       currentSection = secIdx;
-      audio.src = '2026-06-19-audio/section-' + secIdx + '.mp3';
+      audio.src = 'https://brief-sounds.bdmartel.workers.dev/a/2026-06-19/section-' + secIdx + '.mp3';
       audio.playbackRate = speeds[speedIdx];
       audio.play().catch(function() {});
       pb.classList.add('playing');

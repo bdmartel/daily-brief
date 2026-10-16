@@ -3,7 +3,7 @@
 # Built by tools/poem_roundup.py into poetry/site/, which calls this after each new week.
 # Idempotent: safe to re-run. Static, public, noindex, no gate (the brief it draws on is public too).
 # Wildcard *.benmartel.com DNS already points at the droplet. The vhost and cert are made on the
-# first run; m/ is left alone by the upload (reserved for the brief's sounds).
+# first run. The sounds the play buttons use are on Cloudflare (tools/sounds.py), not here.
 set -euo pipefail
 export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 HOST="root@178.128.155.186"
@@ -15,7 +15,7 @@ HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "==> 1/4  upload"
 ssh "$HOST" "mkdir -p $ROOT/app"
-rsync -rlt --delete --exclude '/m/' "$HERE/site/" "$HOST:$ROOT/app/"
+rsync -rlt --delete "$HERE/site/" "$HOST:$ROOT/app/"
 ssh "$HOST" "chown -R www-data:www-data $ROOT/app && find $ROOT/app -type d -exec chmod 755 {} + && find $ROOT/app -type f -exec chmod 644 {} +"
 
 echo "==> 2/4  nginx bootstrap + cert (first run only)"
@@ -59,8 +59,6 @@ server {
     # expires, not add_header: an add_header in a location drops the server-level headers above.
     # A week's page changes when the next week is added (the past-weeks list), so always revalidate.
     location / { try_files \$uri \$uri/ =404; expires -1; }
-    # Each morning's sounds never change once written.
-    location /m/ { try_files \$uri =404; expires 1y; }
 }
 NGINX
 ssh "$HOST" "nginx -t && systemctl reload nginx"

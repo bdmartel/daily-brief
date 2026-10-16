@@ -292,9 +292,9 @@
   var allSessions = document.querySelectorAll('.session');
 
   function getAudioSrc(idx) {
-    if (idx === -1) return '2026-03-23-audio/intro.mp3';
-    if (idx >= sections.length) return '2026-03-23-audio/outro.mp3';
-    return '2026-03-23-audio/section-' + idx + '.mp3';
+    if (idx === -1) return 'https://brief-sounds.bdmartel.workers.dev/a/2026-03-23/intro.mp3';
+    if (idx >= sections.length) return 'https://brief-sounds.bdmartel.workers.dev/a/2026-03-23/outro.mp3';
+    return 'https://brief-sounds.bdmartel.workers.dev/a/2026-03-23/section-' + idx + '.mp3';
   }
 
   function updateProgress() {

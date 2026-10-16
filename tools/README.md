@@ -116,3 +116,16 @@ Poems first published in 1930 or earlier, copied verbatim from Project Gutenberg
 (each entry names its source), tagged with the techniques they show (`good_for`). The workshop
 quotes real poets only from here, by id and line numbers. To add a poem, append an entry with
 its full text and source; keep it under 60 lines.
+
+## sounds.py — the brief's sounds on Cloudflare (2026-10-16)
+
+Shrinks every mp3 (mono voice at 48 kbps, stereo mixes at 96 kbps) into `sounds/public`, uploads
+it as a Cloudflare Worker with static assets ([brief-sounds.bdmartel.workers.dev](https://brief-sounds.bdmartel.workers.dev)), and re-points
+the pages, the Echo feed and wakeup.html at it. The morning script runs `publish` before each
+commit; GitHub no longer stores audio.
+
+```bash
+python3 tools/sounds.py publish --today 2026-10-16   # shrink new files, upload, re-point
+python3 tools/sounds.py rewrite                      # re-point pages for what is online
+python3 tools/sounds.py url 2026-10-16 poem.mp3      # one morning's file
+```

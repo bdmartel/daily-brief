@@ -28,6 +28,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 import recent_mornings  # noqa: E402  (morning_of: an archive folder's morning)
+import sounds  # noqa: E402  (where each morning's sounds are online)
 
 DATA = os.path.join(REPO, 'poetry', 'data')
 SITE = os.path.join(REPO, 'poetry', 'site')
@@ -39,7 +40,8 @@ MODEL = 'claude-opus-5-5'
 SITE_URL = 'https://poetry.benmartel.com'
 BRIEF_URL = 'https://bdmartel.github.io/daily-brief'
 SESSION_URL = 'https://claude.ai/code/session_01NbSUjahHck8yBftYTDzmE1'
-# Where each morning's sounds are served. Today they are on GitHub Pages (archive/<name>-audio/).
+# Each morning's sounds are on Cloudflare (tools/sounds.py). GitHub only as the fallback for a
+# morning whose upload failed (the morning script then commits that day's sounds there).
 GH = BRIEF_URL + '/'
 
 # Same list and order as PREFACE_TECHNIQUES in ~/.claude/scripts/daily-dashboard.sh; the morning
@@ -79,16 +81,19 @@ def page_morning(page):
 def locate(day):
     """Folder, page and audio URL bases for one morning, or None if it isn't on disk."""
     if page_morning(os.path.join(REPO, 'index.html')) == day:
-        # This morning's sounds sit in audio/ until the next run archives them to
-        # archive/<next run's date>-audio/ (see recent_mornings.py), so offer both.
-        nxt = (day + datetime.timedelta(days=1)).isoformat()
-        return {'folder': os.path.join(REPO, 'audio'), 'page': os.path.join(REPO, 'index.html'),
-                'bases': [GH + f'archive/{nxt}-audio/', GH + 'audio/']}
+        folder = os.path.join(REPO, 'audio')
+        if os.path.exists(os.path.join(folder, sounds.MARK)):
+            bases = [f'{sounds.URL}/m/{day}/']
+        else:  # not uploaded: on GitHub until the next run archives it to archive/<next run's date>-audio/
+            nxt = (day + datetime.timedelta(days=1)).isoformat()
+            bases = [GH + f'archive/{nxt}-audio/', GH + 'audio/']
+        return {'folder': folder, 'page': os.path.join(REPO, 'index.html'), 'bases': bases}
     for d in sorted(os.listdir(os.path.join(REPO, 'archive')), reverse=True):
         if re.fullmatch(r'\d{4}-\d{2}-\d{2}-audio', d) and recent_mornings.morning_of(REPO, d[:-6]) == day:
-            return {'folder': os.path.join(REPO, 'archive', d),
-                    'page': os.path.join(REPO, 'archive', d[:-6] + '.html'),
-                    'bases': [GH + f'archive/{d}/']}
+            folder = os.path.join(REPO, 'archive', d)
+            rel = sounds.rel_for(folder)
+            bases = [f'{sounds.URL}/{rel}/'] if rel in sounds.online() else [GH + f'archive/{d}/']
+            return {'folder': folder, 'page': os.path.join(REPO, 'archive', d[:-6] + '.html'), 'bases': bases}
     return None
 
 

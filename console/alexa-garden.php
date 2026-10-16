@@ -18,7 +18,8 @@ function garden_stream_url() {
         $j = json_decode($feed, true);
         if ($j && !empty($j['streamUrl'])) return $j['streamUrl'];
     }
-    return 'https://bdmartel.github.io/daily-brief/audio/wakeup-echo.mp3?v=' . date('Ymd');
+    // Feed unreachable: the newest morning's wake-up on Cloudflare (tools/sounds.py, 2026-10-16)
+    return 'https://brief-sounds.bdmartel.workers.dev/latest/wakeup-echo.mp3';
 }
 
 function garden_play() {

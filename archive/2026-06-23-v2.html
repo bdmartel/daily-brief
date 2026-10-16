@@ -688,9 +688,9 @@ So — up.</div>
   var allSessions = document.querySelectorAll('.session');
 
   function getAudioSrc(idx) {
-    if (idx === -1) return 'audio/intro.mp3';
-    if (idx >= sections.length) return 'audio/outro.mp3';
-    return 'audio/section-' + idx + '.mp3';
+    if (idx === -1) return 'https://brief-sounds.bdmartel.workers.dev/a/2026-06-23/intro.mp3';
+    if (idx >= sections.length) return 'https://brief-sounds.bdmartel.workers.dev/a/2026-06-23/outro.mp3';
+    return 'https://brief-sounds.bdmartel.workers.dev/a/2026-06-23/section-' + idx + '.mp3';
   }
 
   function updateProgress() {
@@ -881,7 +881,7 @@ So — up.</div>
       singleMode = true;
       state = 'playing';
       currentSection = secIdx;
-      audio.src = 'audio/section-' + secIdx + '.mp3';
+      audio.src = 'https://brief-sounds.bdmartel.workers.dev/a/2026-06-23/section-' + secIdx + '.mp3';
       audio.playbackRate = speeds[speedIdx];
       audio.play().catch(function() {});
       pb.classList.add('playing');
@@ -1129,7 +1129,7 @@ So — up.</div>
     var poemAudio = null;
     poemBtn.addEventListener('click', function(){
       if (poemAudio && !poemAudio.paused) { poemAudio.pause(); poemAudio.currentTime = 0; poemBtn.innerHTML = '&#9654; hear it'; return; }
-      poemAudio = new Audio('audio/poem.mp3');
+      poemAudio = new Audio('https://brief-sounds.bdmartel.workers.dev/a/2026-06-23/poem.mp3');
       poemBtn.innerHTML = '&#10073;&#10073; stop';
       poemAudio.onended = function(){ poemBtn.innerHTML = '&#9654; hear it'; };
       poemAudio.play().catch(function(){ poemBtn.innerHTML = '&#9654; hear it'; });

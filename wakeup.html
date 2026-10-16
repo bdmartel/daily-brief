@@ -40,7 +40,7 @@
       btn = document.getElementById('play'),
       fill = document.getElementById('fill'),
       hint = document.getElementById('hint');
-  a.src = 'audio/wakeup-complete.mp3?t=' + Date.now(); // cache-bust so the phone always gets the latest
+  a.src = 'https://brief-sounds.bdmartel.workers.dev/latest/wakeup-complete.mp3?t=' + Date.now(); // cache-bust so the phone always gets the latest
   function toggle() {
     if (a.paused) {
       a.play().then(function () { hint.textContent = 'Playing… tap to pause.'; }).catch(function () {});

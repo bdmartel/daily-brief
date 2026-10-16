@@ -870,9 +870,9 @@ So — up.</div>
   var allSessions = document.querySelectorAll('.session');
 
   function getAudioSrc(idx) {
-    if (idx === -1) return '2026-09-07-audio/intro.mp3';
-    if (idx >= sections.length) return '2026-09-07-audio/outro.mp3';
-    return '2026-09-07-audio/section-' + idx + '.mp3';
+    if (idx === -1) return 'https://brief-sounds.bdmartel.workers.dev/a/2026-09-07/intro.mp3';
+    if (idx >= sections.length) return 'https://brief-sounds.bdmartel.workers.dev/a/2026-09-07/outro.mp3';
+    return 'https://brief-sounds.bdmartel.workers.dev/a/2026-09-07/section-' + idx + '.mp3';
   }
 
   function updateProgress() {
@@ -979,11 +979,11 @@ So — up.</div>
   // Lower-right FAB plays the wake-up as a section playlist (wake-up -> poem -> your day ->
   // in touch -> at the mirror) with a slide-out transport: prev / play-pause / next.
   var wuTracks = [
-    { src: '2026-09-07-audio/wakeup-intro.mp3', name: 'Wake-up' },
-    { src: '2026-09-07-audio/poem.mp3', name: 'Poem' },
-    { src: '2026-09-07-audio/tasks.mp3', name: 'Your day' },
-    { src: '2026-09-07-audio/comms.mp3', name: 'In touch' },
-    { src: '2026-09-07-audio/affirmations.mp3', name: 'At the mirror' }
+    { src: 'https://brief-sounds.bdmartel.workers.dev/a/2026-09-07/wakeup-intro.mp3', name: 'Wake-up' },
+    { src: 'https://brief-sounds.bdmartel.workers.dev/a/2026-09-07/poem.mp3', name: 'Poem' },
+    { src: 'https://brief-sounds.bdmartel.workers.dev/a/2026-09-07/tasks.mp3', name: 'Your day' },
+    { src: 'https://brief-sounds.bdmartel.workers.dev/a/2026-09-07/comms.mp3', name: 'In touch' },
+    { src: 'https://brief-sounds.bdmartel.workers.dev/a/2026-09-07/affirmations.mp3', name: 'At the mirror' }
   ];
   var wuAudio = new Audio();
   var wuIdx = -1;   // -1 = not started
@@ -1146,7 +1146,7 @@ So — up.</div>
       singleMode = true;
       state = 'playing';
       currentSection = secIdx;
-      audio.src = '2026-09-07-audio/section-' + secIdx + '.mp3';
+      audio.src = 'https://brief-sounds.bdmartel.workers.dev/a/2026-09-07/section-' + secIdx + '.mp3';
       audio.playbackRate = speeds[speedIdx];
       audio.play().catch(function() {});
       pb.classList.add('playing');
@@ -1394,7 +1394,7 @@ So — up.</div>
     var poemAudio = null;
     poemBtn.addEventListener('click', function(){
       if (poemAudio && !poemAudio.paused) { poemAudio.pause(); poemAudio.currentTime = 0; poemBtn.innerHTML = '&#9654; hear it'; return; }
-      poemAudio = new Audio('2026-09-07-audio/poem.mp3');
+      poemAudio = new Audio('https://brief-sounds.bdmartel.workers.dev/a/2026-09-07/poem.mp3');
       poemBtn.innerHTML = '&#10073;&#10073; stop';
       poemAudio.onended = function(){ poemBtn.innerHTML = '&#9654; hear it'; };
       poemAudio.play().catch(function(){ poemBtn.innerHTML = '&#9654; hear it'; });

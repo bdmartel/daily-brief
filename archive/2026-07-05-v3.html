@@ -706,9 +706,9 @@ So — up.</div>
   var allSessions = document.querySelectorAll('.session');
 
   function getAudioSrc(idx) {
-    if (idx === -1) return 'audio/intro.mp3';
-    if (idx >= sections.length) return 'audio/outro.mp3';
-    return 'audio/section-' + idx + '.mp3';
+    if (idx === -1) return 'https://brief-sounds.bdmartel.workers.dev/a/2026-07-05/intro.mp3';
+    if (idx >= sections.length) return 'https://brief-sounds.bdmartel.workers.dev/a/2026-07-05/outro.mp3';
+    return 'https://brief-sounds.bdmartel.workers.dev/a/2026-07-05/section-' + idx + '.mp3';
   }
 
   function updateProgress() {
@@ -813,7 +813,7 @@ So — up.</div>
   btn.addEventListener('click', toggle);
 
   // Lower-right FAB plays the WHOLE wake-up (intro -> poem -> tasks -> affirmations) in succession
-  var wuAudio = new Audio('audio/wakeup-complete.mp3?t=' + Date.now());
+  var wuAudio = new Audio('https://brief-sounds.bdmartel.workers.dev/a/2026-07-05/wakeup-complete.mp3?t=' + Date.now());
   var FAB_PLAY = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
   var FAB_PAUSE = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
   fab.innerHTML = FAB_PLAY;
@@ -912,7 +912,7 @@ So — up.</div>
       singleMode = true;
       state = 'playing';
       currentSection = secIdx;
-      audio.src = 'audio/section-' + secIdx + '.mp3';
+      audio.src = 'https://brief-sounds.bdmartel.workers.dev/a/2026-07-05/section-' + secIdx + '.mp3';
       audio.playbackRate = speeds[speedIdx];
       audio.play().catch(function() {});
       pb.classList.add('playing');
@@ -1160,7 +1160,7 @@ So — up.</div>
     var poemAudio = null;
     poemBtn.addEventListener('click', function(){
       if (poemAudio && !poemAudio.paused) { poemAudio.pause(); poemAudio.currentTime = 0; poemBtn.innerHTML = '&#9654; hear it'; return; }
-      poemAudio = new Audio('audio/poem.mp3');
+      poemAudio = new Audio('https://brief-sounds.bdmartel.workers.dev/a/2026-07-05/poem.mp3');
       poemBtn.innerHTML = '&#10073;&#10073; stop';
       poemAudio.onended = function(){ poemBtn.innerHTML = '&#9654; hear it'; };
       poemAudio.play().catch(function(){ poemBtn.innerHTML = '&#9654; hear it'; });
