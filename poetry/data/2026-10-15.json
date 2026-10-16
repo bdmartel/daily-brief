@@ -1,0 +1,645 @@
+{
+ "intro": "This week's seven lessons are about pace and pressure: how a poem slows a reader down and then moves them. Held time, one plain object, careful sounds and strong verbs build a still, physical moment, and line breaks decide where each pause falls. The turn, often a short command, spends all that built-up stillness at once.",
+ "week_prompt": "Write ten slow lines about your boots by the door before chores, using strong verbs and no mood words. Let one line glance back at last summer. End with a two-word command.",
+ "parts": [
+  {
+   "morning": "2026-10-09",
+   "technique": "Holding time still",
+   "definition": "A poem can stay inside one slow moment, stepping out only briefly to the past.",
+   "excerpt": [
+    7,
+    12
+   ],
+   "marks": [
+    {
+     "line": 7,
+     "words": "marked for something taller once",
+     "note": "The one glance back at an old plan."
+    },
+    {
+     "line": 9,
+     "words": "For now the plan is humbler",
+     "note": "Return to the present, with a choice made."
+    },
+    {
+     "line": 11,
+     "words": "asks your knees, your weight",
+     "note": "Body words slow you into the present."
+    },
+    {
+     "line": 12,
+     "words": "your slow hands moving level",
+     "note": "The word slow names the pace outright."
+    }
+   ],
+   "deeper": [
+    "When a poem holds still, the reader slows to match it. The crow in this poem does not hurry, and the lines do not hurry either: [[unhurried, certain]], then the knees, the weight, the [[slow hands]]. Nothing much happens, so you start to notice small things. The single look back, [[a cool green shade you carried in your head]], works because it is the only movement in time. One step into the past is enough to show that something was given up. When the poem then says [[For now]], the present feels chosen, not forced.",
+    "The common beginner mistake is sliding between past and present without meaning to. One line says you walked, the next says you walk, and the reader loses footing. Fix it in revision: underline every verb, mark each one past or present, and make sure the poem leaves the present only once, on purpose, and comes back with a clear signal like [[For now]].",
+    "This holding still sets up the command you studied on Saturday. Twelve slow lines build pressure, and the closing [[So]] and [[up]] release it. A still poem gives a short order its force."
+   ],
+   "examples": [
+    {
+     "poem": "frost-after-apple-picking",
+     "lines": [
+      1,
+      6
+     ],
+     "note": "The ladder and the unfilled barrel are leftovers from work already finished. Then [[But I am done with apple-picking now]] sets you firmly in a still, tired present."
+    },
+    {
+     "poem": "thomas-adlestrop",
+     "lines": [
+      1,
+      8
+     ],
+     "note": "The poem opens on a memory, then holds one stopped minute. Short sentences like [[The steam hissed]] keep time from moving at all."
+    }
+   ],
+   "fresh": {
+    "lines": [
+     "The stove ticks as it cools. Snow sits on the woodpile.",
+     "The sheep stand in the barn door, chewing, watching nothing.",
+     "Last March I swore I'd have the fence done by now.",
+     "For now the kettle, the window, the slow white field."
+    ],
+    "note": "Two lines stay in one still moment, one line steps back a season, and the last line comes home."
+   },
+   "steps": [
+    {
+     "head": "Pick one moment",
+     "detail": "Choose a single scene that lasts a minute or less, and keep the poem inside it."
+    },
+    {
+     "head": "Slow the language",
+     "detail": "Use present tense, plain verbs and body details: hands, knees, breath, weight."
+    },
+    {
+     "head": "Glance back once",
+     "detail": "Add one line about the past that shows what you wanted or gave up."
+    },
+    {
+     "head": "Signal the return",
+     "detail": "Come back with a clear present marker like now, today, or this morning."
+    }
+   ],
+   "exercise": "Write eight lines about standing at the woodpile at dusk, in present tense. Make line six the only line about the past. Return to now in line seven.",
+   "checklist": [
+    "Every verb is present tense except one line.",
+    "The past line shows something wanted or lost.",
+    "A clear word marks the return to now.",
+    "No line hurries the moment along."
+   ],
+   "keep": "Stay in now. Step back once."
+  },
+  {
+   "morning": "2026-10-10",
+   "technique": "Ending on a command",
+   "definition": "After lines that describe, the last line tells the reader to do something.",
+   "excerpt": [
+    10,
+    14
+   ],
+   "marks": [
+    {
+     "line": 10,
+     "words": "the cold air stands clean",
+     "note": "Quiet description: things standing, not moving."
+    },
+    {
+     "line": 11,
+     "words": "named, shelved, and still,",
+     "note": "A still list keeps the reader calm."
+    },
+    {
+     "line": 14,
+     "words": "So",
+     "note": "Ties the order to everything before it."
+    },
+    {
+     "line": 14,
+     "words": "up!",
+     "note": "The order itself: one syllable, one action."
+    }
+   ],
+   "deeper": [
+    "A command changes the relationship between the poem and the reader. For twelve lines you watch: the fog, the maples, the seed envelopes [[named, shelved, and still]]. You are outside the scene. Then the poem turns and speaks to you, and you are inside it. That jump from watching to being asked works because the reader did not see it coming and cannot ignore it. A command is the only kind of sentence that wants an answer from the body.",
+    "The beginner mistake is the unearned order. If the poem has not built up enough stillness or weight, a command at the end sounds like a coach shouting. The fix is to cut the command, read the poem, and ask what it makes you want to do. Then write that as the order. If nothing comes, the description needs more work, not a louder ending.",
+    "This works hand in hand with holding time still, from Friday. The longer the poem stays in a slow present, the harder the two words land. The word [[So]] does the joining: it tells you the order grew out of what you just saw."
+   ],
+   "examples": [
+    {
+     "poem": "hopkins-pied-beauty",
+     "lines": [
+      7,
+      11
+     ],
+     "note": "Four lines of crowded, piled-up description, then [[Praise him]]. The short command after the long list is the same shape as this morning's poem."
+    },
+    {
+     "poem": "frost-the-pasture",
+     "lines": [
+      5,
+      8
+     ],
+     "note": "The speaker describes a calf, gently and slowly, then ends with [[You come too]]. Notice how mild the order is: a command can invite as well as push."
+    }
+   ],
+   "fresh": {
+    "lines": [
+     "Frost on the truck glass, thick as wool.",
+     "The sheep stand bunched against the gate,",
+     "breath hanging over them like smoke.",
+     "The hay is in the loft. The trough is frozen.",
+     "Go out."
+    ],
+    "note": "Four lines of still description, then a two-word order that sends you to the frozen trough."
+   },
+   "steps": [
+    {
+     "head": "Describe without asking",
+     "detail": "Write the scene first, with no orders, no questions, no wishes. Let things sit still."
+    },
+    {
+     "head": "Find the pull",
+     "detail": "Reread and ask what the scene makes you want to do. Name that one action."
+    },
+    {
+     "head": "Make it short",
+     "detail": "Write the command in two or three words, built on one plain verb."
+    },
+    {
+     "head": "Add a joint",
+     "detail": "Start the order with a small linking word like So or Then, tying it to the scene."
+    }
+   ],
+   "exercise": "Write seven lines describing the seed shelf or the garden beds put to bed for winter. No people, no feelings named. End with a command of two or three words.",
+   "checklist": [
+    "The first lines describe and never ask anything.",
+    "The command is three words or fewer.",
+    "The order follows from what the lines showed.",
+    "Read aloud, the last line sounds louder than the rest."
+   ],
+   "keep": "Earn the order with stillness first."
+  },
+  {
+   "morning": "2026-10-11",
+   "technique": "Object carries the feeling",
+   "definition": "Show one ordinary thing closely so the reader feels the mood without being told it.",
+   "excerpt": [
+    1,
+    6
+   ],
+   "marks": [
+    {
+     "line": 2,
+     "words": "handle cold,",
+     "note": "Touch detail you feel in your own palm."
+    },
+    {
+     "line": 3,
+     "words": "the bit gone dark with dew",
+     "note": "Shows a night outdoors, waiting, unused."
+    },
+    {
+     "line": 5,
+     "words": "that honest pull",
+     "note": "Weight felt in the body, not explained."
+    },
+    {
+     "line": 6,
+     "words": "an even swing",
+     "note": "Readiness shown as a motion you can picture."
+    }
+   ],
+   "deeper": [
+    "When a poem names a feeling, like ready or rested, the reader hears a report and stays outside it. When a poem hands over an object, the reader holds it. You have felt a cold tool handle in the morning. You know the [[honest pull]] of a weight in your shoulder. So when the poem gives you the axe, your own body supplies the readiness. The feeling arrives as yours, not the poet's, and that is why it lasts.",
+    "The beginner mistake is to show the object and then explain it anyway: the axe was cold, and I felt ready for the day. The second half undoes the first. Fix it by deleting every phrase that names an emotion, then adding one more physical detail in its place: temperature, weight, texture, sound. Line 13 of this poem slips with [[your hands feel rested]], and you can hear it go flat next to the axe.",
+    "An object works best inside held time, from Friday. The axe sits [[exactly as you left it]], so the moment is still enough for you to study the dew on the bit. And the object gives the closing command, from Saturday, something real to point at: get up and lift this."
+   ],
+   "examples": [
+    {
+     "poem": "williams-red-wheelbarrow",
+     "lines": [
+      1,
+      8
+     ],
+     "note": "One wheelbarrow, wet, beside chickens. The poem never says why it matters, but [[glazed with rain]] makes you feel the quiet yard after a storm."
+    },
+    {
+     "poem": "frost-the-wood-pile",
+     "lines": [
+      26,
+      31
+     ],
+     "note": "The old cord of wood, grey, sunken and wound with vines, carries a feeling of forgotten work. The bark [[warping off it]] says what Frost does not."
+    }
+   ],
+   "fresh": {
+    "lines": [
+     "The bucket hangs on its nail by the barn door,",
+     "a skin of ice across the bottom,",
+     "the handle bent where it took the weight",
+     "of every morning since September."
+    ],
+    "note": "Ice and a bent handle carry the tiredness of a long season without ever naming it."
+   },
+   "steps": [
+    {
+     "head": "Choose one object",
+     "detail": "Pick a tool or thing you touch daily: bucket, axe, boots, kettle, gate latch."
+    },
+    {
+     "head": "Use your hands",
+     "detail": "Write what it feels like to hold: cold, weight, grain, wear, rust."
+    },
+    {
+     "head": "Cut the feelings",
+     "detail": "Delete any word that names an emotion. Replace it with a physical detail."
+    },
+    {
+     "head": "Show its history",
+     "detail": "Add one sign of use: a worn spot, a dent, a stain from work."
+    }
+   ],
+   "exercise": "Write six lines about your work gloves at the end of a cold day. Describe how they feel, smell and look. Do not name tired, glad or any other mood.",
+   "checklist": [
+    "One object stays at the center.",
+    "At least two details come from touch.",
+    "No line names an emotion.",
+    "One detail shows the object has been used."
+   ],
+   "keep": "Hand them the thing, not the feeling."
+  },
+  {
+   "morning": "2026-10-12",
+   "technique": "The turn",
+   "definition": "The turn is the line where a poem stops showing a picture and starts doing something else.",
+   "excerpt": [
+    7,
+    14
+   ],
+   "marks": [
+    {
+     "line": 7,
+     "words": "an ankle's small complaint",
+     "note": "Picture: small body facts, nothing asked yet."
+    },
+    {
+     "line": 12,
+     "words": "boards you know by heart",
+     "note": "Last picture, feet already on the floor."
+    },
+    {
+     "line": 14,
+     "words": "up!",
+     "note": "The turn: description becomes an order."
+    }
+   ],
+   "deeper": [
+    "A turn works because it changes what the words are for. For twelve lines the words in this poem report: breath, quilt, a smell [[like apples left too long]]. The reader settles into listening to reports. Then two words stop reporting and start asking. That change of job is the turn, and it feels like a door opening. Notice how the poem prepares it: line 11 puts your feet on the floor before the order comes, so your body is already halfway up.",
+    "The beginner mistake is the unearned turn, a big statement tacked on after a few loose pictures, something like a last line announcing what life is all about. A turn gets its weight from the pictures before it. To fix it, cover your last line and read the rest. If the pictures do not already lean toward the ending, add details that do, or cut the ending.",
+    "You built the materials for this turn earlier in the week: holding time still on Friday and the plain object on Sunday. The slow body and the known floorboards store up the weight. The turn is where you spend it."
+   ],
+   "examples": [
+    {
+     "poem": "whitman-learnd-astronomer",
+     "lines": [
+      1,
+      8
+     ],
+     "note": "Five lines of charts, figures and lecture, then the turn at line 6 with [[rising and gliding out]]. The poem stops listing and moves, the same way this morning's poem moves into [[up]]."
+    },
+    {
+     "poem": "mckay-the-tropics-in-new-york",
+     "lines": [
+      5,
+      12
+     ],
+     "note": "Fruit in a window brings memories, and line 9 turns from picture to feeling with [[Mine eyes grew dim]]. The slow list of fruit is what earns the tears."
+    }
+   ],
+   "fresh": {
+    "lines": [
+     "The ewes' water froze again last night.",
+     "I broke it with the axe and watched them drink,",
+     "their breath going up past the barn light,",
+     "the whole hill white and nothing on it moving.",
+     "Fix the heater."
+    ],
+    "note": "Four lines of picture, then a short order that turns the scene into a job."
+   },
+   "steps": [
+    {
+     "head": "Build the picture",
+     "detail": "Write several lines of plain description. Do not explain anything yet."
+    },
+    {
+     "head": "Lean it forward",
+     "detail": "Make the last picture point toward the ending, the way feet touch the floor before standing."
+    },
+    {
+     "head": "Change the job",
+     "detail": "Write one line that does something new: orders, asks, or admits."
+    },
+    {
+     "head": "Test by covering",
+     "detail": "Hide the turn and reread. If the pictures already lean that way, it is earned."
+    }
+   ],
+   "exercise": "Write eight lines about the barn at first light, only pictures. Then write one line that turns: a command, a question or a plain admission. Check that the pictures point toward it.",
+   "checklist": [
+    "You can point to the exact line of the turn.",
+    "The lines before it are pictures, not explanations.",
+    "The last picture leans toward the turn.",
+    "The turn line is short."
+   ],
+   "keep": "Pictures first. Then change the job."
+  },
+  {
+   "morning": "2026-10-13",
+   "technique": "Line breaks",
+   "definition": "A line break is where the line ends, making a small pause that weights the last word.",
+   "excerpt": [
+    9,
+    13
+   ],
+   "marks": [
+    {
+     "line": 9,
+     "words": "back the hills,",
+     "note": "Ends on the hills, so you hold them a beat."
+    },
+    {
+     "line": 11,
+     "words": "most honest work:",
+     "note": "The break makes you wait to learn what work means."
+    },
+    {
+     "line": 12,
+     "words": "a ledger never squared,",
+     "note": "The withheld detail arrives after the pause."
+    },
+    {
+     "line": 13,
+     "words": "counts on hands, not hope",
+     "note": "Hope lands last, just before the poem turns."
+    }
+   ],
+   "deeper": [
+    "The eye and the ear both treat the end of a line as a resting place. Whatever word sits there gets a little more light. So a line break lets you choose which word the reader carries for half a second. In line 1, ending on [[colors]] makes you wait to learn which ones. In line 11, ending on [[work]] holds that plain word alone before [[a ledger never squared]] tells you what kind of work it is. The break is a held breath, and it opens a small question that the next line answers.",
+    "The beginner mistake is breaking lines on weak words like the, and, of, or a. The reader pauses on nothing and the poem sags. Fix it by reading each line's last word by itself. If it is a little word, move the break so a noun or a verb takes that spot.",
+    "Line breaks are how you control the slow time you practiced on Friday. Full lines that end on solid words, like [[hills]], keep the pace even and steady. Then the final command, alone on its own line with space above it, gets the biggest pause of all."
+   ],
+   "examples": [
+    {
+     "poem": "crapsey-november-night",
+     "lines": [
+      1,
+      5
+     ],
+     "note": "Each line shrinks toward the last, and the break before [[And fall]] makes you wait, like a leaf in the air. The final two words get a line to themselves."
+    },
+    {
+     "poem": "teasdale-stars",
+     "lines": [
+      17,
+      20
+     ],
+     "note": "The word [[Witness]] gets a whole line. The breaks before and after it make you stop on it and feel its weight."
+    }
+   ],
+   "fresh": {
+    "lines": [
+     "I split the last round of oak",
+     "and stacked it high against the shed.",
+     "Then snow, all night, on everything,",
+     "the woodpile, the truck, the empty beds,",
+     "and in the morning, the axe,",
+     "buried to its handle."
+    ],
+    "note": "Every line ends on a solid word, and the break before the last line makes you wait for the buried handle."
+   },
+   "steps": [
+    {
+     "head": "Write it whole",
+     "detail": "Draft the sentences as plain prose first, without thinking about lines."
+    },
+    {
+     "head": "Choose the weight",
+     "detail": "Underline the words you most want heard. Those belong at line ends."
+    },
+    {
+     "head": "Break before reveals",
+     "detail": "Put a break just before a detail you want to arrive with force."
+    },
+    {
+     "head": "Check the ends",
+     "detail": "Read only the last word of each line. Replace little words like the or and."
+    }
+   ],
+   "exercise": "Write four sentences about the garden beds under frost as plain prose. Then break them into lines so every line ends on a noun or verb. Read it aloud twice.",
+   "checklist": [
+    "No line ends on the, a, and or of.",
+    "At least one break holds back a detail.",
+    "Read aloud, the pauses fall where you want them.",
+    "The last words, read alone, still tell the story."
+   ],
+   "keep": "The last word in a line weighs most."
+  },
+  {
+   "morning": "2026-10-14",
+   "technique": "Vowel and consonant sound",
+   "definition": "Repeated vowels and consonants change how a line feels to say and how fast it moves.",
+   "excerpt": [
+    1,
+    4
+   ],
+   "marks": [
+    {
+     "line": 1,
+     "words": "Woodsmoke sits low",
+     "note": "Long o sounds hang in the air, like smoke."
+    },
+    {
+     "line": 2,
+     "words": "gone brown and done",
+     "note": "Open vowels and closing n sounds slow you down."
+    },
+    {
+     "line": 3,
+     "words": "soft in the grass",
+     "note": "Soft s sounds, quiet as fruit in grass."
+    },
+    {
+     "line": 4,
+     "words": "the rot already in it",
+     "note": "Short t sounds clip the sweetness off."
+    }
+   ],
+   "deeper": [
+    "Your mouth reads a poem even when you read silently. Long, open vowels, like the o in [[Woodsmoke]] and [[low]], take time to say, so they slow the line. Hard stops like t and d cut sound off short. In line 2, [[gone brown and done]] all close on the same n, so the words lock together and the line feels finished, like the leaves. In line 4, the s in [[sweetness]] slides, and then [[rot]] and [[it]] snap shut. The sound does what the sense says: something sweet, then cut off.",
+    "The beginner mistake is piling up repetition until it sounds like a tongue twister. Readers notice the trick and stop believing the line. Fix it by keeping a sound pattern to two or three words, and by reading the line aloud at normal speed. If you trip, cut one.",
+    "Sound works closely with the line breaks from Tuesday. A heavy word like [[done]] at the end of a line gets both the long vowel and the pause, so it lands twice. And after all those slow sounds, the short, sharp [[up]] snaps the poem awake."
+   ],
+   "examples": [
+    {
+     "poem": "toomer-reapers",
+     "lines": [
+      1,
+      4
+     ],
+     "note": "Say [[steel on stones]] and [[sharpening scythes]] aloud. The s sounds hiss like a blade on a whetstone, so you hear the work before you see it."
+    },
+    {
+     "poem": "frost-stopping-by-woods",
+     "lines": [
+      9,
+      13
+     ],
+     "note": "[[sweep]], [[easy wind]] and [[downy flake]] are soft and long, and the hush of snow comes through the sounds. Compare the sharp k in [[shake]] and [[mistake]]."
+    }
+   ],
+   "fresh": {
+    "lines": [
+     "Low smoke on the long road home,",
+     "the truck slow in the snow,",
+     "and then the gate: hit, latch, click, stop."
+    ],
+    "note": "Long o sounds drag the drive out, then short hard words snap the gate shut."
+   },
+   "steps": [
+    {
+     "head": "Read it aloud",
+     "detail": "Say every line out loud. Your mouth will catch what your eye misses."
+    },
+    {
+     "head": "Match sound to mood",
+     "detail": "For slow, tired lines, use long open vowels. For quick lines, use short words and hard stops."
+    },
+    {
+     "head": "Repeat lightly",
+     "detail": "Let two or three nearby words share one sound. Not more."
+    },
+    {
+     "head": "Cut the stumbles",
+     "detail": "If you trip reading aloud, change a word until the line runs clean."
+    }
+   ],
+   "exercise": "Write five lines about the stove going cold overnight. Use long vowels for the slow cooling. Then write one line of quick, hard sounds for lighting it again in the morning.",
+   "checklist": [
+    "You read every line aloud at least twice.",
+    "Slow lines use long vowels; quick lines use short words.",
+    "No line sounds like a tongue twister.",
+    "One sound pattern ties two or three words together."
+   ],
+   "keep": "Say it aloud before you keep it."
+  },
+  {
+   "morning": "2026-10-15",
+   "technique": "Verbs over adjectives",
+   "definition": "Let a strong action word carry the line instead of stacking describing words before the noun.",
+   "excerpt": [
+    1,
+    5
+   ],
+   "marks": [
+    {
+     "line": 1,
+     "words": "throws",
+     "note": "Makes the call hard, sudden, and physical."
+    },
+    {
+     "line": 2,
+     "words": "gets no answer back",
+     "note": "A plain verb carries the loneliness."
+    },
+    {
+     "line": 4,
+     "words": "come loose",
+     "note": "The leaves let go; no adjective needed."
+    },
+    {
+     "line": 5,
+     "words": "drifting down to lie",
+     "note": "Slow verbs give the fall its pace."
+    }
+   ],
+   "deeper": [
+    "A verb is a picture with motion in it. When the crow [[throws]] its call, you see an arm, a weight, a release, all from one word. An adjective can only sit on a noun and describe it. A verb makes the noun do something, and the reader has to picture it happening, which pulls them in. Look at line 9 too: [[The floor will test your feet]]. The floor acts, and you feel the cold boards without any describing words at all.",
+    "The beginner mistake is a weak verb propped up by adjectives: the loud, harsh, sudden call of the crow was heard. Is, was, had, made and got are the usual culprits. Fix it by circling each verb in your draft. Where one is weak, ask what the thing is actually doing, then let a stronger verb replace the adjectives.",
+    "Verbs give the sound work from Wednesday something to ride on. [[throws two rough notes]] is short and hard in the mouth, while [[drifting down]] is long and soft. Choose the verb for its sense first, then for its sound."
+   ],
+   "examples": [
+    {
+     "poem": "clare-signs-of-winter",
+     "lines": [
+      1,
+      4
+     ],
+     "note": "The animals [[runs]], [[Leaps]], [[knarls]], [[grunt]] and go [[Snatching]]: every line is driven by a verb, and few describing words are needed. You see a whole farmyard in motion."
+    },
+    {
+     "poem": "frost-a-time-to-talk",
+     "lines": [
+      7,
+      10
+     ],
+     "note": "[[thrust]] and [[plod]] do the work. You see the hoe stab the ground and feel the slow walk to the wall without being told how he moves."
+    }
+   ],
+   "fresh": {
+    "lines": [
+     "The ewes shoulder through the gate,",
+     "the wind combs the last hay from the rack,",
+     "and the truck coughs twice, then catches."
+    ],
+    "note": "Shoulder, combs, coughs and catches carry the scene with almost no describing words."
+   },
+   "steps": [
+    {
+     "head": "Circle the verbs",
+     "detail": "Mark every verb in your draft. Flag is, was, had, made, got and went."
+    },
+    {
+     "head": "Ask what happens",
+     "detail": "For each weak verb, picture the action exactly. What is the thing really doing?"
+    },
+    {
+     "head": "Swap and cut",
+     "detail": "Put in the stronger verb, then delete the adjectives it made unnecessary."
+    },
+    {
+     "head": "Read for motion",
+     "detail": "Read aloud. Each line should have something moving in it."
+    }
+   ],
+   "exercise": "Write six lines about feeding the sheep on a frozen morning. Use no more than three adjectives in the whole draft. Make every line turn on a strong verb.",
+   "checklist": [
+    "Each line has one strong, specific verb.",
+    "Three adjectives or fewer in the whole draft.",
+    "No is or was where an action could go.",
+    "You can picture motion in every line."
+   ],
+   "keep": "Let the verb do the lifting."
+  }
+ ],
+ "end": "2026-10-15",
+ "model": "claude-opus-5-5",
+ "built": "2026-10-15T22:54",
+ "usage": {
+  "input_tokens": 24658,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "cache_creation": {
+   "ephemeral_5m_input_tokens": 0,
+   "ephemeral_1h_input_tokens": 0
+  },
+  "output_tokens": 24131,
+  "output_tokens_details": {
+   "thinking_tokens": 15367
+  },
+  "service_tier": "standard",
+  "inference_geo": "global",
+  "speed": "standard"
+ }
+}

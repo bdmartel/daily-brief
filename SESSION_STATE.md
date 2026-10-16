@@ -1,19 +1,20 @@
 # Session State
-**Updated:** 2026-10-15 21:21
+**Updated:** 2026-10-15 23:05
 **Chat:** daily-brief-real-recordings
 
 ## Currently Working On
-Done (Oct 15 evening): each morning on the Last 5 mornings card has "▶ poem · lesson · poem" (Ben: "POEM, LESSON, POEM as a way to digest it"). Live on today's page; the morning script makes the pieces daily from Oct 16.
+Weekly poetry workshop (poetry.benmartel.com): generator, deploy, guard hook and anthology are done; next is building the first week (Oct 9-15) with `python3 tools/poem_roundup.py --end 2026-10-15`, checking it, and committing. Then ask Ben about storage for the sounds.
 
 ## Done This Session
-- Oct 2: wake-up bed = a real field recording each morning (tools/fieldbed.py + fieldbeds.json, 26 CC0/CC BY); speech band carved under the voice.
-- Oct 15: tools/recent_mornings.py fills a "Last 5 mornings" card (6 AM Echo mix, lesson, poem, sound per day) before each commit.
-- Oct 15: poem · lesson · poem button: poem-first.mp3 (one reading) → poem-preface.mp3 → poem-again.mp3 (one reading + "So — up!"). daily-dashboard.sh saves both from its takes; tools/poem_split.py cut Oct 11-15 from poem.mp3 (whisper-checked). Card now sits between <!--last-five-mornings--> comments so a re-run replaces it in place.
+- Oct 2: real field recordings as the wake-up bed. Oct 15: Last 5 mornings card, poem · lesson · poem button.
+- Oct 15: tools/poem_roundup.py, poetry/deploy.sh, tools/anthology.json (60 poems, verified), guard hook (--if-due after the brief), lesson.json written by the script, verse cleanup for doubled endings, directory chip.
 
 ## Next Steps
-- Oct 16 morning: confirm the card shows Oct 16 + Oct 12-15, every row has the poem · lesson · poem button, and audio/poem-first.mp3 + poem-again.mp3 exist; /tmp/recent_mornings.err empty.
+- Must save the first week before 5:40 AM Oct 16, or the guard's --if-due will build Oct 4-10 at 5:45 (today is blocked by ~/.claude/poem-roundup-state = fail 3).
+- Commit daily-brief (tools, poetry/, CLAUDE.md, lesson.json files, split mp3s, index.html card link).
+- Ask Ben: DO volume (~$2.50/mo for 25 GB) so the brief's sounds can move to poetry.benmartel.com/m/ (droplet 87% full; doctl token dead).
 
 ## Key Decisions / Context
-- poem.mp3 = one take read twice + closer, so the button uses single readings; the closer stays once, at the end.
-- Script backups: scratchpad daily-dashboard.sh.before-digest (and .before-last5, .orig).
-- Archive folders are named for the day after the audio played (launchd's grep lacks -P); don't fix without migrating.
+- Sundays, Sun-Sat week, no overlap with a saved week; first week built by hand, next Oct 25.
+- Examples quote real poets only from anthology.json by id + line numbers; anything unverifiable is dropped.
+- Backups: scratchpad daily-dashboard.sh.before-roundup, daily-dashboard-guard.sh.before-roundup.

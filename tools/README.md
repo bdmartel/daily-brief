@@ -92,3 +92,27 @@ python3 tools/poem_split.py archive/2026-10-14-audio --check   # report only
 python3 tools/poem_split.py archive/2026-10-14-audio           # write the two files
 ```
 
+
+## poem_roundup.py — the weekly poetry workshop (2026-10-15)
+
+Builds [poetry.benmartel.com](https://poetry.benmartel.com): once a week, one part per morning's lesson (technique,
+the morning's lines marked, go deeper, two real-poem examples plus a fresh one, steps, an
+exercise, a checklist). Claude writes the week as JSON; the tool checks every line number and
+marked word against the real poem, prints real-poet quotes only from `anthology.json`, renders
+the Utility-style pages into `poetry/site/` and runs `poetry/deploy.sh`.
+
+```bash
+python3 tools/poem_roundup.py --end 2026-10-15 --collect   # show the week's mornings, no API call
+python3 tools/poem_roundup.py --end 2026-10-15             # build and deploy that week
+python3 tools/poem_roundup.py --render                      # re-render saved weeks, no API call
+```
+
+`--if-due` is what the guard runs after the brief (Sundays, the Sunday-to-Saturday week just
+ended). It builds for real when a week is due, so it isn't a dry run.
+
+## anthology.json — public-domain poems for the workshop's examples
+
+Poems first published in 1930 or earlier, copied verbatim from Project Gutenberg or Wikisource
+(each entry names its source), tagged with the techniques they show (`good_for`). The workshop
+quotes real poets only from here, by id and line numbers. To add a poem, append an entry with
+its full text and source; keep it under 60 lines.

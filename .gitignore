@@ -2,3 +2,5 @@ tools/node_modules/
 
 # Field-recording cache for the wake-up bed (tools/fieldbed.py re-downloads from tools/fieldbeds.json)
 assets/field/
+poetry/site/
+poetry/last-reply.json

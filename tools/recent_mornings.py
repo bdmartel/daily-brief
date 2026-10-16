@@ -105,8 +105,11 @@ def build(repo, today, count):
             'background:rgba(216,178,90,0.05);border-radius:10px;">\n'
             '    <style>.mornings-card .morning-play{background:none;border:1px solid #d8b25a;color:#d8b25a;border-radius:14px;'
             'padding:3px 11px;font-size:11px;cursor:pointer;letter-spacing:0.04em;}</style>\n'
-            '    <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted,#9a948a);'
-            f'margin-bottom:4px;">Last {len(rows)} mornings</div>\n'
+            '    <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;font-size:11px;letter-spacing:0.14em;'
+            'text-transform:uppercase;color:var(--text-muted,#9a948a);margin-bottom:4px;">'
+            f'<span>Last {len(rows)} mornings</span>'
+            '<a href="https://poetry.benmartel.com" style="margin-left:auto;color:#d8b25a;letter-spacing:0.06em;">'
+            'weekly poetry workshop &rarr;</a></div>\n'
             + '\n'.join(rows) + '\n'
             f'    <script>var pastMornings = {js};</script>\n'
             f'  </div>\n  {END}')
