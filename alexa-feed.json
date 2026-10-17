@@ -1,8 +1,8 @@
 {
-  "uid": "urn:uuid:1dfc6570-bf33-49e7-8d1f-6a4ea6730d3e",
-  "updateDate": "2026-10-16T09:42:57.0Z",
-  "titleText": "Daily brief for Friday, October 16",
+  "uid": "urn:uuid:03dc9aed-91d6-41e7-881a-a13ee36b8479",
+  "updateDate": "2026-10-17T09:41:45.0Z",
+  "titleText": "Daily brief for Saturday, October 17",
   "mainText": "",
-  "streamUrl": "https://brief-sounds.bdmartel.workers.dev/m/2026-10-16/wakeup-echo.mp3",
+  "streamUrl": "https://brief-sounds.bdmartel.workers.dev/m/2026-10-17/wakeup-echo.mp3",
   "redirectionUrl": "https://bdmartel.github.io/daily-brief/"
 }
