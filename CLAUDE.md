@@ -97,6 +97,9 @@ Flash briefings always speak ("Here's your flash briefing" + a required In/From 
 - **Built via SMAPI**, not the console UI (the create-skill wizard rendered an empty shell under scripted control): `ask-cli` is installed globally; fresh tokens via `ask util generate-lwa-tokens` (needs `~/.ask/cli_config` to exist; consent auto-approves after first grant). Simulation-verified: spoken response `[]`, Play directive present.
 - The flash-briefing skill stays configured as **fallback** — if Alexa+ ever breaks routine→custom-skill audio, switch the routine action back to News → Flash Briefing.
 
+## All the Poems (2026-11-08)
+Ben: "read all of the poems on the daily brief in an accordion". `tools/all_poems.py` pulls every morning's poem from the archived pages (title date + 1 = the morning; plain pages beat -vN drafts), newest first, into a collapsible card under the Last-5 card (`<!--all-poems-->` comments; open all / close all). The morning script runs it right after `recent_mornings.py`; it also strips the block from archive pages so they stay light. Re-run by hand anytime: `python3 tools/all_poems.py`.
+
 ## Manual Run
 ```bash
 ~/.claude/scripts/daily-dashboard.sh          # full run, opens browser
