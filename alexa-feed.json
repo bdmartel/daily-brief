@@ -1,8 +1,8 @@
 {
-  "uid": "urn:uuid:9525c1df-d8cd-4e81-ab5f-2f14ae5d60b9",
-  "updateDate": "2026-11-12T10:42:39.0Z",
-  "titleText": "Daily brief for Thursday, November 12",
+  "uid": "urn:uuid:9f16c9a9-8390-4f45-b7d0-0e35a24a5a3c",
+  "updateDate": "2026-11-13T10:43:14.0Z",
+  "titleText": "Daily brief for Friday, November 13",
   "mainText": "",
-  "streamUrl": "https://brief-sounds.bdmartel.workers.dev/m/2026-11-12/wakeup-echo.mp3",
+  "streamUrl": "https://brief-sounds.bdmartel.workers.dev/m/2026-11-13/wakeup-echo.mp3",
   "redirectionUrl": "https://bdmartel.github.io/daily-brief/"
 }
