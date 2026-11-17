@@ -5,6 +5,7 @@
 // daily brief's own alexa-feed.json, so skip/off mornings automatically play silence.
 // Dev-only skill on Ben's account; never certified, so no signature verification.
 header('Content-Type: application/json');
+date_default_timezone_set('America/New_York');
 
 $raw  = file_get_contents('php://input');
 $req  = json_decode($raw, true);
@@ -22,14 +23,30 @@ function garden_stream_url() {
     return 'https://brief-sounds.bdmartel.workers.dev/latest/wakeup-echo.mp3';
 }
 
-function garden_play() {
+// A past morning (Ben, 2026-11-16: "listen to yesterday's"). Mornings from Oct 16 on live at
+// m/<date>/ on Cloudflare; returns null when that morning has no wake-up file.
+function morning_stream_url($ymd) {
+    $url = 'https://brief-sounds.bdmartel.workers.dev/m/' . $ymd . '/wakeup-echo.mp3';
+    $ctx = stream_context_create(array('http' => array('method' => 'HEAD', 'timeout' => 4, 'ignore_errors' => true)));
+    $h = @get_headers($url, false, $ctx);
+    return ($h && strpos($h[0], '200') !== false) ? $url : null;
+}
+
+function say($text) {
+    return array('version' => '1.0', 'response' => array(
+        'shouldEndSession' => true,
+        'outputSpeech' => array('type' => 'PlainText', 'text' => $text),
+    ));
+}
+
+function garden_play($url = null) {
     return array('version' => '1.0', 'response' => array(
         'shouldEndSession' => true,
         'directives' => array(array(
             'type' => 'AudioPlayer.Play',
             'playBehavior' => 'REPLACE_ALL',
             'audioItem' => array('stream' => array(
-                'url' => garden_stream_url(),
+                'url' => $url ? $url : garden_stream_url(),
                 'token' => 'garden-' . date('Ymd-His'),
                 'offsetInMilliseconds' => 0,
             )),
@@ -49,6 +66,17 @@ if ($type === 'LaunchRequest') {
 } elseif ($type === 'IntentRequest') {
     if ($intent === 'PlayGardenIntent' || $intent === 'AMAZON.ResumeIntent') {
         $out = garden_play();
+    } elseif ($intent === 'PlayYesterdayIntent' || $intent === 'PlayDayIntent') {
+        $ymd = date('Y-m-d', strtotime('-1 day'));
+        if ($intent === 'PlayDayIntent') {
+            $v = isset($req['request']['intent']['slots']['day']['value']) ? $req['request']['intent']['slots']['day']['value'] : '';
+            if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $v)) {
+                $ymd = $v;
+                if ($ymd > date('Y-m-d')) $ymd = (intval(substr($ymd, 0, 4)) - 1) . substr($ymd, 4);  // "November 12" said in a later year
+            }
+        }
+        $url = morning_stream_url($ymd);
+        $out = $url ? garden_play($url) : say("I don't have a recording for " . date('F j', strtotime($ymd)) . '.');
     } elseif ($intent === 'AMAZON.PauseIntent' || $intent === 'AMAZON.StopIntent' || $intent === 'AMAZON.CancelIntent') {
         $out = garden_stop();
     } else {
