@@ -17,7 +17,17 @@ function garden_stream_url() {
     $feed = @file_get_contents('https://bdmartel.github.io/daily-brief/alexa-feed.json', false, $ctx);
     if ($feed) {
         $j = json_decode($feed, true);
-        if ($j && !empty($j['streamUrl'])) return $j['streamUrl'];
+        if ($j && !empty($j['streamUrl'])) {
+            // The feed can lag a few minutes behind the morning's push (Pages cache). If it still
+            // names an older morning and today's file is already on Cloudflare, play today's.
+            // A silence feed (alarm off / skip) is left alone.
+            $u = $j['streamUrl'];
+            if (strpos($u, 'silence') === false && strpos($u, '/m/' . date('Y-m-d') . '/') === false) {
+                $today = morning_stream_url(date('Y-m-d'));
+                if ($today) return $today;
+            }
+            return $u;
+        }
     }
     // Feed unreachable: the newest morning's wake-up on Cloudflare (tools/sounds.py, 2026-10-16)
     return 'https://brief-sounds.bdmartel.workers.dev/latest/wakeup-echo.mp3';
