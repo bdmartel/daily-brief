@@ -463,6 +463,9 @@ summary::after { content: '+'; font-size: 16px; }
 details[open] summary::after { content: '\2212'; }
 .play { width: 100%; margin-top: 12px; }
 .play-stop { width: 100%; margin-top: 6px; }
+.whole-toggle { width: 100%; margin-top: 6px; }
+.whole { display: none; margin-top: 12px; }
+.whole.open { display: block; }
 .ex { border: var(--rule) solid var(--ink); margin: 10px 0; padding: 10px 12px; }
 .ex.fresh { border-style: dashed; }
 .ex .cap { font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; }
@@ -481,7 +484,8 @@ details[open] summary::after { content: '\2212'; }
 @media print {
   .wrap { max-width: none; padding: 0; }
   .wrap > .card.part { break-before: page; }
-  .play, .play-stop, .claude-sessions, .past-card { display: none; }
+  .play, .play-stop, .whole-toggle, .claude-sessions, .past-card { display: none; }
+  .whole { display: block; }
   summary { display: none; }
 }
 """
@@ -515,8 +519,23 @@ JS = """
   }
   audio.addEventListener('ended', function () { t++; s = 0; load(); });
   audio.addEventListener('error', function () { if (list) { s++; load(); } });
+  // The whole poem opens and closes right where you press play (Ben, 2026-11-17), and starting
+  // the poem opens it so you can read along.
+  function whole(sec, open) {
+    var w = sec.querySelector('.whole'), tg = sec.querySelector('.whole-toggle');
+    if (!w || !tg) return;
+    w.classList.toggle('open', open);
+    tg.setAttribute('aria-expanded', open ? 'true' : 'false');
+    tg.innerHTML = '<span>' + (open ? 'Hide the whole poem' : 'Show the whole poem') + '</span>';
+  }
+  document.querySelectorAll('.whole-toggle').forEach(function (tg) {
+    tg.addEventListener('click', function () {
+      var sec = tg.closest('.sec'); whole(sec, !sec.querySelector('.whole').classList.contains('open'));
+    });
+  });
   document.querySelectorAll('.play').forEach(function (b) {
     b.addEventListener('click', function () {
+      if (btn !== b) whole(b.closest('.sec'), true);
       if (btn === b) {
         if (audio.paused) { audio.play().catch(function () {}); label(b, 'playing'); }
         else { audio.pause(); label(b, 'paused'); }
@@ -665,8 +684,8 @@ def render(data, days_by_date, anthology, editions, end):
   <div class="sec"><h4>The morning's lines</h4>
 {poem_block(lines, a, b, marks)}
     <ol class="legend">{legend}</ol>
-    <details><summary>The whole poem</summary>{poem_block(lines)}</details>
-    {play}
+    <div class="playrow">{play}<button type="button" class="btn whole-toggle" aria-expanded="false"><span>Show the whole poem</span></button></div>
+    <div class="whole">{poem_block(lines)}</div>
   </div>
   <div class="sec"><h4>Go deeper</h4>
     {''.join(f'<p>{prose(t)}</p>' for t in p['deeper'])}

@@ -114,6 +114,7 @@ CSS = (
     '.all-poems-card details[open]>summary::before{content:"\\2212";}'
     '.all-poems-card .pf-date{font-size:13px;color:var(--text,#e8e6e1);min-width:130px;}'
     '.all-poems-card .pf-first{flex:1 1 220px;font-family:Georgia,\'Times New Roman\',serif;font-size:14px;font-style:italic;color:var(--text-muted,#9a948a);}'
+    '.all-poems-card .pf-sum{margin-left:auto;}'
     '.all-poems-card .pf-tech{font-size:11px;letter-spacing:0.04em;color:#d8b25a;}'
     '.all-poems-card .pf-text{font-family:Georgia,\'Times New Roman\',serif;font-size:16px;line-height:1.75;color:var(--text,#e8e6e1);white-space:pre-line;padding:2px 0 12px 24px;}'
     '.all-poems-card .pf-lesson{font-size:15px;line-height:1.7;color:var(--text,#e8e6e1);padding:4px 0 12px 24px;}'
@@ -193,6 +194,9 @@ JS = r'''
   card.addEventListener('click', function(e){
     var b = e.target.closest('button[data-act]');
     if (!b) return;
+    var head = b.closest('summary'), fold = b.closest('details');
+    if (head) { e.preventDefault(); fold.open = true; }   // a play button on the row header opens the row, never toggles it shut
+    if (b.dataset.act === 'collapse') { fold.open = false; fold.scrollIntoView({block:'nearest'}); return; }
     var r = b.closest('details.poem-fold') || card.querySelector('details.poem-fold[data-day="' + b.dataset.day + '"]');
     var act = b.dataset.act;
     if (b === curBtn && qi >= 0) { if (audio.paused) audio.play().catch(function(){}); else audio.pause(); return; }
@@ -254,8 +258,10 @@ def build(repo):
         prows.append(
             f'    <details class="poem-fold"{attrs}>\n'
             f'      <summary><span class="pf-date">{lab}</span>'
-            f'<span class="pf-first">{html.escape(first_line(r["text"]))}</span></summary>\n'
-            + (f'      <div class="pf-row">{" ".join(btns)}</div>\n' if btns else '')
+            f'<span class="pf-first">{html.escape(first_line(r["text"]))}</span>'
+            + ('<button class="pf-b pf-sum" data-act="poem">&#9654; play</button>' if r['poem'] else '')
+            + '</summary>\n'
+            + (f'      <div class="pf-row">{" ".join(btns)} <button class="pf-b" data-act="collapse">&#9650; close</button></div>\n' if btns else '')
             + f'      <div class="pf-text">{r["text"]}</div>\n'
             + lesson_html
             + '    </details>')
@@ -272,7 +278,9 @@ def build(repo):
             lrows.append(
                 '    <details class="lesson-fold">\n'
                 f'      <summary><span class="pf-date">{lab}</span>'
-                f'<span class="pf-first" style="font-style:normal;">{html.escape(tech) if tech else html.escape(first_line(r["text"]))}</span></summary>\n'
+                f'<span class="pf-first" style="font-style:normal;">{html.escape(tech) if tech else html.escape(first_line(r["text"]))}</span>'
+                + (f'<button class="pf-b pf-sum" data-act="lesson" data-day="{iso}">&#9654; play</button>' if r['lesson'] else '')
+                + '</summary>\n'
                 f'      <div class="pf-row">{" ".join(lb)}</div>\n'
                 f'      <div class="pf-lesson">{body}{note}</div>\n'
                 '    </details>')
