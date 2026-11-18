@@ -462,6 +462,7 @@ summary::-webkit-details-marker { display: none; }
 summary::after { content: '+'; font-size: 16px; }
 details[open] summary::after { content: '\2212'; }
 .play { width: 100%; margin-top: 12px; }
+.play-stop { width: 100%; margin-top: 6px; }
 .ex { border: var(--rule) solid var(--ink); margin: 10px 0; padding: 10px 12px; }
 .ex.fresh { border-style: dashed; }
 .ex .cap { font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; }
@@ -480,36 +481,55 @@ details[open] summary::after { content: '\2212'; }
 @media print {
   .wrap { max-width: none; padding: 0; }
   .wrap > .card.part { break-before: page; }
-  .play, .claude-sessions, .past-card { display: none; }
+  .play, .play-stop, .claude-sessions, .past-card { display: none; }
   summary { display: none; }
 }
 """
 
 PLAY_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>'
+PAUSE_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>'
 STOP_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h12v12H6z"/></svg>'
 
 JS = """
 (function () {
   // Poem, lesson, poem: one player for the page. Each track lists URLs to try in order (this
   // morning's sounds move from audio/ to the archive at the next run).
-  var audio = new Audio(), list = null, btn = null, t = 0, s = 0;
-  var PLAY = %(play)s, STOP = %(stop)s, NAMES = ['Poem', 'Lesson', 'Poem again'];
-  function label(b, playing) {
-    b.innerHTML = (playing ? STOP : PLAY) + '<span>' + (playing ? 'Stop &middot; ' + NAMES[t] : b.getAttribute('data-label')) + '</span>';
+  // Ben, 2026-11-17: "add pause options on the hear buttons". The playing button pauses and
+  // resumes; a Stop button appears beside it while a sequence is loaded.
+  var audio = new Audio(), list = null, btn = null, stopBtn = null, t = 0, s = 0;
+  var PLAY = %(play)s, STOP = %(stop)s, PAUSE = %(pause)s, NAMES = ['Poem', 'Lesson', 'Poem again'];
+  function label(b, state) {
+    var txt = state === 'playing' ? 'Pause &middot; ' + NAMES[t] : state === 'paused' ? 'Resume &middot; ' + NAMES[t] : b.getAttribute('data-label');
+    b.innerHTML = (state === 'playing' ? PAUSE : PLAY) + '<span>' + txt + '</span>';
   }
-  function stop() { audio.pause(); audio.removeAttribute('src'); if (btn) label(btn, false); btn = null; list = null; }
+  function stop() {
+    audio.pause(); audio.removeAttribute('src');
+    if (btn) label(btn, null);
+    if (stopBtn) stopBtn.remove();
+    btn = null; list = null; stopBtn = null;
+  }
   function load() {
     if (!list || t >= list.length) { stop(); return; }
     if (s >= list[t].length) { t++; s = 0; load(); return; }
-    audio.src = list[t][s]; audio.play().catch(function () {}); label(btn, true);
+    audio.src = list[t][s]; audio.play().catch(function () {}); label(btn, 'playing');
   }
   audio.addEventListener('ended', function () { t++; s = 0; load(); });
   audio.addEventListener('error', function () { if (list) { s++; load(); } });
   document.querySelectorAll('.play').forEach(function (b) {
     b.addEventListener('click', function () {
-      if (btn === b) { stop(); return; }
+      if (btn === b) {
+        if (audio.paused) { audio.play().catch(function () {}); label(b, 'playing'); }
+        else { audio.pause(); label(b, 'paused'); }
+        return;
+      }
       if (btn) stop();
-      btn = b; list = JSON.parse(b.getAttribute('data-tracks')); t = 0; s = 0; load();
+      btn = b; list = JSON.parse(b.getAttribute('data-tracks')); t = 0; s = 0;
+      stopBtn = document.createElement('button');
+      stopBtn.type = 'button'; stopBtn.className = 'btn play-stop';
+      stopBtn.innerHTML = STOP + '<span>Stop</span>';
+      stopBtn.addEventListener('click', stop);
+      b.insertAdjacentElement('afterend', stopBtn);
+      load();
     });
   });
   window.addEventListener('beforeprint', function () { document.querySelectorAll('details').forEach(function (d) { d.open = true; }); });
@@ -526,7 +546,7 @@ JS = """
     });
   });
 })();
-""" % {'play': json.dumps(PLAY_SVG), 'stop': json.dumps(STOP_SVG)}
+""" % {'play': json.dumps(PLAY_SVG), 'stop': json.dumps(STOP_SVG), 'pause': json.dumps(PAUSE_SVG)}
 
 
 def esc(s):

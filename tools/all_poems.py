@@ -136,6 +136,16 @@ JS = r'''
   var card = document.currentScript.closest('.all-poems-card');
   var rows = Array.prototype.slice.call(card.querySelectorAll('details.poem-fold'));
   var audio = new Audio(), queue = [], qi = -1, bar = card.querySelector('.pf-bar'), now = card.querySelector('.pf-now');
+  var curBtn = null;   // the row button that started what's playing: it pauses/resumes (Ben, 2026-11-17)
+  function btnState(state){
+    if (!curBtn) return;
+    if (!curBtn.dataset.orig) curBtn.dataset.orig = curBtn.innerHTML;
+    curBtn.classList.toggle('on', !!state);
+    curBtn.innerHTML = state === 'playing' ? '&#10073;&#10073; pause' : state === 'paused' ? '&#9654; resume' : curBtn.dataset.orig;
+  }
+  function release(){ btnState(null); curBtn = null; }
+  audio.addEventListener('play', function(){ btnState('playing'); q('.pf-pause').textContent = 'pause'; });
+  audio.addEventListener('pause', function(){ if (qi >= 0) { btnState('paused'); q('.pf-pause').textContent = 'resume'; } });
   function q(sel){ return card.querySelector(sel); }
   function label(r, kind){ return r.dataset.label + ' · ' + (kind === 'lesson' ? 'lesson' : 'poem'); }
   function mark(r){
@@ -157,7 +167,7 @@ JS = r'''
     if (it.scroll !== false) it.row.scrollIntoView({behavior:'smooth', block:'start'});
   }
   function stop(){
-    audio.pause(); queue = []; qi = -1; mark(null); bar.classList.remove('on');
+    qi = -1; audio.pause(); queue = []; mark(null); bar.classList.remove('on'); release();
   }
   audio.addEventListener('ended', function(){ playAt(qi + 1); });
   audio.addEventListener('error', function(){ if (qi >= 0) playAt(qi + 1); });
@@ -173,9 +183,9 @@ JS = r'''
     rows.slice(start).forEach(function(r){ queue = queue.concat(items(r, withLessons ? 'both' : 'poem')); });
     playAt(0);
   }
-  q('.pf-all').addEventListener('click', function(){ playAll(null); });
+  q('.pf-all').addEventListener('click', function(){ release(); curBtn = this; playAll(null); });
   q('.pf-pause').addEventListener('click', function(){
-    if (audio.paused) { audio.play(); this.textContent = 'pause'; } else { audio.pause(); this.textContent = 'resume'; }
+    if (audio.paused) audio.play().catch(function(){}); else audio.pause();
   });
   q('.pf-next').addEventListener('click', function(){ playAt(qi + 1); });
   q('.pf-prev').addEventListener('click', function(){ playAt(Math.max(0, qi - 1)); });
@@ -185,13 +195,15 @@ JS = r'''
     if (!b) return;
     var r = b.closest('details.poem-fold') || card.querySelector('details.poem-fold[data-day="' + b.dataset.day + '"]');
     var act = b.dataset.act;
-    if (act === 'from') { playAll(r); return; }
+    if (b === curBtn && qi >= 0) { if (audio.paused) audio.play().catch(function(){}); else audio.pause(); return; }
+    if (act === 'from') { release(); curBtn = b; playAll(r); return; }
     if (act === 'see-poem') {
       showView('poems'); r.open = true; r.scrollIntoView({behavior:'smooth', block:'start'}); return;
     }
     if (act === 'see-lesson') {
       var ld = r.querySelector('details.pf-ldet'); if (ld) { ld.open = true; ld.scrollIntoView({behavior:'smooth', block:'nearest'}); } return;
     }
+    release(); curBtn = b;
     queue = items(r, act); queue.forEach(function(x){ x.scroll = false; }); playAt(0);
   });
   function showView(v){
