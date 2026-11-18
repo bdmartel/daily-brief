@@ -433,7 +433,8 @@ CSS = """
     --accent: #ffffff; --accent-dim: #000000; --on-accent: #000000; --th-bg: #ffffff; --th-fg: #000000;
   }
 }
-.theme-btn { display: flex; width: max-content; margin: 10px 12px 0 auto; height: 32px; font-size: 11px; padding: 0 10px; }
+.theme-row { display: flex; justify-content: flex-end; padding: 10px 12px 0; }
+.theme-btn { height: 32px; font-size: 11px; padding: 0 10px; }
 html, body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: var(--fs); line-height: var(--lh); -webkit-font-smoothing: antialiased; }
 a { color: var(--ink); }
 .card { background: var(--surface); border: var(--card-border-w) solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); box-sizing: border-box; }
@@ -505,7 +506,7 @@ details[open] summary::after { content: '\2212'; }
   :root:root:root { color-scheme: light; --ink: #000000; --paper: #ffffff; --bg: #ffffff; --surface: #ffffff; --surface-2: #ffffff; --border: #000000; --text: #000000; --muted: #000000; --accent: #000000; --accent-dim: #ffffff; --on-accent: #ffffff; --th-bg: #000000; --th-fg: #ffffff; }
   .wrap { max-width: none; padding: 0; }
   .wrap > .card.part { break-before: page; }
-  .theme-btn, .play, .play-ctl, .whole-toggle, .claude-sessions, .past-card { display: none; }
+  .theme-row, .play, .play-ctl, .whole-toggle, .claude-sessions, .past-card { display: none; }
   .whole { display: block; }
   summary { display: none; }
 }
@@ -763,7 +764,7 @@ def render(data, days_by_date, anthology, editions, end):
 <style>{CSS}</style>
 </head>
 <body>
-<button type="button" class="btn theme-btn" aria-label="Switch between light and dark">Theme: auto</button>
+<div class="theme-row"><button type="button" class="btn theme-btn" aria-label="Switch between light and dark">Theme: auto</button></div>
 <main class="wrap">
 {chr(10).join(blocks)}
 </main>
