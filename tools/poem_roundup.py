@@ -417,6 +417,23 @@ CSS = """
   --radius: 0; --radius-sm: 0; --radius-pill: 0;
   --border-w: 1.5px; --card-border-w: 3px; --shadow: none;
 }
+/* Dark mode (Ben, 2026-11-17: "add dark mode optionality"): the same Utility look inverted, white on
+   black. Auto follows the phone; the THEME button sets dark or light and remembers it. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #ffffff; --paper: #000000;
+  --bg: #000000; --surface: #000000; --surface-2: #000000; --border: #ffffff; --text: #ffffff; --muted: #ffffff;
+  --accent: #ffffff; --accent-dim: #000000; --on-accent: #000000; --th-bg: #ffffff; --th-fg: #000000;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --ink: #ffffff; --paper: #000000;
+    --bg: #000000; --surface: #000000; --surface-2: #000000; --border: #ffffff; --text: #ffffff; --muted: #ffffff;
+    --accent: #ffffff; --accent-dim: #000000; --on-accent: #000000; --th-bg: #ffffff; --th-fg: #000000;
+  }
+}
+.theme-btn { display: flex; width: max-content; margin: 10px 12px 0 auto; height: 32px; font-size: 11px; padding: 0 10px; }
 html, body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: var(--fs); line-height: var(--lh); -webkit-font-smoothing: antialiased; }
 a { color: var(--ink); }
 .card { background: var(--surface); border: var(--card-border-w) solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); box-sizing: border-box; }
@@ -485,9 +502,10 @@ details[open] summary::after { content: '\2212'; }
 @media (max-width: 480px) { .title { font-size: 34px; } .band { font-size: 17px; } }
 @page { size: letter; margin: 0.5in; }
 @media print {
+  :root:root:root { color-scheme: light; --ink: #000000; --paper: #ffffff; --bg: #ffffff; --surface: #ffffff; --surface-2: #ffffff; --border: #000000; --text: #000000; --muted: #000000; --accent: #000000; --accent-dim: #ffffff; --on-accent: #ffffff; --th-bg: #000000; --th-fg: #ffffff; }
   .wrap { max-width: none; padding: 0; }
   .wrap > .card.part { break-before: page; }
-  .play, .play-ctl, .whole-toggle, .claude-sessions, .past-card { display: none; }
+  .theme-btn, .play, .play-ctl, .whole-toggle, .claude-sessions, .past-card { display: none; }
   .whole { display: block; }
   summary { display: none; }
 }
@@ -570,6 +588,15 @@ JS = """
       load();
     });
   });
+  // Theme: auto (follow the phone) -> dark -> light.
+  var tb = document.querySelector('.theme-btn'), ORDER = ['auto', 'dark', 'light'];
+  function cur() { return document.documentElement.getAttribute('data-theme') || 'auto'; }
+  function setTheme(m) {
+    if (m === 'auto') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', m);
+    try { if (m === 'auto') localStorage.removeItem('pw-theme'); else localStorage.setItem('pw-theme', m); } catch (e) {}
+    if (tb) tb.textContent = 'Theme: ' + m;
+  }
+  if (tb) { tb.textContent = 'Theme: ' + cur(); tb.addEventListener('click', function () { setTheme(ORDER[(ORDER.indexOf(cur()) + 1) %% 3]); }); }
   window.addEventListener('beforeprint', function () { document.querySelectorAll('details').forEach(function (d) { d.open = true; }); });
   // Claude session links: desktop Macs try the app first, then the web.
   var isMac = /Mac/.test(navigator.platform) && !('ontouchstart' in window);
@@ -732,9 +759,11 @@ def render(data, days_by_date, anthology, editions, end):
 <meta name="robots" content="noindex">
 <title>Poetry Workshop</title>
 <meta name="description" content="Ben's weekly poetry workshop, {esc(week_label(first, last))}">
+<script>try {{ var t = localStorage.getItem('pw-theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); }} catch (e) {{}}</script>
 <style>{CSS}</style>
 </head>
 <body>
+<button type="button" class="btn theme-btn" aria-label="Switch between light and dark">Theme: auto</button>
 <main class="wrap">
 {chr(10).join(blocks)}
 </main>
