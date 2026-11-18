@@ -170,7 +170,16 @@ JS = r'''
   function stop(){
     qi = -1; audio.pause(); queue = []; mark(null); bar.classList.remove('on'); release();
   }
-  audio.addEventListener('ended', function(){ playAt(qi + 1); });
+  // Repeat (Ben, 2026-11-17): off, this part (the track playing), or the whole segment (everything queued).
+  var REP = ['off','part','all'], REPL = {off:'repeat: off', part:'repeat: this part', all:'repeat: whole segment'}, rep = 'off';
+  q('.pf-rep').addEventListener('click', function(){
+    rep = REP[(REP.indexOf(rep) + 1) % 3]; this.textContent = REPL[rep]; this.classList.toggle('on', rep !== 'off');
+  });
+  audio.addEventListener('ended', function(){
+    if (rep === 'part') playAt(qi);
+    else if (rep === 'all' && qi + 1 >= queue.length) playAt(0);
+    else playAt(qi + 1);
+  });
   audio.addEventListener('error', function(){ if (qi >= 0) playAt(qi + 1); });
   function items(r, mode){
     var out = [];
@@ -302,6 +311,7 @@ def build(repo):
             '<button type="button" class="pf-b pf-prev">&larr; back</button>'
             '<button type="button" class="pf-b pf-pause">pause</button>'
             '<button type="button" class="pf-b pf-next">next &rarr;</button>'
+            '<button type="button" class="pf-b pf-rep">repeat: off</button>'
             '<button type="button" class="pf-b pf-stop">stop</button></div>\n'
             '    <div class="pf-view" data-view="poems">\n' + '\n'.join(prows) + '\n    </div>\n'
             '    <div class="pf-view" data-view="lessons" hidden>\n' + '\n'.join(lrows) + '\n    </div>\n'

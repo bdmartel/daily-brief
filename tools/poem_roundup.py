@@ -462,7 +462,10 @@ summary::-webkit-details-marker { display: none; }
 summary::after { content: '+'; font-size: 16px; }
 details[open] summary::after { content: '\2212'; }
 .play { width: 100%; margin-top: 12px; }
-.play-stop { width: 100%; margin-top: 6px; }
+.play-ctl { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 6px; }
+.play-ctl .btn { height: 40px; font-size: 12px; padding: 0 6px; }
+.play-ctl .chip.on, .play-ctl .rep.on { background: var(--ink); color: var(--paper); }
+.play-ctl .rep, .play-ctl .play-stop { grid-column: span 3; }
 .whole-toggle { width: 100%; margin-top: 6px; }
 .whole { display: none; margin-top: 12px; }
 .whole.open { display: block; }
@@ -484,7 +487,7 @@ details[open] summary::after { content: '\2212'; }
 @media print {
   .wrap { max-width: none; padding: 0; }
   .wrap > .card.part { break-before: page; }
-  .play, .play-stop, .whole-toggle, .claude-sessions, .past-card { display: none; }
+  .play, .play-ctl, .whole-toggle, .claude-sessions, .past-card { display: none; }
   .whole { display: block; }
   summary { display: none; }
 }
@@ -512,12 +515,21 @@ JS = """
     if (stopBtn) stopBtn.remove();
     btn = null; list = null; stopBtn = null;
   }
+  // Repeat (Ben, 2026-11-17): off, this part (poem / lesson / poem again), or the whole segment.
+  var REP = ['off', 'part', 'all'], repLabel = {off: 'Repeat: off', part: 'Repeat: this part', all: 'Repeat: whole segment'}, rep = 'off';
+  function paint() {
+    if (!stopBtn) return;
+    stopBtn.querySelectorAll('.chip').forEach(function (c, k) { c.classList.toggle('on', k === t); });
+    var r = stopBtn.querySelector('.rep'); r.innerHTML = '<span>' + repLabel[rep] + '</span>'; r.classList.toggle('on', rep !== 'off');
+  }
   function load() {
+    if (list && t >= list.length && rep === 'all') t = 0;
     if (!list || t >= list.length) { stop(); return; }
+    paint();
     if (s >= list[t].length) { t++; s = 0; load(); return; }
     audio.src = list[t][s]; audio.play().catch(function () {}); label(btn, 'playing');
   }
-  audio.addEventListener('ended', function () { t++; s = 0; load(); });
+  audio.addEventListener('ended', function () { if (rep !== 'part') t++; s = 0; load(); });
   audio.addEventListener('error', function () { if (list) { s++; load(); } });
   // The whole poem opens and closes right where you press play (Ben, 2026-11-17), and starting
   // the poem opens it so you can read along.
@@ -543,10 +555,17 @@ JS = """
       }
       if (btn) stop();
       btn = b; list = JSON.parse(b.getAttribute('data-tracks')); t = 0; s = 0;
-      stopBtn = document.createElement('button');
-      stopBtn.type = 'button'; stopBtn.className = 'btn play-stop';
-      stopBtn.innerHTML = STOP + '<span>Stop</span>';
-      stopBtn.addEventListener('click', stop);
+      // Controls while playing: jump to any part, repeat, stop.
+      stopBtn = document.createElement('div');
+      stopBtn.className = 'play-ctl';
+      stopBtn.innerHTML = NAMES.map(function (nm, k) { return '<button type="button" class="btn chip" data-k="' + k + '"><span>' + nm + '</span></button>'; }).join('')
+        + '<button type="button" class="btn rep"></button>'
+        + '<button type="button" class="btn play-stop">' + STOP + '<span>Stop</span></button>';
+      stopBtn.querySelectorAll('.chip').forEach(function (c) {
+        c.addEventListener('click', function () { t = +c.getAttribute('data-k'); s = 0; load(); });
+      });
+      stopBtn.querySelector('.rep').addEventListener('click', function () { rep = REP[(REP.indexOf(rep) + 1) %% 3]; paint(); });
+      stopBtn.querySelector('.play-stop').addEventListener('click', stop);
       b.insertAdjacentElement('afterend', stopBtn);
       load();
     });
