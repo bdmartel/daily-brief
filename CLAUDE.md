@@ -108,6 +108,7 @@ Ben: "after listening for months I recognize them all and feel like I'm in Groun
 - **Currents:** 23 kinds of what is really going on (weather, moon, migrating, in bloom, daylight, frost, harvest, farm work, wildlife, stars, the old farm calendar ...). Two per morning from the ticked ones, least recently used. Weather, daylight and frost are live Open-Meteo data for Peterborough; the moon and the turn of the year are computed; the rest the model draws from what is true in the region that week. "Your own day" is a current too: unticked, the poem ignores the notes. Ben dropped "where the sound recording came from".
 - **Memory:** the last 20 poems and 20 motivators are shown as don't-reuse (`~/.claude/daily-brief-poem-history.jsonl`, seeded from the archive on Nov 20).
 - Ticks are saved on the droplet (`/var/www/lists/data/state/poem.json`) and read over ssh at build time, cached in `~/.claude/daily-brief-poem-picks.json`. `python3 tools/poem_currents.py picks` shows them. If the pick fails, the old 8-door rotation runs (log `/tmp/poem_currents.err`).
+- **How this poem was made (Nov 21 to 27 only):** a note under the poem names the door, the two currents with their real facts, whether the notes counted, the 20-poem memory and the lesson (`poem_currents.py made`, date-gated in daily-dashboard.sh, so it stops by itself after Nov 27).
 - Add or change a door or current: edit the lists in `poem_currents.py`, then `python3 tools/poem_currents.py page --out ~/projects/lists/private/poem.html` and `~/projects/lists/deploy.sh`.
 
 ## Manual Run
