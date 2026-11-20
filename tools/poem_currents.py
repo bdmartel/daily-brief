@@ -400,6 +400,32 @@ def cmd_made(a):
             rows.append(f'<li><b>What was really going on, {e(cl.lower())}:</b> {e(body)}</li>')
     rows.append('<li><b>Your own day:</b> ' + ('yesterday\'s notes could shape it.' if pk.get('notes') else 'left out; the poem ignored the notes.') + '</li>')
     rows.append(f'<li><b>Memory:</b> it was shown the last {MEMORY} poems and told not to reuse their openings, images or endings.</li>')
+    if a.spoken:
+        import re
+        def say(t):
+            t = re.sub(r'Overnight lows this past week: [^;]*; ', '', t)
+            t = re.sub(r'The past week brought 0\.00 in of rain in all\.', 'No rain at all this past week.', t)
+            t = t.replace('°F', ' degrees').replace(' mph', ' miles an hour').replace('1 hard freezes', 'one hard freeze').replace(' (28 degrees or below)', '').replace(' frosts, ', ' frosts this past week, ')
+            return t.strip()
+        parts = [f'A note on how this poem was made. The way in was {lab.lower()}: {t.split(": ", 1)[-1]}.']
+        named = []
+        for k in pk.get('currents', []):
+            cl, how = clab.get(k, (k, ''))
+            fact = next((f[len(f'- {cl}: '):] for f in pk.get('facts', []) if f.startswith(f'- {cl}: ')), '')
+            named.append(cl.lower())
+            if how == 'live':
+                fact = re.sub(r'^' + re.escape(cl) + r':\s*', '', fact)
+                parts.append(f'On {cl.lower()}: {say(fact)}')
+            elif 'Real conditions to stay true to: ' in fact:
+                real = say(fact.split('Real conditions to stay true to: ')[1])
+                parts.append(f'On {cl.lower()}, it was held to the real weather. {real}')
+            else:
+                parts.append(f'On {cl.lower()}, it drew on what is really happening around Peterborough this week.')
+        parts.insert(1, 'What was really going on came from ' + ' and '.join(named) + '.')
+        parts.append('It could use your notes from yesterday.' if pk.get('notes') else 'It left your notes from yesterday out.')
+        parts.append(f'And it was shown the last {MEMORY} poems and told not to repeat them.')
+        print(' '.join(parts))
+        return
     if a.technique:
         rows.append(f'<li><b>The lesson:</b> {e(a.technique.split(" — ")[0])}.</li>')
     print('<!--poem-made--><div class="poem-made" style="margin:-12px 0 24px;padding:14px 20px;border-left:3px solid #d8b25a;border-radius:10px;font-size:14px;line-height:1.6;color:var(--text-muted,#9a948a);">'
@@ -503,7 +529,7 @@ def main():
     p.add_argument('--motivator'); p.add_argument('--pick')
     p = sp.add_parser('page'); p.add_argument('--out', required=True)
     sp.add_parser('seed'); sp.add_parser('picks')
-    p = sp.add_parser('made'); p.add_argument('--pick', required=True); p.add_argument('--technique')
+    p = sp.add_parser('made'); p.add_argument('--pick', required=True); p.add_argument('--technique'); p.add_argument('--spoken', action='store_true')
     a = ap.parse_args()
     {'pick': cmd_pick, 'record': cmd_record, 'page': cmd_page, 'seed': cmd_seed, 'picks': cmd_picks, 'made': cmd_made}[a.cmd](a)
 
