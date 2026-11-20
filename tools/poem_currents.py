@@ -296,7 +296,10 @@ def currents_block(chosen, use_notes, date):
             if t:
                 lines.append(f'- {lab}: {t}')
         else:
-            lines.append(f'- {lab}: {how}. Use what is really true for {PLACE} this week; do not invent anything unlikely.')
+            extra = ''
+            if k in ('soil', 'streams', 'forage', 'farmwork', 'woodpile') and wx:
+                extra = ' Real conditions to stay true to: ' + (live_text('weather', date, wx) or '') + ' ' + (live_text('frost', date, wx) or '')
+            lines.append(f'- {lab}: {how}. Use what is really true for {PLACE} this week; do not invent anything unlikely.{extra}')
     return lines, use_notes
 
 
