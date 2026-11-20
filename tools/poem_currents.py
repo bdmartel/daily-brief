@@ -378,6 +378,36 @@ def cmd_seed(a):
     print(f'history: {len(rows)} poems')
 
 
+def cmd_made(a):
+    """HTML note for the brief: how this morning's poem was made (Ben, Nov 20, 2026: shown Nov 21 to 27)."""
+    import html
+    pk = json.load(open(a.pick))
+    dlab = {k: (lab, t) for k, lab, t in DOORS}
+    clab = {k: (lab, how) for k, lab, how in CURRENTS}
+    e = html.escape
+    lab, t = dlab.get(pk.get('door'), (pk.get('door', ''), ''))
+    rows = [f'<li><b>The way in:</b> {e(lab)} ({e(t)}).</li>']
+    for k in pk.get('currents', []):
+        cl, how = clab.get(k, (k, ''))
+        fact = next((f[len(f'- {cl}: '):] for f in pk.get('facts', []) if f.startswith(f'- {cl}: ')), '')
+        if how == 'live':
+            rows.append(f'<li><b>What was really going on, {e(cl.lower())}:</b> {e(fact)}</li>')
+        else:
+            real = fact.split('Real conditions to stay true to: ')[1].strip() if 'Real conditions to stay true to: ' in fact else ''
+            body = (fact.split('. Use what is really true')[0] or how) + ', drawn from what is really happening around Peterborough this week.'
+            if real:
+                body += ' Held to the real weather: ' + real
+            rows.append(f'<li><b>What was really going on, {e(cl.lower())}:</b> {e(body)}</li>')
+    rows.append('<li><b>Your own day:</b> ' + ('yesterday\'s notes could shape it.' if pk.get('notes') else 'left out; the poem ignored the notes.') + '</li>')
+    rows.append(f'<li><b>Memory:</b> it was shown the last {MEMORY} poems and told not to reuse their openings, images or endings.</li>')
+    if a.technique:
+        rows.append(f'<li><b>The lesson:</b> {e(a.technique.split(" — ")[0])}.</li>')
+    print('<!--poem-made--><div class="poem-made" style="margin:-12px 0 24px;padding:14px 20px;border-left:3px solid #d8b25a;border-radius:10px;font-size:14px;line-height:1.6;color:var(--text-muted,#9a948a);">'
+          '<div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:6px;">How this poem was made</div>'
+          '<ul style="margin:0;padding-left:18px;">' + ''.join(rows) + '</ul>'
+          '<div style="margin-top:6px;font-size:12px;">Pick the doors and currents at <a href="https://lists.benmartel.com/poem" style="color:#d8b25a;">lists.benmartel.com/poem</a>.</div></div><!--/poem-made-->')
+
+
 def cmd_picks(a):
     doors, currents = load_picks()
     print(json.dumps({'doors': doors, 'currents': currents}, indent=1))
@@ -473,8 +503,9 @@ def main():
     p.add_argument('--motivator'); p.add_argument('--pick')
     p = sp.add_parser('page'); p.add_argument('--out', required=True)
     sp.add_parser('seed'); sp.add_parser('picks')
+    p = sp.add_parser('made'); p.add_argument('--pick', required=True); p.add_argument('--technique')
     a = ap.parse_args()
-    {'pick': cmd_pick, 'record': cmd_record, 'page': cmd_page, 'seed': cmd_seed, 'picks': cmd_picks}[a.cmd](a)
+    {'pick': cmd_pick, 'record': cmd_record, 'page': cmd_page, 'seed': cmd_seed, 'picks': cmd_picks, 'made': cmd_made}[a.cmd](a)
 
 
 if __name__ == '__main__':
