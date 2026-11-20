@@ -406,6 +406,8 @@ def cmd_made(a):
             t = re.sub(r'Overnight lows this past week: [^;]*; ', '', t)
             t = re.sub(r'The past week brought 0\.00 in of rain in all\.', 'No rain at all this past week.', t)
             t = t.replace('°F', ' degrees').replace(' mph', ' miles an hour').replace('1 hard freezes', 'one hard freeze').replace(' (28 degrees or below)', '').replace(' frosts, ', ' frosts this past week, ')
+            t = re.sub(r'Sunrise 0?(\d+):(\d\d), sunset (\d+):(\d\d)', lambda m: f'Sunrise at {int(m[1])}:{m[2]}, sunset at {int(m[3])-12}:{m[4]}', t)
+            t = re.sub(r'(\d+) h (\d+) min', r'\1 hours \2 minutes', t)
             return t.strip()
         parts = [f'A note on how this poem was made. The way in was {lab.lower()}: {t.split(": ", 1)[-1]}.']
         named = []
@@ -420,7 +422,8 @@ def cmd_made(a):
                 real = say(fact.split('Real conditions to stay true to: ')[1])
                 parts.append(f'On {cl.lower()}, it was held to the real weather. {real}')
             else:
-                parts.append(f'On {cl.lower()}, it drew on what is really happening around Peterborough this week.')
+                h = re.sub(r'\s*\([^)]*\)', '', how)
+                parts.append(f'For {cl.lower()}, it drew on {h}' + ('.' if 'this week' in h else ', true to this week around Peterborough.'))
         parts.insert(1, 'What was really going on came from ' + ' and '.join(named) + '.')
         parts.append('It could use your notes from yesterday.' if pk.get('notes') else 'It left your notes from yesterday out.')
         parts.append(f'And it was shown the last {MEMORY} poems and told not to repeat them.')
