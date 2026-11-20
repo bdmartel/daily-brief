@@ -180,9 +180,10 @@ def choose_door(doors, rows, date, forced=None):
         if r.get('door'):
             last[r['door']] = i
     # never-used doors first, then the ones heard longest ago; random among the oldest third
-    ranked = sorted(doors, key=lambda k: last.get(k, -1))
+    rng = random.Random(date + 'door')
+    ranked = sorted(doors, key=lambda k: (last.get(k, -1), rng.random()))   # ties broken at random
     pool = ranked[:max(1, math.ceil(len(ranked) / 3))]
-    return random.Random(date + 'door').choice(pool)
+    return rng.choice(pool)
 
 
 def choose_currents(currents, rows, date):
